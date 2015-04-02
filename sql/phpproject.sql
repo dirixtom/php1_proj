@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Genereertijd: 02 apr 2015 om 09:04
+-- Genereertijd: 02 apr 2015 om 10:39
 -- Serverversie: 5.6.11
 -- PHP-versie: 5.5.3
 
@@ -63,11 +63,10 @@ CREATE TABLE IF NOT EXISTS `tblbuddies` (
   `buddieNaam` varchar(250) NOT NULL,
   `buddieVoornaam` varchar(250) NOT NULL,
   `buddieEmail` varchar(250) NOT NULL,
+  `buddieTwitter` varchar(250) NOT NULL,
   `buddiePassword` varchar(250) NOT NULL,
-  `buddieRichting` varchar(250) NOT NULL,
   `buddieRating` int(11) NOT NULL,
-  `buddieLeeftijd` int(11) NOT NULL,
-  `buddieFoto` blob NOT NULL,
+  `buddieFoto` varchar(256) NOT NULL,
   PRIMARY KEY (`buddieID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
