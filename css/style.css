@@ -1,12 +1,23 @@
 body {
+	width:100%;
+	background: none;
+	color:#262626;
 	font-family: Helvetica, Arial, Verdana;
 	font-size:14pt;
-	width:100%;
+}
+
+.full {
+  background: url("../images/bgimg.jpg") no-repeat bottom center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 h1 {
 	font-size:32pt;
 	margin-top:40px;
+	font-weight:bold;
 }
 
 h2 {
@@ -25,11 +36,62 @@ p {
 	margin-top:20px;
 }
 
-.wrapper {
-	width:80%;
-	margin:0 auto;
+.clear {
+	clear:both;
 }
 
-#formulier {
+.container-fluid {
+	width: 100%;
+}
+
+.navigatie {
+	width:100%;
+	background-color:rgba(44, 62, 80,0.5);
+}
+
+nav {
+	width:100%;
+	
+	height:50px;
+}
+
+ul li {
+	display:inline-block;
+	float:right;
+	width:150px;
+	color:#ecf0f1;
+}
+
+.formulier {
 	margin-top:50px;
+}
+
+input {
+	width:45%;
+	padding-left:5px;
+	margin-bottom:10px;
+	float:left;
+}
+
+.ghost-button-transition {
+	float:left;
+	display: inline-block;
+	background:none;
+	width:25%;
+	padding:6px 0px;
+	color:#27ae60;
+	border: 2px solid #27ae60;
+	text-align: center;
+	outline: none;
+	text-decoration: none;
+	transition: background-color 0.2s ease-out,
+	            color 0.2s ease-out;
+}
+.ghost-button-transition:hover,
+.ghost-button-transition:active {
+	background-color:#27ae60;
+	color:#ecf0f1;
+	text-decoration:none;
+	transition: background-color 0.3s ease-in,
+	            color 0.3s ease-in;
 }
