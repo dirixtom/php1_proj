@@ -1,0 +1,35 @@
+body {
+	font-family: Helvetica, Arial, Verdana;
+	font-size:14pt;
+	width:100%;
+}
+
+h1 {
+	font-size:32pt;
+	margin-top:40px;
+}
+
+h2 {
+	font-size:24pt;
+	margin-top:20px;
+}
+
+h3 {
+	font-size:20pt;
+	margin-top:20px;
+}
+
+p {
+	font-size:14pt;
+	line-height:130%;
+	margin-top:20px;
+}
+
+.wrapper {
+	width:80%;
+	margin:0 auto;
+}
+
+#formulier {
+	margin-top:50px;
+}
