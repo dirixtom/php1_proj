@@ -1,26 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- Machine: 127.0.0.1
--- Genereertijd: 02 apr 2015 om 09:04
--- Serverversie: 5.6.11
--- PHP-versie: 5.5.3
+-- Machine: localhost:8889
+-- Gegenereerd op: 03 apr 2015 om 17:09
+-- Serverversie: 5.5.38
+-- PHP-versie: 5.5.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+SET time_zone = "+01:00";
 
 --
 -- Databank: `phpproject`
 --
-CREATE DATABASE IF NOT EXISTS `phpproject` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `phpproject`;
 
 -- --------------------------------------------------------
 
@@ -28,14 +20,13 @@ USE `phpproject`;
 -- Tabelstructuur voor tabel `tbladmin`
 --
 
-CREATE TABLE IF NOT EXISTS `tbladmin` (
-  `adminID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbladmin` (
+`adminID` int(11) NOT NULL,
   `adminNaam` varchar(250) NOT NULL,
   `adminVoornaam` varchar(250) NOT NULL,
   `adminEmail` varchar(250) NOT NULL,
-  `adminPassword` varchar(250) NOT NULL,
-  PRIMARY KEY (`adminID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `adminPassword` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -43,14 +34,13 @@ CREATE TABLE IF NOT EXISTS `tbladmin` (
 -- Tabelstructuur voor tabel `tblboekingen`
 --
 
-CREATE TABLE IF NOT EXISTS `tblboekingen` (
-  `boekingID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tblboekingen` (
+`boekingID` int(11) NOT NULL,
   `studentID` int(11) NOT NULL,
   `buddieID` int(11) NOT NULL,
   `datumID` int(11) NOT NULL,
-  `boekingTijd` time NOT NULL,
-  PRIMARY KEY (`boekingID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `boekingTijd` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -58,18 +48,19 @@ CREATE TABLE IF NOT EXISTS `tblboekingen` (
 -- Tabelstructuur voor tabel `tblbuddies`
 --
 
-CREATE TABLE IF NOT EXISTS `tblbuddies` (
-  `buddieID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tblbuddies` (
+`buddieID` int(11) NOT NULL,
   `buddieNaam` varchar(250) NOT NULL,
   `buddieVoornaam` varchar(250) NOT NULL,
+  `buddieTwitter` varchar(255) NOT NULL,
   `buddieEmail` varchar(250) NOT NULL,
   `buddiePassword` varchar(250) NOT NULL,
+  `buddieJaar` varchar(255) NOT NULL,
   `buddieRichting` varchar(250) NOT NULL,
   `buddieRating` int(11) NOT NULL,
   `buddieLeeftijd` int(11) NOT NULL,
-  `buddieFoto` blob NOT NULL,
-  PRIMARY KEY (`buddieID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `buddieFoto` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -77,11 +68,10 @@ CREATE TABLE IF NOT EXISTS `tblbuddies` (
 -- Tabelstructuur voor tabel `tbldatums`
 --
 
-CREATE TABLE IF NOT EXISTS `tbldatums` (
-  `datumID` int(11) NOT NULL AUTO_INCREMENT,
-  `datumDate` date NOT NULL,
-  PRIMARY KEY (`datumID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE `tbldatums` (
+`datumID` int(11) NOT NULL,
+  `datumDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -89,15 +79,74 @@ CREATE TABLE IF NOT EXISTS `tbldatums` (
 -- Tabelstructuur voor tabel `tblstudenten`
 --
 
-CREATE TABLE IF NOT EXISTS `tblstudenten` (
-  `studentID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tblstudenten` (
+`studentID` int(11) NOT NULL,
   `studentNaam` varchar(250) NOT NULL,
   `studentVoornaam` varchar(250) NOT NULL,
   `studentEmail` varchar(250) NOT NULL,
-  `studentPassword` varchar(250) NOT NULL,
-  PRIMARY KEY (`studentID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `studentPassword` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Indexen voor geëxporteerde tabellen
+--
+
+--
+-- Indexen voor tabel `tbladmin`
+--
+ALTER TABLE `tbladmin`
+ ADD PRIMARY KEY (`adminID`);
+
+--
+-- Indexen voor tabel `tblboekingen`
+--
+ALTER TABLE `tblboekingen`
+ ADD PRIMARY KEY (`boekingID`);
+
+--
+-- Indexen voor tabel `tblbuddies`
+--
+ALTER TABLE `tblbuddies`
+ ADD PRIMARY KEY (`buddieID`);
+
+--
+-- Indexen voor tabel `tbldatums`
+--
+ALTER TABLE `tbldatums`
+ ADD PRIMARY KEY (`datumID`);
+
+--
+-- Indexen voor tabel `tblstudenten`
+--
+ALTER TABLE `tblstudenten`
+ ADD PRIMARY KEY (`studentID`);
+
+--
+-- AUTO_INCREMENT voor geëxporteerde tabellen
+--
+
+--
+-- AUTO_INCREMENT voor een tabel `tbladmin`
+--
+ALTER TABLE `tbladmin`
+MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT voor een tabel `tblboekingen`
+--
+ALTER TABLE `tblboekingen`
+MODIFY `boekingID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT voor een tabel `tblbuddies`
+--
+ALTER TABLE `tblbuddies`
+MODIFY `buddieID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT voor een tabel `tbldatums`
+--
+ALTER TABLE `tbldatums`
+MODIFY `datumID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT voor een tabel `tblstudenten`
+--
+ALTER TABLE `tblstudenten`
+MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT;
