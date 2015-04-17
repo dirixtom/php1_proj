@@ -5,51 +5,15 @@
 	    header("location:adminlogin.php");
 	    exit();
 	}
-	
-	include_once("classes/Admin.class.php");
 
-	$a = new Admin();
-	$b = new Admin();
-	$allAcc = $b->ShowAccounts();
+	include_once("classes/Reacties.class.php");
 
-	if(!empty($_POST["FormCreate"]))
-	{
-		try 
-		{	
-
-			$a->Username = $_POST['username'];
-			$a->Password = $_POST['password'];
-			$a->CreateAccount();
-
-			$succes = "Account is toegevoegd!";
-
-		}
-		catch(Exception $e)
-		{
-			$error = $e->getMessage();
-		}
-	}
-
-	if(!empty($_POST["FormDel"]))
-	{
-		try 
-		{	
-			
-			$b->Id = $_POST['adminID'];
-			$b->DeleteAccount();
-
-			$succes = "Account is verwijderd!";
-
-		}
-		catch(Exception $e)
-		{
-			$error = $e->getMessage();
-		}
-	}
+	$r = new Reacties();
+	$allReacties = $r->getAllReacties();
 ?>
 <html>
 <head>
-	<title>Accounts beheren</title>
+	<title>Reacties</title>
 	
 	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -101,10 +65,10 @@
                     <li>
                         <a href="admindatums.php"><i class="fa fa-fw fa-edit"></i> Datums</a>
                     </li>
-                    <li>
+                    <li class="selected">
                         <a href="adminreacties.php"><i class="fa fa-fw fa-desktop"></i> Reacties</a>
                     </li>
-                    <li class="selected">
+                    <li>
                         <a href="adminaccounts.php"><i class="fa fa-fw fa-table"></i> Accounts</a>
                     </li>
                 </ul>
@@ -120,7 +84,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            <small> Accounts toevoegen</small>
+                            <small>Overzicht van alle reacties</small>
                         </h1>  
                     </div>
                 </div>
@@ -128,64 +92,18 @@
 
                 <div class="row">
                 	<div class="col-sm-6">
-                		<?php if(isset($error)): ?>
-							<div class="error alert alert-danger">
-						<?php echo $error;?>
-							</div>
-						<?php endif; ?>
+                       	<ul class="list-group"> 
+							<?php
 
-						<?php if(isset($succes)): ?>
-							<div class="feedback alert alert-success">
-						<?php echo $succes;?>
-							</div>
-						<?php endif; ?>
-
-                		<form method="post" action="" class="form-horizontal">
-                			<div class="form-group">
-						    	<label for="username" class="col-sm-2 control-label">Username</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="text" id="username" name="username" placeholder="username" class="form-control" />
-						    	</div>
-						  	</div>
-						  	<div class="form-group">
-						    	<label for="password" class="col-sm-2 control-label">Password</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="password" id="password" name="password" placeholder="password" class="form-control" />
-						    	</div>
-						  	</div>
-						  	<div class="form-group">
-						    	<div class="col-sm-offset-2 col-sm-10">
-						      		
-						      		<input class="submit" type="submit" value="Account Toevoegen" name='FormCreate'/>
-						    	</div>
-						 	</div>
-                		</form>
-                	</div>
-                </div>
-
-                <h1 class="page-header">
-                    <small>Overzicht van accounts</small>
-                </h1>  
-                <div class="row">
-                	<div class="col-sm-6">
-                		<?php
-							while($acc = $allAcc->fetch(PDO::FETCH_ASSOC))
-							{
-								echo "<form method='post' class='form-horizontal'>";
-									echo "<div class='form-group'>";
-										echo "<div class='col-sm-3'>";
-											echo "<label for='username' class='col-sm-2 control-label'>" . $acc["username"] . "</label>";
-										echo "</div>";
-										echo "<div class='col-sm-6'>";
-											echo "<input type='hidden' name='adminID' value='".$acc['id']."'><input type='submit' class='submit' name='FormDel' value='Verwijder Account'><br /><br />";
-										echo "</div>";
-									echo "</div>";
-								echo "</form>";
-							}
-						?>
-                	</div>
+								while($reactie = $allReacties->fetch(PDO::FETCH_ASSOC))
+								{
+									echo "<li class='list-group-item'><strong>Naam:</strong><br/>" . $reactie["naam"] . "<br />";
+									echo "<strong>Reactie:</strong><br />" . $reactie["reactie"] . "<br />";
+									echo "</li>";
+								}
+							?>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -193,7 +111,6 @@
 
         </div>
         <!-- /#page-wrapper -->
-
 
         <!-- jQuery -->
     <script src="js/jquery.js"></script>

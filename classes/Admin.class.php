@@ -74,7 +74,7 @@
 			$statement->bindValue(':password', $this->Password );
 			$statement->execute();
 
-			header('Location:adminaccounts.php');
+			//header('Location:adminaccounts.php');
 
 		}
 
@@ -121,6 +121,8 @@
 			$conn = Db::getInstance();
 			$allAcc = $conn->query("SELECT * FROM adminlogin");
 			return $allAcc;
+
+			header('Location:adminaccounts.php');
 		}
 	}
 ?>

@@ -77,7 +77,7 @@
 			$statement->bindValue(':jaar', $this->Jaar );
 			$statement->execute();
 
-			header('Location:admindatums.php');			
+			//header('Location:admindatums.php');			
 
 		}
 
@@ -99,6 +99,14 @@
 			//alle accounts returnen
 			$conn = Db::getInstance();
 			$allDates = $conn->query("SELECT * FROM huurdatums");
+			return $allDates;
+		}
+
+		public function ShowRecentDate()
+		{
+			//alle accounts returnen
+			$conn = Db::getInstance();
+			$allDates = $conn->query("SELECT * FROM huurdatums LIMIT 3");
 			return $allDates;
 		}
 
