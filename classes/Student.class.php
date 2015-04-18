@@ -214,18 +214,18 @@
 		{
 		
         	$conn = Db::getInstance();
-			$statement = $conn->prepare("SELECT buddieID FROM tblbuddies WHERE buddieEmail = :email AND buddiePassword = :password");
+			$statement = $conn->prepare("SELECT * FROM tblbuddies WHERE buddieEmail = :email AND buddiePassword = :password");
 			$statement->bindValue(':email', $this->Email);
 			$statement->bindValue(':password', $this->Password);
 			$statement->execute();
 			$rows = $statement->fetchAll();
 			$row = count($rows);
 
-			if($row == 1) 
+			if($row === 1) 
 			{				
 				session_start();
 				$_SESSION["username"] = $this->Username;
-				header("Location: www.tomdirix.be");
+				header("Location: http://www.tomdirix.be/");
 			}
 			else
 			{
