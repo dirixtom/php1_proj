@@ -2,12 +2,14 @@
 
 	include_once("classes/Student.class.php");
 
+	session_start();
 	$s = new Student();
 
 	if(!empty($_POST))
 	{
 		try 
 		{	
+			include_once("upload.php");
 
 			$s->Firstname = $_POST['firstname'];
 			$s->Lastname = $_POST['lastname'];
@@ -17,9 +19,15 @@
 			$s->Email = $_POST['email'];
 			$s->Password = $_POST['password'];
 			$s->CPassword = $_POST['cpassword'];
-			$s->Save();
+			$s->Picture = "images/profpics/".$_POST['email']."/".basename( $_FILES["fileToUpload"]["name"]);
 
-			$succes = "Account is aangemaakt!";
+			$map = $_POST['email'];
+        	if (!file_exists("images/profpics/$map"))
+        	{
+            	mkdir("images/profpics/$map", 0777, true);
+        	}
+
+			$s->Save();
 
 		}
 		catch(Exception $e)

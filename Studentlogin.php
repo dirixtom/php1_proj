@@ -1,8 +1,8 @@
 <?php 
 	
-	include_once("classes/Login.class.php");
-
-	$l = new Login();
+	include_once("classes/Student.class.php");
+	
+	$l = new Student();
 
 	if(!empty($_POST))
 	{
@@ -12,7 +12,7 @@
 			$l->Email = $_POST['email'];
 			$l->Password = $_POST['password'];
 
-			$l->StudentLogin();
+			$l->login();
 
 		}
 		catch(Exception $e)
@@ -21,38 +21,85 @@
 		}
 	}
 	
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+?>
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Admin login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student login</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<div>
-	<h1>Student login</h1>
-	
-	<?php if(isset($error)): ?>
-	<div class="error">
-		<?php echo $error;?>
-	</div>
-	<?php endif; ?>
-
-	<?php if(isset($succes)): ?>
-	<div class="feedback">
-		<?php echo $succes;?>
-	</div>
-	<?php endif; ?>
-
-	<form method="post" action="">
-		<label for="email">Email</label>
-		<input class="enlarge" type="text" id="email" name="email" />
-			
-		<label for="password">Password</label>
-		<input class="enlarge" type="password" id="password" name="password" />
+	<div class="container-fluid">
 		
-		<input class="submit" type="submit" id="btnSubmit" value="Login" />
-	</form>
+		<form method="post" class="formulier">
+		
+		<div class="row">
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-3">
+				<h1>Student login</h1>
+			</div>
+			<div class="col-md-8">	
+			</div>
+		</div>
 
-</div>
+		<div class="row">
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-1">
+				<label for="email">email:</label>	
+			</div>
+			<div class="col-md-10">
+				<input type="text" id="email" name="email" placeholder="email" />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-1">
+				<label for="password">Password:</label>
+			</div>
+			<div class="col-md-10">
+				<input type="password" id="password" name="password" placeholder="password" />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-1">	
+			</div>
+			<div class="col-md-2">
+				<input class="submit" type="submit" value="Login" />
+			</div>
+			<div class="col-md-9">
+			</div>
+		</div>
+
+		</form>  	
+
+		<div class="row">
+			<div class="col-md-1">	
+			</div>
+			<div class="col-md-6">
+				<?php if(isset($error)): ?>
+					<div class="error">
+				<?php echo $error;?>
+					</div>
+				<?php endif; ?>
+
+				<?php if(isset($succes)): ?>
+					<div class="feedback">
+				<?php echo $succes;?>
+					</div>
+				<?php endif; ?>
+			</div>
+			<div class="col-md-5">
+			</div>
+		</div>
+
+	</div>
 </body>
 </html>

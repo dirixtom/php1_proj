@@ -13,7 +13,7 @@
 		private $m_sEmail;
 		private $m_sPassword;
 		private $m_sCPassword;
-		//private $m_vFoto;
+		private $m_sPicture;
 		private $m_sId;
 
 		public function __set($p_sProperty, $p_vValue)
@@ -132,6 +132,18 @@
 						};
 					break;
 
+				case 'Picture':
+                    if ($p_vValue!="")
+	                    {
+	                        $this->m_sPicture = $p_vValue;
+	                    }
+                    else
+	                    {
+	                        $this->m_sPicture = null;
+	                    }
+                    break;
+
+
 				case 'Id':
 					$this->m_sId = $p_vValue;
 					break;
@@ -175,6 +187,10 @@
 					return $this->m_sCPassword;
 					break;
 
+				case 'Picture':
+					return $this->m_sPicture;
+					break;
+
 				case 'Id':
 					return $this->m_sId;
 					break;
@@ -194,6 +210,30 @@
 			}
 		}
 
+		public function Login()
+		{
+		
+        	$conn = Db::getInstance();
+			$statement = $conn->prepare("SELECT buddieID FROM tblbuddies WHERE buddieEmail = :email AND buddiePassword = :password");
+			$statement->bindValue(':email', $this->Email);
+			$statement->bindValue(':password', $this->Password);
+			$statement->execute();
+			$rows = $statement->fetchAll();
+			$row = count($rows);
+
+			if($row == 1) 
+			{				
+				session_start();
+				$_SESSION["username"] = $this->Username;
+				header("Location: www.tomdirix.be");
+			}
+			else
+			{
+				throw new Exception("Het wachtwoord hoort niet bij deze email");
+			}
+
+		}
+
 		public function Save()
 		{
 			if(!$this->checkPassword())
@@ -202,11 +242,11 @@
 			}
 
 			$conn = Db::getInstance();
-			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$statement = $conn->prepare("INSERT INTO tblbuddies
-				(buddieNaam, buddieVoornaam, buddieTwitter, buddieEmail, buddiePassword, buddieJaar, buddieRichting) 
+				(buddieNaam, buddieVoornaam, buddieTwitter, buddieEmail, buddiePassword, buddieJaar, buddieRichting, buddieFoto) 
 				VALUES 
-				(:lastname, :firstname, :twitter, :email, :password, :year, :subject)");
+				(:lastname, :firstname, :twitter, :email, :password, :year, :subject, :fileToUpload)");
 			$statement->bindValue(':lastname', $this->Lastname);
 			$statement->bindValue(':firstname', $this->Firstname);
 			$statement->bindValue(':twitter', $this->Twitter);
@@ -214,6 +254,7 @@
 			$statement->bindValue(':password', $this->Password);
 			$statement->bindValue(':year', $this->Year);
 			$statement->bindValue(':subject', $this->Subject);
+			$statement->bindValue(':fileToUpload', $this->Picture);
 			$statement->execute();
 
 			header('Location:Studentlogin.php');
