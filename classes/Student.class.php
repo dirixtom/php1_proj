@@ -223,15 +223,55 @@
 
 			if($row === 1) 
 			{				
-				session_start();
-				$_SESSION["username"] = $this->Username;
-				header("Location: http://www.tomdirix.be/");
+				$_SESSION["email"] = $this->Email;
+				header("Location: student.php");
 			}
 			else
 			{
 				throw new Exception("Het wachtwoord hoort niet bij deze email");
 			}
 
+		}
+		/*public function UpdateAccount()
+		{
+
+			$conn = Db::getInstance();
+			$statement = $conn->prepare("UPDATE tblbuddies SET buddieTwitter = :twitter,
+															   buddieEmail = :email,
+															   buddiePassword = :password,
+															   buddieFoto = :fileToUpload
+										");
+			$statement->bindValue(':twitter', $this->Twitter);
+			$statement->bindValue(':email', $this->Email);
+			$statement->bindValue(':password', $this->Password);
+			$statement->bindValue(':fileToUpload', $this->Picture);
+			$statement->execute();
+
+			header('Location:Studentlogin.php');
+
+		}*/
+
+		public function ShowAccount()
+		{
+			//alle accounts returnen
+			$conn = Db::getInstance();
+			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$showAcc = $conn->query("SELECT * FROM tblbuddies WHERE buddieEmail ='" . $_SESSION['email'] . "'");
+			return $showAcc;
+		}
+
+		public function DeleteAccount()
+		{
+
+			$conn = Db::getInstance();
+			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$statement = $conn->prepare("DELETE * FROM tblbuddies WHERE buddieID = :id");
+			$statement->bindValue(':id', $this->Id );
+			$statement->execute();
+
+			header('Location:Studentlogin.php');
+
+			$success = "Uw profiel is verwijderd.";
 		}
 
 		public function Save()
@@ -259,6 +299,7 @@
 
 			header('Location:Studentlogin.php');
 
+			$success = "Uw profiel is aangemaakt.";
 		}
 	}
 ?>
