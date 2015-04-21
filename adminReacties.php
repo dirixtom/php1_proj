@@ -10,6 +10,23 @@
 
 	$r = new Reacties();
 	$allReacties = $r->getAllReacties();
+
+    if(!empty($_POST["FormDel"]))
+    {
+        try 
+        {   
+            
+            $r->Id = $_POST['reactieID'];
+            $r->DeleteReactie();
+
+            $succes = "Reactie is verwijderd!";
+
+        }
+        catch(Exception $e)
+        {
+            $error = $e->getMessage();
+        }
+    }
 ?>
 <html>
 <head>
@@ -99,9 +116,17 @@
 								{
 									echo "<li class='list-group-item'><strong>Naam:</strong><br/>" . $reactie["naam"] . "<br />";
 									echo "<strong>Reactie:</strong><br />" . $reactie["reactie"] . "<br />";
+                                    echo "<br />";
+                                    echo "<form method='post' class='form-horizontal'>";
+                                        echo "<input type='hidden' name='reactieID' value='".$reactie['id']."'><button>Beantwoord</button> <input type='submit' class='submit' name='FormDel' value='Verwijder reactie'><br /><br />";
+                                    echo "</form>";
 									echo "</li>";
+                                    
+                                    
 								}
 							?>
+
+                            
                         </ul>
                     </div>
                 </div>
