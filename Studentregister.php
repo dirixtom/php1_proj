@@ -9,7 +9,6 @@
 	{
 		try 
 		{	
-			include_once("upload.php");
 
 			$s->Firstname = $_POST['firstname'];
 			$s->Lastname = $_POST['lastname'];
@@ -19,13 +18,16 @@
 			$s->Email = $_POST['email'];
 			$s->Password = $_POST['password'];
 			$s->CPassword = $_POST['cpassword'];
-			$s->Picture = "images/profpics/".$_POST['email']."/".basename( $_FILES["fileToUpload"]["name"]);
 
 			$map = $_POST['email'];
-        	if (!file_exists("images/profpics/$map"))
+        	if(!file_exists("images/profpics/$map"))
         	{
             	mkdir("images/profpics/$map", 0777, true);
         	}
+
+        	include_once("upload.php");
+
+        	$s->Picture = "images/profpics/".$_POST['email']."/".basename( $_FILES["fileToUpload"]["name"]);
 
 			$s->Save();
 
