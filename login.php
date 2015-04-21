@@ -60,6 +60,18 @@
 			</div>
 			<div class="col-md-2">
 				<legend>Admin login</legend>
+				<?php if(isset($error)): ?>
+					<div class="error"><br/>
+				<?php echo $error;?>
+					</div>
+				<?php endif; ?>
+
+				<?php if(isset($succes)): ?>
+					<div class="feedback">
+				<?php echo $succes;?>
+					</div>
+				<?php endif; ?>
+				<br/>
 			</div>
 			<div class="col-md-9">	
 			</div>
@@ -99,10 +111,15 @@
 
 		</form>  	
 
+		<!-- 2de formulier begint hier -->
+
+		<form method="post" class="formulier">
+		
 		<div class="row">
-			<div class="col-md-1">	
+			<div class="col-md-1">
 			</div>
 			<div class="col-md-2">
+				<legend>Student login</legend>
 				<?php if(isset($error)): ?>
 					<div class="error">
 				<?php echo $error;?>
@@ -114,20 +131,7 @@
 				<?php echo $succes;?>
 					</div>
 				<?php endif; ?>
-			</div>
-			<div class="col-md-9">
-			</div>
-		</div>
-
-		<!-- 2de formulier begint hier -->
-
-		<form method="post" class="formulier">
-		
-		<div class="row">
-			<div class="col-md-1">
-			</div>
-			<div class="col-md-2">
-				<legend>Student login</legend>
+				<br />
 			</div>
 			<div class="col-md-9">	
 			</div>
@@ -171,29 +175,9 @@
 			<div class="col-md-1">	
 			</div>
 			<div class="col-md-5">
-				<br/><p>Nog geen account? <a href="studentregister.php">Registreer hier</a></p>
+				<br/><p>Nog geen account? <a href="register.php">Registreer hier</a></p>
 			</div>
 			<div class="col-md-6">
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-1">	
-			</div>
-			<div class="col-md-2">
-				<?php if(isset($error)): ?>
-					<div class="error">
-				<?php echo $error;?>
-					</div>
-				<?php endif; ?>
-
-				<?php if(isset($succes)): ?>
-					<div class="feedback">
-				<?php echo $succes;?>
-					</div>
-				<?php endif; ?>
-			</div>
-			<div class="col-md-9">
 			</div>
 		</div>
 

@@ -233,6 +233,7 @@
 			}
 
 		}
+
 		/*public function UpdateAccount()
 		{
 
@@ -297,8 +298,6 @@
 			$statement->bindValue(':subject', $this->Subject);
 			$statement->bindValue(':fileToUpload', $this->Picture);
 			$statement->execute();
-
-			header('Location:Studentlogin.php');
 
 			$success = "Uw profiel is aangemaakt.";
 		}
