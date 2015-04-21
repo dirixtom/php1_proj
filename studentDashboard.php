@@ -1,20 +1,18 @@
 <?php
-	session_start();
-	if(!isset($_SESSION["username"]))
-	{
-	    header("location:login.php");
-	    exit();
-	}
+    
+    session_start();
+    if(!isset($_SESSION["email"]))
+    {
+        header("location:Studentlogin.php");
+        exit();
+    }
 
-	include_once("classes/Boeking.class.php");
-
-	$b = new Boeking();
-	$allBoekings = $b->getAllBoekingen();
-?>
-<html>
+?><!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Boekingen</title>
-	
+	<meta charset="UTF-8">
+	<title>Document</title>
+
 	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,7 +20,6 @@
     <link href="css/sb-admin.css" rel="stylesheet">
 </head>
 <body>
-	
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -35,16 +32,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Welkom, <?php echo $_SESSION["username"];?>.</a>
+                <a class="navbar-brand" href="index.html">Welkom.</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                   
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["username"] . " ";?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["email"] ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="studentAccount.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>                       
                         <li class="divider"></li>
                         <li>
@@ -56,10 +53,10 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="admindashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
                     <li class="selected">
+                        <a href="studentDashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <!-- <li>
                         <a href="adminboekingen.php"><i class="fa fa-fw fa-bar-chart-o"></i> Boekingen</a>
                     </li>
                     <li>
@@ -67,10 +64,10 @@
                     </li>
                     <li>
                         <a href="adminreacties.php"><i class="fa fa-fw fa-desktop"></i> Reacties</a>
-                    </li>
+                    </li>-->
                     <li>
-                        <a href="adminaccounts.php"><i class="fa fa-fw fa-table"></i> Accounts</a>
-                    </li>
+                        <a href="#"><i class="fa fa-fw fa-table"></i> Messenger</a>
+                    </li> 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -82,31 +79,17 @@
 
                 <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <h1 class="page-header">
-                            <small>Overzicht van alle boekingen</small>
-                        </h1>  
+                            <small>Welkom</small>
+                        </h1>
+                        
                     </div>
+                    
+                    
                 </div>
                 <!-- /.row -->
-
-                <div class="row">
-                	<div class="col-sm-6">
-                       	<ul class="list-group"> 
-							<?php
-
-								while($boeking = $allBoekings->fetch(PDO::FETCH_ASSOC))
-								{
-									echo "<li class='list-group-item'>Voornaam: " . $boeking["voornaam"] . "<br />";
-									echo "Naam: " . $boeking["naam"] . "<br />";
-									echo "Datum: " . $boeking["dag"] . " " . $boeking["maand"] . " " . $boeking['jaar'] . "<br />";
-									echo "</li>";
-								}
-							?>
-                        </ul>
-                    </div>
-                </div>
-
+   
             </div>
             <!-- /.container-fluid -->
 

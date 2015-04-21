@@ -2,7 +2,7 @@
 	session_start();
 	if(!isset($_SESSION["username"]))
 	{
-	    header("location:adminlogin.php");
+	    header("location:login.php");
 	    exit();
 	}
 	
@@ -93,7 +93,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="adminbeheer.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="admindashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="adminboekingen.php"><i class="fa fa-fw fa-bar-chart-o"></i> Boekingen</a>

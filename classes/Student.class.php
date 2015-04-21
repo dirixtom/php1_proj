@@ -223,8 +223,9 @@
 
 			if($row === 1) 
 			{				
+				session_start();
 				$_SESSION["email"] = $this->Email;
-				header("Location: student.php");
+				header("Location: studentDashboard.php");
 			}
 			else
 			{

@@ -106,7 +106,7 @@
 			{				
 				session_start();
 				$_SESSION["username"] = $this->Username;
-				header("Location: adminbeheer.php");
+				header("Location: admindashboard.php");
 			}
 			else
 			{
