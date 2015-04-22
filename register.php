@@ -165,7 +165,7 @@
 				<div class="col-md-1">
 				</div>
 				<div class="col-md-2">
-					<label for="fileToUpload">Profielafbeelding</label> * <a title="Gelieve alleen een JPEG-bestandsformaat te gebruiken. De afbeelding mag niet groter zijn dan 1MB."><img src="http://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="13px"/></a>
+					<label for="fileToUpload">Profielafbeelding</label> * <a title="Gelieve alleen een JPEG-, PNG- of GIF-bestandsformaat te gebruiken. De afbeelding mag niet groter zijn dan 1MB. Gelieve een grootte te behouden van 100x100px, voor een correcte weergave van uw profielfoto."><img src="http://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="13px"/></a>
 				</div>
 				<div class="col-md-9">	
 					<input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" />

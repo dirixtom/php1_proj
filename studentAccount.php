@@ -152,7 +152,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["email"] ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="studentaanpassen.php"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="studentaccount.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>                       
                         <li class="divider"></li>
                         <li>
@@ -264,7 +264,7 @@
 						    			echo '<label for="fileToUpload" class="col-sm-2 control-label">Profielfoto</label>';
 						    		
 						    			echo '<div class="col-sm-4">';
-						      				echo '<img src="' . $acc['buddieFoto'] . '"/><br/><br/>
+						      				echo '<img src="' . $acc['buddieFoto'] . '" width="100%"/><br/><br/>
 						      				<input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" /><br/>
 						      				<input type="submit" class="submit" name="ImageUpload" value="Afbeelding uploaden">
 						      				<input type="submit" class="submit" name="ImageDelete" value="Afbeelding verwijderen">
