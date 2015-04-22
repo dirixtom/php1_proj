@@ -239,7 +239,7 @@
 			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
 
-			header('Location:studentAccount.php');
+			//header('Location:studentAccount.php');
 
 		}
 
@@ -257,15 +257,28 @@
 
 			$conn = Db::getInstance();
 			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("DELETE * FROM tblbuddies WHERE buddieID = :id");
+			$statement = $conn->prepare("DELETE FROM tblbuddies WHERE buddieID = :id");
 			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
 
-			header('Location:Studentlogin.php');
+			header('Location:login.php');
 
-			$success = "Uw profiel is verwijderd.";
 		}
 		
+		public function DeleteImage()
+		{
+
+			$conn = Db::getInstance();
+			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$statement = $conn->prepare("UPDATE tblbuddies SET buddieFoto = :foto WHERE buddieID = :id");
+			$statement->bindValue(':id', $this->Id );
+			$statement->bindValue(':foto', $this->Foto );
+			$statement->execute();
+
+			header('Location:Studentaccount.php');
+
+		}
+
 		public function checkPassword()
 		{
 			if($this->m_sPassword != $this->m_sCPassword)

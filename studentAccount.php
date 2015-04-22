@@ -40,6 +40,43 @@
 			
 			$b->UpdateAccount();
 
+			$success = "Uw profiel is gewijzigd.";
+
+		}
+		catch(Exception $e)
+		{
+			$error = $e->getMessage();
+		}
+	}
+
+	if(!empty($_POST["ImageDelete"]))
+	{
+		try 
+		{	
+			
+			$b->Id = $_POST['studentID'];
+			$b->Foto = $_POST['foto'];
+			
+			$b->DeleteImage();
+
+			//header("location:login.php");
+
+		}
+		catch(Exception $e)
+		{
+			$error = $e->getMessage();
+		}
+	}
+
+	if(!empty($_POST["FormDelete"]))
+	{
+		try 
+		{	
+			
+			$b->Id = $_POST['studentID'];
+			
+			$b->DeleteAccount();
+
 			//header("location:login.php");
 
 		}
@@ -137,9 +174,9 @@
 							</div>
 						<?php endif; ?>
 
-						<?php if(isset($succes)): ?>
+						<?php if(isset($success)): ?>
 							<div class="feedback alert alert-success">
-						<?php echo $succes;?>
+						<?php echo $success;?>
 							</div>
 						<?php endif; ?>
 
@@ -180,19 +217,30 @@
 						    			echo '</div>';
 						  			echo '</div>';
 
-						  			//echo '<div class="form-group">';
-						    		//	echo '<label for="image" class="col-sm-2 control-label">Foto</label>';
-						    		//
-						    		//	echo '<div class="col-sm-4">';
-						      		//		echo '<img src="' . $acc['buddieFoto'] . '"/>';
-						    		//	echo '</div>';
-						  			//echo '</div>';
+						  			echo '<div class="form-group">';
+						    			echo '<label for="image" class="col-sm-2 control-label">Foto</label>';
+						    		
+						    			echo '<div class="col-sm-4">';
+						      				echo '<img src="' . $acc['buddieFoto'] . '"/>';
+						    			echo '</div>';
+						  			echo '</div>';
 									
 									echo '<div class="form-group">';
 						    			echo '<label for="" class="col-sm-2 control-label"></label>';
 						    	
 						    			echo '<div class="col-sm-4">';
-						      				echo '<input type="hidden" name="studentID" value="'.$acc['buddieID'].'"/><input type="submit" class="submit" name="FormUpdate" value="Wijzig uw account">';
+						      				echo '	<input type="hidden" name="studentID" value="'.$acc['buddieID'].'"/><input type="hidden" name="foto" value=""/>
+						      						<input type="submit" class="submit" name="ImageDelete" value="Verwijder afbeelding"><br/><br/>
+						      						<input type="submit" class="submit" name="FormUpdate" value="Wijzig uw account"><br/><br/><br/><br/>
+						      						';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<input type="submit" class="submit col-sm-3" name="FormDelete" value="Verwijder uw account">';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				
 						    			echo '</div>';
 						  			echo '</div>';
 								}
