@@ -178,7 +178,6 @@
 					return $this->m_sEmail;
 					break;
 
-
 				case 'Password':
 					return $this->m_sPassword;
 					break;
@@ -195,18 +194,6 @@
 					return $this->m_sId;
 					break;
 
-			}
-		}
-
-		public function checkPassword()
-		{
-			if($this->m_sPassword != $this->m_sCPassword)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
 			}
 		}
 
@@ -234,28 +221,31 @@
 
 		}
 
-		/*public function UpdateAccount()
+		public function UpdateAccount()
 		{
+
+			if(!$this->checkPassword())
+			{
+				throw new Exception("De wachtwoorden komen niet overeen.");
+			}
 
 			$conn = Db::getInstance();
 			$statement = $conn->prepare("UPDATE tblbuddies SET buddieTwitter = :twitter,
-															   buddieEmail = :email,
-															   buddiePassword = :password,
-															   buddieFoto = :fileToUpload
+																buddiePassword = :password
+															    WHERE buddieID = :id
 										");
 			$statement->bindValue(':twitter', $this->Twitter);
-			$statement->bindValue(':email', $this->Email);
 			$statement->bindValue(':password', $this->Password);
-			$statement->bindValue(':fileToUpload', $this->Picture);
+			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
 
-			header('Location:Studentlogin.php');
+			header('Location:studentAccount.php');
 
-		}*/
+		}
 
 		public function ShowAccount()
 		{
-			//alle accounts returnen
+			//informatie van account returnen
 			$conn = Db::getInstance();
 			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$showAcc = $conn->query("SELECT * FROM tblbuddies WHERE buddieEmail ='" . $_SESSION['email'] . "'");
@@ -274,6 +264,18 @@
 			header('Location:Studentlogin.php');
 
 			$success = "Uw profiel is verwijderd.";
+		}
+		
+		public function checkPassword()
+		{
+			if($this->m_sPassword != $this->m_sCPassword)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
 		}
 
 		public function Save()
@@ -299,9 +301,6 @@
 			$statement->bindValue(':fileToUpload', $this->Picture);
 			$statement->execute();
 
-			$success = "Uw profiel is aangemaakt.";
-
-			//header("Location: login.php");
 		}
 	}
 ?>

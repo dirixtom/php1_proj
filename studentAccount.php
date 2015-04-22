@@ -2,7 +2,7 @@
 	session_start();
 	if(!isset($_SESSION["email"]))
 	{
-	    header("location:Studentlogin.php");
+	    header("location:login.php");
 	    exit();
 	}
 	
@@ -19,7 +19,28 @@
 			$b->Id = $_POST['studentID'];
 			$b->DeleteAccount();
 
-			header("location:Studentlogin.php");
+			header("location:login.php");
+
+		}
+		catch(Exception $e)
+		{
+			$error = $e->getMessage();
+		}
+	}
+
+	if(!empty($_POST["FormUpdate"]))
+	{
+		try 
+		{	
+			
+			$b->Twitter = $_POST['twitter'];
+			$b->Password = $_POST['password'];
+			$b->Id = $_POST['studentID'];
+			$b->CPassword = $_POST['cpassword'];
+			
+			$b->UpdateAccount();
+
+			//header("location:login.php");
 
 		}
 		catch(Exception $e)
@@ -73,7 +94,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="selected">
+                    <li>
                         <a href="studentDashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <!-- <li>
@@ -96,7 +117,7 @@
         <div id="page-wrapper">
 
             <div class="container-fluid">
-
+  
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-6">
@@ -109,7 +130,7 @@
                 <!-- /.row -->
 
                 <div class="row">
-                	<div class="col-sm-6">
+                	<div class="col-sm-10">
                 		<?php if(isset($error)): ?>
 							<div class="error alert alert-danger">
 						<?php echo $error;?>
@@ -123,71 +144,60 @@
 						<?php endif; ?>
 
                 		<form method="post" action="" class="form-horizontal">
-                			<div class="form-group">
-						    	<label for="twitter" class="col-sm-2 control-label">Twitter</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="text" id="twitter" name="twitter" placeholder="@twitter" class="form-control" />
-						    	</div>
-						  	</div>
-                			<div class="form-group">
-						    	<label for="email" class="col-sm-2 control-label">Email</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="text" id="email" name="email" placeholder="email" class="form-control" />
-						    	</div>
-						  	</div>
-						  	<div class="form-group">
-						    	<label for="password" class="col-sm-2 control-label">Wachtwoord</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="password" id="password" name="password" placeholder="wachtwoord" class="form-control" />
-						    	</div>
-						    </div>
-						    <div class="form-group">
-						    	<div class="col-sm-offset-2 col-sm-10">
-						      		<input type="password" id="cpassword" name="cpassword" placeholder="confirmeer wachtwoord" class="form-control" />
-						    	</div>
-						  	</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label" for="fileToUpload">Foto</label>
-								
-								<div class="col-sm-10">	
-									<input type="file" name="fileToUpload" id="fileToUpload" />
-								</div>
-							</div>
-						  	<div class="form-group">
-						    	<div class="col-sm-offset-2 col-sm-10">
-						      		
-						      		<input class="submit" type="submit" value="Account Updaten" name='FormEdit'/>
-						    	</div>
-						 	</div>
-                		</form>
-                	</div>
-                </div>
 
-                  
-                <div class="row">
-                	<div class="col-sm-6">
-                		<?php
-							while($acc = $showAcc->fetch(PDO::FETCH_ASSOC))
-							{
-								echo "<div class='row'>";
-				                    echo "<div class='col-sm-12'>";
-				                        echo "<h1 class='page-header'>";
-				                            echo "<small> Profiel verwijderen</small>";
-				                        echo "</h1>";  
-				                    echo "</div>";
-				                echo "</div>";
-								echo "<form method='post' class='form-horizontal'>";
-									echo "<div class='form-group'>";
-										echo "<div class='col-sm-offset-2 col-sm-5'>";
-											echo "<input type='hidden' name='buddieID' value='".$acc['buddieID']."'><input type='submit' class='submit' name='FormDel' value='Verwijder Account'>";
-										echo "</div>";
-									echo "</div>";
-								echo "</form>";
-							}
-						?>
+	                		<?php
+								while($acc = $showAcc->fetch(PDO::FETCH_ASSOC))
+								{
+									echo '<div class="form-group">';
+						    			echo '<label for="email" class="col-sm-2 control-label">Email</label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="text" disabled id="email" name="email" placeholder="email" class="form-control" value="'.$acc['buddieEmail'].'" />';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<label for="password" class="col-sm-2 control-label">Wachtwoord</label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="password" id="password" name="password" placeholder="Nieuw wachtwoord" class="form-control" />';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<label for="password" class="col-sm-2 control-label"></label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="password" id="cpassword" name="cpassword" placeholder="Confirmeer nieuw wachtwoord" class="form-control" />';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<label for="twitter" class="col-sm-2 control-label">Twitter</label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="text" id="twitter" name="twitter" placeholder="@twitter" class="form-control" value="' . $acc['buddieTwitter'] . '" />';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			//echo '<div class="form-group">';
+						    		//	echo '<label for="image" class="col-sm-2 control-label">Foto</label>';
+						    		//
+						    		//	echo '<div class="col-sm-4">';
+						      		//		echo '<img src="' . $acc['buddieFoto'] . '"/>';
+						    		//	echo '</div>';
+						  			//echo '</div>';
+									
+									echo '<div class="form-group">';
+						    			echo '<label for="" class="col-sm-2 control-label"></label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="hidden" name="studentID" value="'.$acc['buddieID'].'"/><input type="submit" class="submit" name="FormUpdate" value="Wijzig uw account">';
+						    			echo '</div>';
+						  			echo '</div>';
+								}
+							?>
+						</form>
                 	</div>
                 </div>
    

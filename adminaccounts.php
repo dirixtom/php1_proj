@@ -127,7 +127,7 @@
                 <!-- /.row -->
 
                 <div class="row">
-                	<div class="col-sm-6">
+                	<div class="col-sm-10">
                 		<?php if(isset($error)): ?>
 							<div class="error alert alert-danger">
 						<?php echo $error;?>
