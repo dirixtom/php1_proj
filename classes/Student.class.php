@@ -221,64 +221,6 @@
 
 		}
 
-		public function UpdateAccount()
-		{
-
-			if(!$this->checkPassword())
-			{
-				throw new Exception("De wachtwoorden komen niet overeen.");
-			}
-
-			$conn = Db::getInstance();
-			$statement = $conn->prepare("UPDATE tblbuddies SET buddieTwitter = :twitter,
-																buddiePassword = :password
-															    WHERE buddieID = :id
-										");
-			$statement->bindValue(':twitter', $this->Twitter);
-			$statement->bindValue(':password', $this->Password);
-			$statement->bindValue(':id', $this->Id );
-			$statement->execute();
-
-			//header('Location:studentAccount.php');
-
-		}
-
-		public function ShowAccount()
-		{
-			//informatie van account returnen
-			$conn = Db::getInstance();
-			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$showAcc = $conn->query("SELECT * FROM tblbuddies WHERE buddieEmail ='" . $_SESSION['email'] . "'");
-			return $showAcc;
-		}
-
-		public function DeleteAccount()
-		{
-
-			$conn = Db::getInstance();
-			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("DELETE FROM tblbuddies WHERE buddieID = :id");
-			$statement->bindValue(':id', $this->Id );
-			$statement->execute();
-
-			header('Location:login.php');
-
-		}
-		
-		public function DeleteImage()
-		{
-
-			$conn = Db::getInstance();
-			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("UPDATE tblbuddies SET buddieFoto = :foto WHERE buddieID = :id");
-			$statement->bindValue(':id', $this->Id );
-			$statement->bindValue(':foto', $this->Foto );
-			$statement->execute();
-
-			header('Location:Studentaccount.php');
-
-		}
-
 		public function checkPassword()
 		{
 			if($this->m_sPassword != $this->m_sCPassword)
@@ -314,6 +256,81 @@
 			$statement->bindValue(':fileToUpload', $this->Picture);
 			$statement->execute();
 
+		}
+
+		public function UpdateAccount()
+		{
+
+			if(!$this->checkPassword())
+			{
+				throw new Exception("De wachtwoorden komen niet overeen.");
+			}
+
+			$conn = Db::getInstance();
+			$statement = $conn->prepare("UPDATE tblbuddies SET buddieTwitter = :twitter,
+																buddiePassword = :password
+															    WHERE buddieID = :id
+										");
+			$statement->bindValue(':twitter', $this->Twitter);
+			$statement->bindValue(':password', $this->Password);
+			$statement->bindValue(':id', $this->Id );
+			//$statement->bindValue(':fileToUpload', $this->Picture);
+			//$statement->bindValue(':email', $this->Email);
+			$statement->execute();
+
+			//header('Location:studentAccount.php');
+
+		}
+
+		public function UpdateImage()
+		{
+
+			$conn = Db::getInstance();
+			$statement = $conn->prepare("UPDATE tblbuddies SET buddieFoto = :fileToUpload
+															    WHERE buddieID = :id
+										");
+			$statement->bindValue(':id', $this->Id );
+			$statement->bindValue(':fileToUpload', $this->Picture);
+			$statement->execute();
+
+			//header('Location:studentAccount.php');
+
+		}
+
+		public function DeleteAccount()
+		{
+
+			$conn = Db::getInstance();
+			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$statement = $conn->prepare("DELETE FROM tblbuddies WHERE buddieID = :id");
+			$statement->bindValue(':id', $this->Id );
+			$statement->execute();
+
+			header('Location:login.php');
+
+		}
+		
+		public function DeleteImage()
+		{
+
+			$conn = Db::getInstance();
+			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$statement = $conn->prepare("UPDATE tblbuddies SET buddieFoto = :foto WHERE buddieID = :id");
+			$statement->bindValue(':id', $this->Id );
+			$statement->bindValue(':foto', $this->Foto );
+			$statement->execute();
+
+			header('Location:Studentaccount.php');
+
+		}
+
+		public function ShowAccount()
+		{
+			//informatie van account returnen
+			$conn = Db::getInstance();
+			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$showAcc = $conn->query("SELECT * FROM tblbuddies WHERE buddieEmail ='" . $_SESSION['email'] . "'");
+			return $showAcc;
 		}
 	}
 ?>

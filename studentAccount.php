@@ -37,7 +37,10 @@
 			$b->Password = $_POST['password'];
 			$b->Id = $_POST['studentID'];
 			$b->CPassword = $_POST['cpassword'];
+			//$b->Email = $_POST['email'];
 			
+			
+
 			$b->UpdateAccount();
 
 			$success = "Uw profiel is gewijzigd.";
@@ -58,6 +61,36 @@
 			$b->Foto = $_POST['foto'];
 			
 			$b->DeleteImage();
+
+			//header("location:login.php");
+
+		}
+		catch(Exception $e)
+		{
+			$error = $e->getMessage();
+		}
+	}
+
+	if(!empty($_POST["ImageUpload"]))
+	{
+		try 
+		{	
+			
+			$b->Id = $_POST['studentID'];
+			//$b->Foto = $_POST['foto'];
+			$b->Email = $_POST['email'];
+
+			$map = $_POST['email'];
+        	if(!file_exists("images/profpics/$map"))
+        	{
+            	mkdir("images/profpics/$map", 0777, true);
+        	}
+
+        	include_once("upload.php");
+
+        	$b->Picture = "images/profpics/".$_POST['email']."/".basename( $_FILES["fileToUpload"]["name"]);
+			
+			$b->UpdateImage();
 
 			//header("location:login.php");
 
@@ -180,7 +213,7 @@
 							</div>
 						<?php endif; ?>
 
-                		<form method="post" action="" class="form-horizontal">
+                		<form method="post" action="" class="form-horizontal" enctype="multipart/form-data">
 
 	                		<?php
 								while($acc = $showAcc->fetch(PDO::FETCH_ASSOC))
@@ -189,7 +222,7 @@
 						    			echo '<label for="email" class="col-sm-2 control-label">Email</label>';
 						    	
 						    			echo '<div class="col-sm-4">';
-						      				echo '<input type="text" disabled id="email" name="email" placeholder="email" class="form-control" value="'.$acc['buddieEmail'].'" />';
+						      				echo '<input type="text" id="email" name="email" placeholder="email" class="form-control" value="'.$acc['buddieEmail'].'" />';
 						    			echo '</div>';
 						  			echo '</div>';
 
@@ -218,14 +251,6 @@
 						  			echo '</div>';
 
 						  			echo '<div class="form-group">';
-						    			echo '<label for="image" class="col-sm-2 control-label">Foto</label>';
-						    		
-						    			echo '<div class="col-sm-4">';
-						      				echo '<img src="' . $acc['buddieFoto'] . '"/>';
-						    			echo '</div>';
-						  			echo '</div>';
-									
-									echo '<div class="form-group">';
 						    			echo '<label for="" class="col-sm-2 control-label"></label>';
 						    	
 						    			echo '<div class="col-sm-4">';
@@ -233,6 +258,17 @@
 						      						<input type="submit" class="submit" name="ImageDelete" value="Verwijder afbeelding"><br/><br/>
 						      						<input type="submit" class="submit" name="FormUpdate" value="Wijzig uw account"><br/><br/><br/><br/>
 						      						';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<label for="fileToUpload" class="col-sm-2 control-label">Profielfoto</label>';
+						    		
+						    			echo '<div class="col-sm-4">';
+						      				echo '<img src="' . $acc['buddieFoto'] . '"/><br/><br/>
+						      				<input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" />
+						      				<input type="submit" class="submit" name="ImageUpload" value="Nieuwe afbeelding uploaden">
+						      				';
 						    			echo '</div>';
 						  			echo '</div>';
 
