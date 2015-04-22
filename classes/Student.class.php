@@ -293,7 +293,7 @@
 			$statement->bindValue(':fileToUpload', $this->Picture);
 			$statement->execute();
 
-			//header('Location:studentAccount.php');
+			header('Location:studentAccount.php');
 
 		}
 

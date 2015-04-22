@@ -255,7 +255,6 @@
 						    	
 						    			echo '<div class="col-sm-4">';
 						      				echo '	<input type="hidden" name="studentID" value="'.$acc['buddieID'].'"/><input type="hidden" name="foto" value=""/>
-						      						<input type="submit" class="submit" name="ImageDelete" value="Verwijder afbeelding"><br/><br/>
 						      						<input type="submit" class="submit" name="FormUpdate" value="Wijzig uw account"><br/><br/><br/><br/>
 						      						';
 						    			echo '</div>';
@@ -266,14 +265,15 @@
 						    		
 						    			echo '<div class="col-sm-4">';
 						      				echo '<img src="' . $acc['buddieFoto'] . '"/><br/><br/>
-						      				<input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" />
-						      				<input type="submit" class="submit" name="ImageUpload" value="Nieuwe afbeelding uploaden">
+						      				<input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" /><br/>
+						      				<input type="submit" class="submit" name="ImageUpload" value="Afbeelding uploaden">
+						      				<input type="submit" class="submit" name="ImageDelete" value="Afbeelding verwijderen">
 						      				';
 						    			echo '</div>';
 						  			echo '</div>';
 
 						  			echo '<div class="form-group">';
-						    			echo '<input type="submit" class="submit col-sm-3" name="FormDelete" value="Verwijder uw account">';
+						    			echo '<br/><br/><br/><br/><input type="submit" class="submit col-sm-3" name="FormDelete" value="Verwijder uw account">';
 						    	
 						    			echo '<div class="col-sm-4">';
 						      				
