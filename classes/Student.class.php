@@ -300,6 +300,8 @@
 			$statement->execute();
 
 			$success = "Uw profiel is aangemaakt.";
+
+			//header("Location: login.php");
 		}
 	}
 ?>

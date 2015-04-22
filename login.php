@@ -19,7 +19,7 @@
 		}
 		catch(Exception $e)
 		{
-			$error = $e->getMessage();
+			$erroradmin = $e->getMessage();
 		}
 	}
 
@@ -36,7 +36,7 @@
 		}
 		catch(Exception $e)
 		{
-			$error = $e->getMessage();
+			$errorstudent = $e->getMessage();
 		}
 	}
 	
@@ -60,9 +60,9 @@
 			</div>
 			<div class="col-md-2">
 				<legend>Admin login</legend>
-				<?php if(isset($error)): ?>
+				<?php if(isset($erroradmin)): ?>
 					<div class="error"><br/>
-				<?php echo $error;?>
+				<?php echo $erroradmin;?>
 					</div>
 				<?php endif; ?>
 
@@ -81,7 +81,7 @@
 			<div class="col-md-1">
 			</div>
 			<div class="col-md-1">
-				<label for="username">Username:</label>	
+				<label for="username">Username:</label>
 			</div>
 			<div class="col-md-10">
 				<input type="text" id="username" name="username" placeholder="username" />
@@ -120,9 +120,9 @@
 			</div>
 			<div class="col-md-2">
 				<legend>Student login</legend>
-				<?php if(isset($error)): ?>
+				<?php if(isset($errorstudent)): ?>
 					<div class="error">
-				<?php echo $error;?>
+				<?php echo $errorstudent;?>
 					</div>
 				<?php endif; ?>
 

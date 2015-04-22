@@ -31,6 +31,8 @@
 
 			$s->Save();
 
+			$success = "Uw profiel is aangemaakt.";
+
 		}
 		catch(Exception $e)
 		{
@@ -55,15 +57,16 @@
 				</div>
 				<div class="col-md-4">
 					<legend>Studenten registratie</legend>
+					Alle velden met een * zijn verplicht<br/>
 					<?php if(isset($error)): ?>
 						<div class="error">
 					<?php echo $error;?>
 						</div>
 					<?php endif; ?>
 
-					<?php if(isset($succes)): ?>
+					<?php if(isset($success)): ?>
 						<div class="feedback">
-					<?php echo $succes;?>
+					<?php echo $success;?>
 						</div>
 					<?php endif; ?>
 					<br/>
@@ -76,7 +79,7 @@
 				<div class="col-md-1">
 				</div>
 				<div class="col-md-2">
-					<label for="firstname">Voornaam</label><br/>
+					<label for="firstname">Voornaam</label> *<br/>
 				</div>
 				<div class="col-md-9">
 					<input type="text" id="firstname" name="firstname" placeholder="voornaam" />
@@ -87,7 +90,7 @@
 				<div class="col-md-1">
 				</div>
 				<div class="col-md-2">
-					<label for="lastname">Achternaam</label><br/>
+					<label for="lastname">Achternaam</label> *<br/>
 				</div>
 				<div class="col-md-9">
 					<input type="text" id="lastname" name="lastname" placeholder="achternaam" />
@@ -98,7 +101,52 @@
 				<div class="col-md-1">
 				</div>
 				<div class="col-md-2">
-					<label for="year">Klas</label><br />
+					<label for="email">Email</label> *<br/>
+				</div>
+				<div class="col-md-9">
+					<input type="text" id="email" name="email" placeholder="email" />
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-2">
+					<label for="password">Wachtwoord</label> *<br />
+				</div>
+				<div class="col-md-9">	
+					<input type="password" id="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-2">
+					<label for="cpassword">Verifieer Wachtwoord</label> *<br />
+				</div>
+				<div class="col-md-9">	
+					<input type="password" id="cpassword" name="cpassword" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-2">
+					<label for="twitter">Twitter</label> *<br/>
+				</div>
+				<div class="col-md-9">	
+					<input type="text" id="twitter" name="twitter" placeholder="@Twitter" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-2">
+					<label for="year">Klas</label> *<br />
 				</div>
 				<div class="col-md-9">	
 					<select id="year" name="year">
@@ -117,61 +165,17 @@
 				<div class="col-md-1">
 				</div>
 				<div class="col-md-2">
-					<label for="twitter">Twitter</label><br/>
+					<label for="fileToUpload">Profielafbeelding</label> * <a title="Gelieve alleen een JPEG-bestandsformaat te gebruiken. De afbeelding mag niet groter zijn dan 1MB."><img src="http://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="13px"/></a>
 				</div>
 				<div class="col-md-9">	
-					<input type="text" id="twitter" name="twitter" placeholder="twitter" />
+					<input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" />
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-1">
 				</div>
-				<div class="col-md-2">
-					<label for="email">Email</label><br/>
-				</div>
-				<div class="col-md-9">
-					<input type="text" id="email" name="email" placeholder="email" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">
-				</div>
-				<div class="col-md-2">
-					<label for="password">Wachtwoord</label><br />
-				</div>
-				<div class="col-md-9">	
-					<input type="password" id="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">
-				</div>
-				<div class="col-md-2">
-					<label for="cpassword">Verifieer Wachtwoord</label><br />
-				</div>
-				<div class="col-md-9">	
-					<input type="password" id="cpassword" name="cpassword" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">
-				</div>
-				<div class="col-md-2">
-					<label for="fileToUpload">Foto</label><br />
-				</div>
-				<div class="col-md-9">	
-					<input type="file" name="fileToUpload" id="fileToUpload" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">
-				</div>
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<input class="submit" type="submit" value="Registreer" name='register'/>
 				</div>
 				<div class="col-md-9">	

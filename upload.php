@@ -8,7 +8,8 @@
     if(!empty($_POST)) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
+            //echo "File is an image - " . $check["mime"] . ".";
+            //echo "Uw account is aangemaakt!";
             $uploadOk = 1;
         } else {
             throw new Exception("File is not an image.");
@@ -42,4 +43,3 @@
             throw new Exception("Sorry, there was an error uploading your file.");
         }
     }
-?>

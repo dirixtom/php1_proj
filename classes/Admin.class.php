@@ -16,7 +16,7 @@
 				case 'Username':
 					if(empty($p_sValue))
 						{
-							throw new Exception("Username cannot be empty");
+							throw new Exception("Gebruikersnaam mag niet leeg zijn");
 						}
 					else 
 						{
@@ -28,7 +28,7 @@
 				case 'Password':
 					if(empty($p_sValue))
 						{
-							throw new Exception("Password cannot be empty");
+							throw new Exception("Wachtwoord mag niet leeg zijn");
 						}
 					else 
 						{
