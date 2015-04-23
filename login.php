@@ -11,10 +11,10 @@
 		try 
 		{	
 			
-			$a->Username = $_POST['username'];
+			$a->Email = $_POST['email'];
 			$a->Password = $_POST['password'];
 
-			$a->login();
+			$a->Login();
 
 		}
 		catch(Exception $e)
@@ -81,10 +81,10 @@
 			<div class="col-md-1">
 			</div>
 			<div class="col-md-1">
-				<label for="username">Username:</label>
+				<label for="email">Email:</label>
 			</div>
 			<div class="col-md-10">
-				<input type="text" id="username" name="username" placeholder="username" />
+				<input type="text" id="email" name="email" placeholder="email" />
 			</div>
 		</div>
 

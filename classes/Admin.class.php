@@ -6,6 +6,7 @@
 	{
 		
 		private $m_sUsername;
+		private $m_sEmail;
 		private $m_sPassword;
 		private $m_sId;
 
@@ -37,6 +38,17 @@
 					//$this->m_sPassword = $p_sValue;
 					break;
 
+				case 'Email':
+					if(empty($p_sValue))
+						{
+							throw new Exception("Email mag niet leeg zijn");
+						}
+					else 
+						{
+							$this->m_sEmail = $p_sValue;
+						};
+					break;
+
 				case 'Id':
 					$this->m_sId = $p_sValue;
 					break;
@@ -55,6 +67,10 @@
 					return $this->m_sPassword;
 					break;
 
+				case 'Email':
+					return $this->m_sEmail;
+					break;
+
 				case 'Id':
 					return $this->m_sId;
 					break;
@@ -67,15 +83,13 @@
 
 			$conn = Db::getInstance();
 			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("INSERT INTO adminlogin
-				(username, password) 
+			$statement = $conn->prepare("INSERT INTO tbladmin
+				(adminEmail, adminPassword) 
 				VALUES 
-				(:username, :password)");
-			$statement->bindValue(':username', $this->Username );
+				(:email, :password)");
+			$statement->bindValue(':email', $this->Email );
 			$statement->bindValue(':password', $this->Password );
 			$statement->execute();
-
-			//header('Location:adminaccounts.php');
 
 		}
 
@@ -84,7 +98,7 @@
 
 			$conn = Db::getInstance();
 			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("DELETE FROM adminlogin WHERE id = :id");
+			$statement = $conn->prepare("DELETE FROM tbladmin WHERE adminID = :id");
 			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
 
@@ -96,8 +110,8 @@
 		{
 		
         	$conn = Db::getInstance();
-			$statement = $conn->prepare("SELECT id FROM adminlogin WHERE username = :username AND password = :password");
-			$statement->bindValue(':username', $this->Username );
+			$statement = $conn->prepare("SELECT adminID FROM tbladmin WHERE adminEmail = :email AND adminPassword = :password");
+			$statement->bindValue(':email', $this->Email );
 			$statement->bindValue(':password', $this->Password );
 			$statement->execute();
 			$rows = $statement->fetchAll();
@@ -106,12 +120,12 @@
 			if($row == 1) 
 			{				
 				session_start();
-				$_SESSION["username"] = $this->Username;
+				$_SESSION["email"] = $this->Email;
 				header("Location: admindashboard.php");
 			}
 			else
 			{
-				echo "Wrong username or password!";
+				throw new Exception("Verkeerde email of wachtwoord!");
 			}
 
 		}
@@ -120,7 +134,7 @@
 		{
 			//alle accounts returnen
 			$conn = Db::getInstance();
-			$allAcc = $conn->query("SELECT * FROM adminlogin");
+			$allAcc = $conn->query("SELECT * FROM tbladmin");
 			return $allAcc;
 
 			header('Location:adminaccounts.php');

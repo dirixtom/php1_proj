@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION["username"]))
+	if(!isset($_SESSION["email"]))
 	{
 	    header("location:login.php");
 	    exit();
@@ -16,7 +16,7 @@
         try 
         {   
             
-            $r->Id = $_POST['reactieID'];
+            $r->Id = $_POST['reactiesID'];
             $r->DeleteReactie();
 
             $succes = "Reactie is verwijderd!";
@@ -52,13 +52,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Welkom, <?php echo $_SESSION["username"];?>.</a>
+                <a class="navbar-brand" href="index.html">Welkom, <?php echo $_SESSION["email"];?>.</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                   
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["username"] . " ";?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["email"] . " ";?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -114,11 +114,11 @@
 
 								while($reactie = $allReacties->fetch(PDO::FETCH_ASSOC))
 								{
-									echo "<li class='list-group-item'><strong>Naam:</strong><br/>" . $reactie["naam"] . "<br />";
-									echo "<strong>Reactie:</strong><br />" . $reactie["reactie"] . "<br />";
+									echo "<li class='list-group-item'><strong>Naam:</strong><br/>" . $reactie["reactiesNaam"] . "<br />";
+									echo "<strong>Reactie:</strong><br />" . $reactie["reactiesComment"] . "<br />";
                                     echo "<br />";
                                     echo "<form method='post' class='form-horizontal'>";
-                                        echo "<input type='hidden' name='reactieID' value='".$reactie['id']."'><button>Beantwoord</button> <input type='submit' class='submit' name='FormDel' value='Verwijder reactie'><br /><br />";
+                                        echo "<input type='hidden' name='reactiesID' value='".$reactie['reactiesID']."'><button>Beantwoord</button> <input type='submit' class='submit' name='FormDel' value='Verwijder reactie'><br /><br />";
                                     echo "</form>";
 									echo "</li>";
                                     

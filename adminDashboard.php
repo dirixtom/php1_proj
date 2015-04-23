@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION["username"]))
+	if(!isset($_SESSION["email"]))
 	{
 	    header("location:login.php");
 	    exit();
@@ -24,7 +24,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome <?php echo $_SESSION["username"];?></title>
+	<title>Welkom <?php echo $_SESSION["email"];?></title>
 	
 	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -47,13 +47,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Welkom, <?php echo $_SESSION["username"];?>.</a>
+                <a class="navbar-brand" href="index.html">Welkom, <?php echo $_SESSION["email"];?>.</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                   
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["username"] . " ";?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["email"] . " ";?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -102,9 +102,9 @@
                             <?php
                                 while($boeking = $allBoekings->fetch(PDO::FETCH_ASSOC))
                                 {
-                                    echo "<li class='list-group-item'>Voornaam: " . $boeking["voornaam"] . "<br />";
-                                    echo "Naam: " . $boeking["naam"] . "<br />";
-                                    echo "Datum: " . $boeking["dag"] . " " . $boeking["maand"] . " " . $boeking['jaar'] . "<br />";
+                                    echo "<li class='list-group-item'>Voornaam: " . $boeking["boekingVoornaam"] . "<br />";
+                                    echo "Naam: " . $boeking["boekingNaam"] . "<br />";
+                                    echo "Datum: " . $boeking["boekingDag"] . " " . $boeking["boekingMaand"] . " " . $boeking['boekingJaar'] . "<br />";
                                     echo "</li>";
                                 }
                             ?>
@@ -120,8 +120,8 @@
 
                                 while($reactie = $allReacties->fetch(PDO::FETCH_ASSOC))
                                 {
-                                    echo "<li class='list-group-item'><strong>Naam:</strong><br/>" . $reactie["naam"] . "<br />";
-                                    echo "<strong>Reactie:</strong><br />" . $reactie["reactie"] . "<br />";
+                                    echo "<li class='list-group-item'><strong>Naam:</strong><br/>" . $reactie["reactiesNaam"] . "<br />";
+                                    echo "<strong>Reactie:</strong><br />" . $reactie["reactiesComment"] . "<br />";
                                     echo "</li>";
                                 }
                             ?>
@@ -140,7 +140,7 @@
                                 while($date = $allDate->fetch(PDO::FETCH_ASSOC))
                                 {
                                     
-                                    echo "<li class='list-group-item'>Datum: " . $date["dag"] . " " . $date["maand"] . " " . $date["jaar"];
+                                    echo "<li class='list-group-item'>Datum: " . $date["datumDag"] . " " . $date["datumMaand"] . " " . $date["datumJaar"];
                                     echo "</li>";
                                     
                                 }

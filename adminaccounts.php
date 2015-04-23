@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION["username"]))
+	if(!isset($_SESSION["email"]))
 	{
 	    header("location:login.php");
 	    exit();
@@ -17,7 +17,7 @@
 		try 
 		{	
 
-			$a->Username = $_POST['username'];
+			$a->Email = $_POST['email'];
 			$a->Password = $_POST['password'];
 			$a->CreateAccount();
 
@@ -71,13 +71,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Welkom, <?php echo $_SESSION["username"];?>.</a>
+                <a class="navbar-brand" href="index.html">Welkom, <?php echo $_SESSION["email"];?>.</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                   
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["username"] . " ";?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["email"] . " ";?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -142,10 +142,10 @@
 
                 		<form method="post" action="" class="form-horizontal">
                 			<div class="form-group">
-						    	<label for="username" class="col-sm-2 control-label">Username</label>
+						    	<label for="email" class="col-sm-2 control-label">Email</label>
 						    	
 						    	<div class="col-sm-10">
-						      		<input type="text" id="username" name="username" placeholder="username" class="form-control" />
+						      		<input type="text" id="email" name="email" placeholder="Email" class="form-control" />
 						    	</div>
 						  	</div>
 						  	<div class="form-group">
@@ -175,11 +175,11 @@
 							{
 								echo "<form method='post' class='form-horizontal'>";
 									echo "<div class='form-group'>";
-										echo "<div class='col-sm-3'>";
-											echo "<label for='username' class='col-sm-2 control-label'>" . $acc["username"] . "</label>";
+										echo "<div class='col-sm-5'>";
+											echo "<label for='username' class='col-sm-4 control-label'>" . $acc["adminEmail"] . "</label>";
 										echo "</div>";
-										echo "<div class='col-sm-6'>";
-											echo "<input type='hidden' name='adminID' value='".$acc['id']."'><input type='submit' class='submit' name='FormDel' value='Verwijder Account'><br /><br />";
+										echo "<div class='col-sm-2'>";
+											echo "<input type='hidden' name='adminID' value='".$acc['adminID']."'><input type='submit' class='submit' name='FormDel' value='Verwijder Account'><br /><br />";
 										echo "</div>";
 									echo "</div>";
 								echo "</form>";

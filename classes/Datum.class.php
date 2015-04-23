@@ -68,8 +68,8 @@
 
 			$conn = Db::getInstance();
 			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("INSERT INTO huurdatums
-				(dag, maand, jaar) 
+			$statement = $conn->prepare("INSERT INTO tbldatums
+				(datumDag, datumMaand, datumJaar) 
 				VALUES 
 				(:dag, :maand, :jaar)");
 			$statement->bindValue(':dag', $this->Dag );
@@ -86,7 +86,7 @@
 
 			$conn = Db::getInstance();
 			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("DELETE FROM huurdatums WHERE id = :id");
+			$statement = $conn->prepare("DELETE FROM tbldatums WHERE datumID = :id");
 			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
 
@@ -98,7 +98,7 @@
 		{
 			//alle accounts returnen
 			$conn = Db::getInstance();
-			$allDates = $conn->query("SELECT * FROM huurdatums");
+			$allDates = $conn->query("SELECT * FROM tbldatums");
 			return $allDates;
 		}
 
@@ -106,7 +106,7 @@
 		{
 			//alle accounts returnen
 			$conn = Db::getInstance();
-			$allDates = $conn->query("SELECT * FROM huurdatums LIMIT 3");
+			$allDates = $conn->query("SELECT * FROM tbldatums LIMIT 3");
 			return $allDates;
 		}
 

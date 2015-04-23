@@ -33,7 +33,7 @@
 			{
 				//alle reacties returnen
 				$conn = Db::getInstance();
-				$allReacties = $conn->query("SELECT * FROM reacties");
+				$allReacties = $conn->query("SELECT * FROM tblreacties");
 				return $allReacties;
 			}
 
@@ -41,7 +41,7 @@
 			{
 				//recentste reacties returnen
 				$conn = Db::getInstance();
-				$allReacties = $conn->query("SELECT * FROM reacties LIMIT 2");
+				$allReacties = $conn->query("SELECT * FROM tblreacties LIMIT 2");
 				return $allReacties;
 			}
 
@@ -50,7 +50,7 @@
 
 			$conn = Db::getInstance();
 			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("DELETE FROM reacties WHERE id = :id");
+			$statement = $conn->prepare("DELETE FROM tblreacties WHERE reactiesID = :id");
 			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
 

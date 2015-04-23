@@ -8,7 +8,7 @@
 			{
 				//alle boekingen returnen
 				$conn = Db::getInstance();
-				$allBoekings = $conn->query("SELECT * FROM boekingen");
+				$allBoekings = $conn->query("SELECT * FROM tblboekingen");
 				return $allBoekings;
 			}
 
@@ -16,7 +16,7 @@
 			{
 				//recentste boekingen returnen
 				$conn = Db::getInstance();
-				$allBoekings = $conn->query("SELECT * FROM boekingen LIMIT 3");
+				$allBoekings = $conn->query("SELECT * FROM tblboekingen LIMIT 3");
 				return $allBoekings;
 			}
 	}
