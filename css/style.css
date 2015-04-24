@@ -38,7 +38,6 @@ h2 {
 	color: #ecf0f1;
 	margin-top:35px; 
 	margin-bottom: 15px;
-	font-size: 40px;
 }
 
 .quotes p {
@@ -48,6 +47,12 @@ h2 {
 
 .pictures {
 	background-color:#EAEAEA;
+}
+
+.footer {
+	background-color:#34495e;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .formulier {
