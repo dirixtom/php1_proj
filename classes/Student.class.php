@@ -256,6 +256,8 @@
 			$statement->bindValue(':fileToUpload', $this->Picture);
 			$statement->execute();
 
+			header("Location: login.php");
+
 		}
 
 		public function UpdateAccount()
