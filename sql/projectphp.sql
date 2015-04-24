@@ -2,28 +2,22 @@
 -- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 23, 2015 at 10:39 PM
--- Server version: 5.5.38
--- PHP Version: 5.6.2
+-- Machine: localhost:8889
+-- Gegenereerd op: 24 apr 2015 om 14:47
+-- Serverversie: 5.5.38
+-- PHP-versie: 5.5.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
--- Database: `phpproject`
+-- Databank: `projectphp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbladmin`
+-- Tabelstructuur voor tabel `tbladmin`
 --
 
 CREATE TABLE `tbladmin` (
@@ -35,7 +29,7 @@ CREATE TABLE `tbladmin` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbladmin`
+-- Gegevens worden geëxporteerd voor tabel `tbladmin`
 --
 
 INSERT INTO `tbladmin` (`adminID`, `adminNaam`, `adminVoornaam`, `adminEmail`, `adminPassword`) VALUES
@@ -44,7 +38,7 @@ INSERT INTO `tbladmin` (`adminID`, `adminNaam`, `adminVoornaam`, `adminEmail`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblboekingen`
+-- Tabelstructuur voor tabel `tblboekingen`
 --
 
 CREATE TABLE `tblboekingen` (
@@ -61,7 +55,7 @@ CREATE TABLE `tblboekingen` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblboekingen`
+-- Gegevens worden geëxporteerd voor tabel `tblboekingen`
 --
 
 INSERT INTO `tblboekingen` (`boekingID`, `studentID`, `buddieID`, `datumID`, `boekingTijd`, `boekingNaam`, `boekingVoornaam`, `boekingDag`, `boekingMaand`, `boekingJaar`) VALUES
@@ -72,7 +66,7 @@ INSERT INTO `tblboekingen` (`boekingID`, `studentID`, `buddieID`, `datumID`, `bo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblbuddies`
+-- Tabelstructuur voor tabel `tblbuddies`
 --
 
 CREATE TABLE `tblbuddies` (
@@ -90,7 +84,7 @@ CREATE TABLE `tblbuddies` (
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblbuddies`
+-- Gegevens worden geëxporteerd voor tabel `tblbuddies`
 --
 
 INSERT INTO `tblbuddies` (`buddieID`, `buddieNaam`, `buddieVoornaam`, `buddieTwitter`, `buddieEmail`, `buddiePassword`, `buddieJaar`, `buddieRichting`, `buddieRating`, `buddieLeeftijd`, `buddieFoto`) VALUES
@@ -101,7 +95,7 @@ INSERT INTO `tblbuddies` (`buddieID`, `buddieNaam`, `buddieVoornaam`, `buddieTwi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbldatums`
+-- Tabelstructuur voor tabel `tbldatums`
 --
 
 CREATE TABLE `tbldatums` (
@@ -112,7 +106,7 @@ CREATE TABLE `tbldatums` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbldatums`
+-- Gegevens worden geëxporteerd voor tabel `tbldatums`
 --
 
 INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUES
@@ -125,7 +119,20 @@ INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblreacties`
+-- Tabelstructuur voor tabel `tblmessages`
+--
+
+CREATE TABLE `tblmessages` (
+`messageID` int(11) NOT NULL,
+  `messageText` varchar(200) NOT NULL,
+  `studentID` int(11) NOT NULL,
+  `buddieID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `tblreacties`
 --
 
 CREATE TABLE `tblreacties` (
@@ -135,7 +142,7 @@ CREATE TABLE `tblreacties` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblreacties`
+-- Gegevens worden geëxporteerd voor tabel `tblreacties`
 --
 
 INSERT INTO `tblreacties` (`reactiesID`, `reactiesNaam`, `reactiesComment`) VALUES
@@ -147,7 +154,7 @@ INSERT INTO `tblreacties` (`reactiesID`, `reactiesNaam`, `reactiesComment`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblstudenten`
+-- Tabelstructuur voor tabel `tblstudenten`
 --
 
 CREATE TABLE `tblstudenten` (
@@ -159,79 +166,97 @@ CREATE TABLE `tblstudenten` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `tbladmin`
+-- Indexen voor tabel `tbladmin`
 --
 ALTER TABLE `tbladmin`
  ADD PRIMARY KEY (`adminID`);
 
 --
--- Indexes for table `tblboekingen`
+-- Indexen voor tabel `tblboekingen`
 --
 ALTER TABLE `tblboekingen`
  ADD PRIMARY KEY (`boekingID`);
 
 --
--- Indexes for table `tblbuddies`
+-- Indexen voor tabel `tblbuddies`
 --
 ALTER TABLE `tblbuddies`
  ADD PRIMARY KEY (`buddieID`);
 
 --
--- Indexes for table `tbldatums`
+-- Indexen voor tabel `tbldatums`
 --
 ALTER TABLE `tbldatums`
  ADD PRIMARY KEY (`datumID`);
 
 --
--- Indexes for table `tblreacties`
+-- Indexen voor tabel `tblmessages`
+--
+ALTER TABLE `tblmessages`
+ ADD PRIMARY KEY (`messageID`), ADD UNIQUE KEY `sec` (`buddieID`), ADD UNIQUE KEY `studentID` (`studentID`);
+
+--
+-- Indexen voor tabel `tblreacties`
 --
 ALTER TABLE `tblreacties`
  ADD PRIMARY KEY (`reactiesID`);
 
 --
--- Indexes for table `tblstudenten`
+-- Indexen voor tabel `tblstudenten`
 --
 ALTER TABLE `tblstudenten`
  ADD PRIMARY KEY (`studentID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `tbladmin`
+-- AUTO_INCREMENT voor een tabel `tbladmin`
 --
 ALTER TABLE `tbladmin`
 MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `tblboekingen`
+-- AUTO_INCREMENT voor een tabel `tblboekingen`
 --
 ALTER TABLE `tblboekingen`
 MODIFY `boekingID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `tblbuddies`
+-- AUTO_INCREMENT voor een tabel `tblbuddies`
 --
 ALTER TABLE `tblbuddies`
 MODIFY `buddieID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT for table `tbldatums`
+-- AUTO_INCREMENT voor een tabel `tbldatums`
 --
 ALTER TABLE `tbldatums`
 MODIFY `datumID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `tblreacties`
+-- AUTO_INCREMENT voor een tabel `tblmessages`
+--
+ALTER TABLE `tblmessages`
+MODIFY `messageID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT voor een tabel `tblreacties`
 --
 ALTER TABLE `tblreacties`
 MODIFY `reactiesID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `tblstudenten`
+-- AUTO_INCREMENT voor een tabel `tblstudenten`
 --
 ALTER TABLE `tblstudenten`
 MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Beperkingen voor geëxporteerde tabellen
+--
+
+--
+-- Beperkingen voor tabel `tblmessages`
+--
+ALTER TABLE `tblmessages`
+ADD CONSTRAINT `tblmessages_ibfk_2` FOREIGN KEY (`buddieID`) REFERENCES `tblstudenten` (`studentID`),
+ADD CONSTRAINT `tblmessages_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `tblbuddies` (`buddieID`);
