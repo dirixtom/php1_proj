@@ -4,20 +4,25 @@ body {
   	-moz-background-size: cover;
   	-o-background-size: cover;
   	background-size: cover;
+
 }
 
 .logo {
-	margin: 10px;
 }
 
 .nav{
 	float: right;
 	font-size: 18px;
-	padding-top: 15px;
+	padding-top: 10px;
 }
 
 .buddies {
 	background-color:#EAEAEA;
+}
+
+h2 {
+	margin-top: 70px;
+	margin-bottom: 40px;
 }
 
 .intro {
@@ -26,7 +31,19 @@ body {
 }
 
 .quotes {
-	background-color: #FFF;
+	background-color: #34495e;
+}
+
+.quotes h2 {
+	color: #ecf0f1;
+	margin-top:35px; 
+	margin-bottom: 15px;
+	font-size: 40px;
+}
+
+.quotes p {
+	color: #ecf0f1;
+
 }
 
 .pictures {
@@ -42,6 +59,16 @@ input {
 	padding-left:5px;
 	margin-bottom:10px;
 	float:left;
+}
+
+.btn {
+	background-color: #2ecc71;
+	color: #ecf0f1;
+}
+
+.btn:hover {
+	background-color: #27ae60;
+	color: #ecf0f1;
 }
 
 .ghost-button-transition {
