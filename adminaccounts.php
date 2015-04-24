@@ -56,6 +56,12 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
+
+    <script language="JavaScript" type="text/javascript">
+function checkDelete(){
+    return confirm('Are you sure?');
+}
+</script>
 </head>
 <body>
 	

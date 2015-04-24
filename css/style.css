@@ -1,94 +1,36 @@
 body {
-	width:100%;
-	background: none;
-	color:#262626;
-	font-family: Helvetica, Arial, Verdana;
-	font-size:14pt;
-	font-weight:300;
+	background: url("../images/bgimg.jpg") no-repeat bottom center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
 }
 
-.full {
-  background: url("../images/bgimg.jpg") no-repeat bottom center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.logo {
+	margin: 10px;
 }
 
-h1 {
-	color:#2c3e50;
-	font-size:32pt;
-	margin-top:40px;
-	font-weight:400;
-	font-style:italic;
-}
-
-h2 {
-	font-size:24pt;
-	margin-top:50px;
-	margin-bottom:30px;
-}
-
-h3 {
-	font-size:20pt;
-	margin-top:20px;
-}
-
-p {
-	font-size:14pt;
-	line-height:130%;
-}
-
-label {
-	font-size: 16px;
-}
-
-.fileupload {
-	margin-top: 5px;
-	margin-left: -6px;
-}
-
-.clear {
-	clear:both;
-}
-
-.container-fluid {
-	width: 100%;
-	padding-right:0px;
-	padding-left:0px;
-}
-
-.navigatie {
-	width:100%;
-	background-color:rgba(0, 0, 0,0.5);
-}
-
-nav {
-	height:40px;
-}
-
-ul li {
-	display:inline-block;
-	float:right;
-	width:150px;
-}
-
-ul li a {
-	color:#ecf0f1;
-}
-
-ul li a:hover {
-	color:#2c3e50;
-	text-decoration:none;
-}
-
-.intro {
-	margin-top:50px;
-	margin-bottom:50px;
+.nav{
+	float: right;
+	font-size: 18px;
+	padding-top: 15px;
 }
 
 .buddies {
-	background-color:#FFF;
+	background-color:#EAEAEA;
+}
+
+.intro {
+	margin-top:100px;
+	margin-bottom:150px;
+}
+
+.quotes {
+	background-color: #FFF;
+}
+
+.pictures {
+	background-color:#EAEAEA;
 }
 
 .formulier {
@@ -142,5 +84,10 @@ select {
 .error {
 	color:red;
 	width: 300px;
+}
+
+.fileupload {
+	margin-top: 5px;
+	margin-left: -6px;
 }
 
