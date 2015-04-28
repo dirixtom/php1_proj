@@ -8,7 +8,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" />
 </head>
-<body>
+<body id="homepage">
 	
 	<div class="navbar navbar-default">
    		<div class="navbar-header">
@@ -32,7 +32,7 @@
 
 					<strong>Hoe doe ik dat?</strong><br />
 					Het is heel gemakkelijk! Scroll verder naar beneden en zoek uit met welke student jij wel eens een schooldag wilt beleven. <br />
-					<br/><button class="btn btn-default btn-lg">Bekijk welke data er vrij zijn en schrijf je in!</button>
+					<br/><button class="btn btn-default btn-lg ghost-button-transition">Bekijk welke data er vrij zijn<br/>en schrijf je nu in!</button>
 			</p>
 		</div>
    	</div>
@@ -72,22 +72,24 @@
             </div>
    	</div>
 
+    <div class="row text-center instagram">
+      <div class="col-md-12">
+        <h2>Share your day on Instagram met onderstaande hashtags!</h2>
+        <p>#IMD #openlesdag #rentastudent</p>
+      </div>
+    </div>
+
    	<div class="row text-center pictures">
-		<h2>Check these pictures out!</h2>
-		<div class="student col-md-4">
-           	<h2>Instagram your day with #IMD #openlesdag</h2>
-       	</div>
-		<div class="student col-md-4">
-            
-       	</div>
-		<div class="student col-md-4">
-           	<script src="//instansive.com/widget/js/instansive.js"></script><iframe src="//instansive.com/widgets/abcd8e3b5d869e225c46cc150232f4c1e7426790.html" id="instansive_abcd8e3b5d" name="instansive_abcd8e3b5d"  scrolling="no" allowtransparency="true" class="instansive-widget" style="width: 75%; border: 0; overflow: hidden;"></iframe>
-       	</div>
+		
+		  <div class="student col-md-12">
+        <iframe src="http://www.intagme.com/in/?h=d2VhcmVpbWR8aW58MjAwfDZ8Mnx8bm98NXx1bmRlZmluZWR8bm8=" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:1230px; height: 410px" ></iframe>
+      </div>
+		
    	</div>
 
    	<div class="row text-center footer">
 		<div class="student col-md-4">
-           	Een initiatief van Thomas More Mechelen - IMD
+           	<p>Een initiatief van Thomas More Mechelen - IMD</p>
        	</div>
 		<div class="student col-md-4">
        	</div>

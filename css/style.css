@@ -1,13 +1,13 @@
-body {
+body#homepage {
 	background: url("../images/bgimg.jpg") no-repeat bottom center fixed; 
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
   	background-size: cover;
-
 }
 
-.logo {
+body {
+	background-color:#EAEAEA;
 }
 
 .nav{
@@ -18,16 +18,14 @@ body {
 
 .buddies {
 	background-color:#EAEAEA;
-}
-
-h2 {
-	margin-top: 70px;
-	margin-bottom: 40px;
+	padding-bottom: 50px;
+	padding-top: 50px;
 }
 
 .intro {
 	margin-top:100px;
 	margin-bottom:150px;
+	background-color:#EAEAEA;
 }
 
 .quotes {
@@ -35,24 +33,40 @@ h2 {
 }
 
 .quotes h2 {
-	color: #ecf0f1;
-	margin-top:35px; 
-	margin-bottom: 15px;
+	color: #a1b1c3;
+	margin-top: 50px;
 }
 
 .quotes p {
-	color: #ecf0f1;
+	color: #a1b1c3;
+}
 
+.instagram {
+	background-color: #34495e;
+	color: #a1b1c3;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 .pictures {
 	background-color:#EAEAEA;
+	padding-top: 15px;
+	text-align: center;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 5px;
 }
 
 .footer {
 	background-color:#34495e;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	color: #FFF;
+}
+
+.footer p{
+	padding-top: 15px;
+	color: #a1b1c3;
 }
 
 .formulier {
@@ -77,13 +91,14 @@ input {
 }
 
 .ghost-button-transition {
-	float:left;
 	display: inline-block;
 	background:none;
-	width:25%;
-	padding:6px 0px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
 	color:#27ae60;
-	border: 2px solid #27ae60;
+	border: 2px solid #2ecc71;
 	text-align: center;
 	outline: none;
 	text-decoration: none;
@@ -94,7 +109,6 @@ input {
 .ghost-button-transition:active {
 	background-color:#27ae60;
 	color:#ecf0f1;
-	text-decoration:none;
 	transition: background-color 0.3s ease-in,
 	            color 0.3s ease-in;
 }
