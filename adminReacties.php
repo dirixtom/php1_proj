@@ -118,7 +118,7 @@
 									echo "<strong>Reactie:</strong><br />" . $reactie["reactiesComment"] . "<br />";
                                     echo "<br />";
                                     echo "<form method='post' class='form-horizontal'>";
-                                        echo "<input type='hidden' name='reactiesID' value='".$reactie['reactiesID']."'><button>Beantwoord</button> <input type='submit' class='submit' name='FormDel' value='Verwijder reactie'><br /><br />";
+                                        echo "<input type='hidden' name='reactiesID' value='".$reactie['reactiesID']."'><button> <a href='mailto:".$reactie["reactiesMail"]."'>Beantwoord</a></button> <input type='submit' class='submit' name='FormDel' value='Verwijder reactie'><br /><br />";
                                     echo "</form>";
 									echo "</li>";
                                     
