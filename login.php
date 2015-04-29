@@ -65,18 +65,21 @@
 
 <div class="container-fluid">
 
-   	<div class="row text-center intro">
+   	<div class="row intro2">
    		<div class="col-md-6">
+   			
    			<form method="post" class="formulier">
+			
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-11">
 					<legend>Student login</legend>
 					<?php if(isset($errorstudent)): ?>
 						<div class="error">
 					<?php echo $errorstudent;?>
 						</div>
 					<?php endif; ?>
-
 					<?php if(isset($succes)): ?>
 						<div class="feedback">
 					<?php echo $succes;?>
@@ -87,7 +90,9 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-2">
 					<label for="email">Email:</label>	
 				</div>
 				<div class="col-md-9">
@@ -96,7 +101,9 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-2">
 					<label for="password">Password:</label>
 				</div>
 				<div class="col-md-9">
@@ -105,17 +112,20 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-3">	
+				</div>
+				<div class="col-md-9">
 					<input class="submit" type="submit" value="Login" name="StudentLogin" />
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-5">
-				<br/><p>Nog geen account? <a href="register.php">Registreer hier</a></p>
+				<div class="col-md-1">	
 				</div>
-				
-		</div>
+				<div class="col-md-11">
+				<br/><p>Nog geen account? <a href="register.php">Registreer hier</a></p>
+				</div>	
+			</div>
 
 			</form>
        	</div>
@@ -123,17 +133,19 @@
        	<!-- 2de formulier begint hier -->
        	
        	<div class="col-md-6">
+		    
 		    <form method="post" class="formulier">
 			
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-11">
 					<legend>Admin login</legend>
 					<?php if(isset($erroradmin)): ?>
 						<div class="error"><br/>
 					<?php echo $erroradmin;?>
 						</div>
 					<?php endif; ?>
-
 					<?php if(isset($succes)): ?>
 						<div class="feedback">
 					<?php echo $succes;?>
@@ -144,7 +156,9 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-2">
 					<label for="email">Email:</label>
 				</div>
 				<div class="col-md-9">
@@ -153,7 +167,9 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-2">
 					<label for="password">Password:</label>
 				</div>
 				<div class="col-md-9">
@@ -162,7 +178,9 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-3">	
+				</div>
+				<div class="col-md-9">
 					<input class="submit" type="submit" value="Login" name="AdminLogin" />
 				</div>
 			</div>

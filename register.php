@@ -48,14 +48,27 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<div class="container-fluid">
-		
-		<form method="post" action="" enctype="multipart/form-data" class="formulier">
+	<div class="navbar navbar-default">
+   		<div class="navbar-header">
+    		<a class="navbar-nav" href="#"><img class="logo" src="images/logo2.png" alt="The Rent A Student Logo" width="55%"></a>
+       	</div>
+      	<ul class="nav navbar-nav">
+          	<li><a href="homepage.php">Home</a></li>
+          	<li><a href="login.php">Inloggen</a></li>
+          	<li><a href="register.php">Registreren</a></li>
+       	</ul>
+   	</div>
 
+<div class="container-fluid">
+
+   	<div class="row intro2">
+   		<div class="col-md-12">
+   			
+   			<form method="post" action="" enctype="multipart/form-data" class="formulier">
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-11">
 					<legend>Studenten registratie</legend>
 					Alle velden met een * zijn verplicht<br/>
 					<?php if(isset($error)): ?>
@@ -71,12 +84,10 @@
 					<?php endif; ?>
 					<br/>
 				</div>
-				<div class="col-md-7">	
-				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
 				<div class="col-md-2">
 					<label for="firstname">Voornaam</label> *<br/>
@@ -87,7 +98,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
 				<div class="col-md-2">
 					<label for="lastname">Achternaam</label> *<br/>
@@ -98,7 +109,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
 				<div class="col-md-2">
 					<label for="email">Email</label> *<br/>
@@ -110,7 +121,7 @@
 
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
 				<div class="col-md-2">
 					<label for="password">Wachtwoord</label> *<br />
@@ -121,7 +132,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
 				<div class="col-md-2">
 					<label for="cpassword">Verifieer Wachtwoord</label> *<br />
@@ -132,7 +143,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
 				<div class="col-md-2">
 					<label for="twitter">Twitter</label> *<br/>
@@ -143,7 +154,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
 				<div class="col-md-2">
 					<label for="year">Klas</label> *<br />
@@ -162,7 +173,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-1">	
 				</div>
 				<div class="col-md-2">
 					<label for="fileToUpload">Profielafbeelding</label> * <a title="Gelieve alleen een JPEG-, PNG- of GIF-bestandsformaat te gebruiken. De afbeelding mag niet groter zijn dan 1MB. Gelieve een grootte te behouden van 100x100px, voor een correcte weergave van uw profielfoto."><img src="http://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="13px"/></a>
@@ -173,26 +184,23 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-3">	
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-9">
 					<input class="submit" type="submit" value="Registreer" name='register'/>
 				</div>
-				<div class="col-md-9">	
-				</div>
 			</div>	
-		</form>
+			</form>
 
-		<div class="row">
-			<div class="col-md-1">	
+			<div class="row">
+				<div class="col-md-1">	
+					</div>
+				<div class="col-md-11">
+					<br/><p>Al een account? <a href="login.php">Log hier in</a></p>
+				</div>
 			</div>
-			<div class="col-md-5">
-				<br/><p>Al een account? <a href="login.php">Log hier in</a></p>
-			</div>
-			<div class="col-md-6">
-			</div>
-		</div>
-	</div>
-
+	    </div>
+   
+   	</div>
 </body>
 </html>
