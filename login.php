@@ -39,7 +39,7 @@
 			$errorstudent = $e->getMessage();
 		}
 	}
-	
+ 	
 ?>
 <!DOCTYPE html>
 <html>
@@ -186,7 +186,9 @@
 			</div>
 
 			</form> 
-
+			<?php
+			echo '<a href="facebookloggedin.php'.$login_url.'">Login with Facebook</a>'; 
+			?>
 		</div>
    	</div>
 
