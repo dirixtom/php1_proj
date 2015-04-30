@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2015 at 03:21 PM
+-- Generation Time: Apr 30, 2015 at 04:42 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -32,7 +32,14 @@ CREATE TABLE `tbladmin` (
   `adminVoornaam` varchar(250) NOT NULL,
   `adminEmail` varchar(250) NOT NULL,
   `adminPassword` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbladmin`
+--
+
+INSERT INTO `tbladmin` (`adminID`, `adminNaam`, `adminVoornaam`, `adminEmail`, `adminPassword`) VALUES
+(1, 'Baeten', 'Noe', 'noe.baeten@gmail.com', 'abs');
 
 -- --------------------------------------------------------
 
@@ -78,7 +85,14 @@ CREATE TABLE `tbldatums` (
   `datumDag` varchar(250) NOT NULL,
   `datumMaand` varchar(250) NOT NULL,
   `datumJaar` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbldatums`
+--
+
+INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUES
+(7, '1', 'Januari', '2015');
 
 -- --------------------------------------------------------
 
@@ -129,6 +143,27 @@ CREATE TABLE `tblstudenten` (
   `studentPassword` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usertable`
+--
+
+CREATE TABLE `usertable` (
+`id` int(20) NOT NULL,
+  `fbid` bigint(20) NOT NULL,
+  `fullname` varchar(60) NOT NULL,
+  `email` varchar(60) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `usertable`
+--
+
+INSERT INTO `usertable` (`id`, `fbid`, `fullname`, `email`) VALUES
+(1, 1381149482214525, 'Vincent Van Loock', 'rentastudentthomasmore@gmail.com'),
+(2, 10205395106350448, 'NoÃ« Baeten', 'baeten_link@hotmail.com');
+
 --
 -- Indexes for dumped tables
 --
@@ -176,6 +211,12 @@ ALTER TABLE `tblstudenten`
  ADD PRIMARY KEY (`studentID`);
 
 --
+-- Indexes for table `usertable`
+--
+ALTER TABLE `usertable`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -183,7 +224,7 @@ ALTER TABLE `tblstudenten`
 -- AUTO_INCREMENT for table `tbladmin`
 --
 ALTER TABLE `tbladmin`
-MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tblboekingen`
 --
@@ -198,7 +239,7 @@ MODIFY `buddieID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 -- AUTO_INCREMENT for table `tbldatums`
 --
 ALTER TABLE `tbldatums`
-MODIFY `datumID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `datumID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tblmessages`
 --
@@ -214,6 +255,11 @@ MODIFY `reactiesID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 ALTER TABLE `tblstudenten`
 MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `usertable`
+--
+ALTER TABLE `usertable`
+MODIFY `id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --

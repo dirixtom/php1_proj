@@ -1,6 +1,10 @@
 <?php
 session_start(); //Session should always be active
 	
+	include_once("classes/Datum.class.php");
+
+	$d = new Datum();
+	$data = $d->ShowDate();
 
 //session var is still there
 	$app_id				= '1378145582515326';  //localhost
@@ -71,9 +75,10 @@ if ($session){ //if we have the FB session
 	//session ver is set, redirect user 
 	header("location: ". $redirect_url);
 	
-}else{ 
-
-	/*
+}
+/*
+else
+{ 	
 	if(isset($_SESSION["fb_user_details"]))
 	{
 		echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="?log-out=1">log-out</a> ] ';
@@ -87,8 +92,10 @@ if ($session){ //if we have the FB session
 		//display login url 
 		$login_url = $helper->getLoginUrl( array( 'scope' => $required_scope ) );
 		echo '<a href="'.$login_url.'">Login with Facebook</a>'; 
-	}*/
-}
+	}
+
+
+}*/
 
 if(!isset($_SESSION["fb_user_details"]))
 	{
@@ -99,7 +106,7 @@ if(!isset($_SESSION["fb_user_details"]))
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login</title>
+	<title>Welkom <?php echo $_SESSION["fb_user_details"]["name"];?></title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -117,14 +124,73 @@ if(!isset($_SESSION["fb_user_details"]))
    	</div>
 
 <div class="container-fluid">
+	
+	<div class="row intro2">
+		<div class="col-md-12">
 
-   	<div class="row intro2">
-   		<div class="col-md-12">
-   			<h2><?php echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="logout.php">Log-out</a> ] ';?></h2>
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-11">
+					<h2><?php echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="logout.php">Log-out</a> ] ';?></h2>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-11">
+					<h3>Hier kan je je Buddie reserveren!</h3>
+				</div>
+			</div>
+
+			<form action="" method="post">
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-3">
+					<label for="datum">Gelieve de gewenste datum door te geven</label>
+				</div>
+				<div class="col-md-8">
+					<select required name="datum" id="datum">
+						<option value="0"> Kies je datum </option>
+						<?php foreach ($data as $d): ?>
+						<option value="<?php echo $d['Id'] ;?>"><?php echo $d['datumDag'] . " " . $d['datumMaand'] . " " . $d['datumJaar'] ;?></option>
+						<?php endforeach;?>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-3">
+					<label for="Buddy">Kies hier je gewenste buddy:</label>
+				</div>
+				<div class="col-md-8">
+					<ul>
+						<li class="buddy">
+							<img src="" alt="buddyPhoto"/>
+							<h3>Naam buddy</h3>
+							<h4>Richting (design, development)</h4>
+							<input type="radio">
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-11">
+					<br/><button type="submit">Boeken</button>
+				</div>
+			</div>
+			</form>
+
 		</div>
    	</div>
 
 </div>
-
 </body>
 </html>
