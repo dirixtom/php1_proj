@@ -32,7 +32,7 @@
 
 					<strong>Hoe doe ik dat?</strong><br />
 					Het is heel gemakkelijk! Scroll verder naar beneden en zoek uit met welke student jij wel eens een schooldag wilt beleven. <br />
-					<br/><button class="btn btn-default btn-lg ghost-button-transition">Bekijk welke data er vrij zijn<br/>en schrijf je nu in!</button>
+					<br/><a href="login.php"><button class="btn btn-default btn-lg ghost-button-transition">Bekijk welke data er vrij zijn<br/>en schrijf je nu in!</button></a>
 			</p>
 		</div>
    	</div>
