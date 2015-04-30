@@ -80,7 +80,7 @@ input {
 }
 
 .btn {
-	background-color: #2ecc71;
+	background-color: #27ae60;
 	color: #ecf0f1;
 }
 
@@ -97,7 +97,7 @@ input {
 	padding-left: 10px;
 	padding-right: 10px;
 	color:#27ae60;
-	border: 2px solid #2ecc71;
+	border: 2px solid #27ae60;
 	text-align: center;
 	outline: none;
 	text-decoration: none;
@@ -107,6 +107,7 @@ input {
 .ghost-button-transition:hover,
 .ghost-button-transition:active {
 	background-color:#27ae60;
+	border: 2px solid #27ae60;
 	color:#ecf0f1;
 	transition: background-color 0.3s ease-in,
 	            color 0.3s ease-in;

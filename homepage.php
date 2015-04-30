@@ -21,8 +21,8 @@
 
 <div class="container-fluid">
 
-   	<div class="row text-center intro">
-   		<div class="col-md-4">
+   	<div class="row text-left intro">
+   		<div class="col-md-5">
        	</div>
        	<div class="col-md-6">
 	        <h1>Krijg persoonlijke begeleiding!</h1>
