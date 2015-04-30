@@ -1,10 +1,12 @@
 <?php
 session_start(); //Session should always be active
+	
+
 //session var is still there
 	$app_id				= '1378145582515326';  //localhost
 $app_secret 		= '2819b5faff3c55c4808ed979975eb46d';
 $required_scope 	= 'public_profile, publish_actions'; //Permissions required
-$redirect_url 		= 'http://localhost:8888/PHP1/php1_proj/facebookloggedin.php'; //FB redirects to this page with a code
+$redirect_url 		= 'http://localhost:8888/PHP1/php1_proj/bezoekerDashboard.php'; //FB redirects to this page with a code
 
 //MySqli details for saving user details
 $mysql_host			= 'localhost';
@@ -71,7 +73,7 @@ if ($session){ //if we have the FB session
 	
 }else{ 
 
-
+	/*
 	if(isset($_SESSION["fb_user_details"]))
 	{
 		echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="?log-out=1">log-out</a> ] ';
@@ -85,8 +87,14 @@ if ($session){ //if we have the FB session
 		//display login url 
 		$login_url = $helper->getLoginUrl( array( 'scope' => $required_scope ) );
 		echo '<a href="'.$login_url.'">Login with Facebook</a>'; 
-	}
+	}*/
 }
+
+if(!isset($_SESSION["fb_user_details"]))
+	{
+	    header("location:login.php");
+	    exit();
+	}
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -111,8 +119,8 @@ if ($session){ //if we have the FB session
 <div class="container-fluid">
 
    	<div class="row intro2">
-   		<div class="col-md-6">
-   			
+   		<div class="col-md-12">
+   			<h2><?php echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="logout.php">Log-out</a> ] ';?></h2>
 		</div>
    	</div>
 

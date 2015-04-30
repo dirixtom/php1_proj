@@ -45,7 +45,7 @@
 $app_id				= '1378145582515326';  //localhost
 $app_secret 		= '2819b5faff3c55c4808ed979975eb46d';
 $required_scope 	= 'public_profile, publish_actions'; //Permissions required
-$redirect_url 		= 'http://localhost:8888/PHP1/php1_proj/facebookloggedin.php'; //FB redirects to this page with a code
+$redirect_url 		= 'http://localhost:8888/PHP1/php1_proj/bezoekerDashboard.php'; //FB redirects to this page with a code
 
 //MySqli details for saving user details
 $mysql_host			= 'localhost';
@@ -279,15 +279,7 @@ if ($session){ //if we have the FB session
 				</div>
 				<div class="col-md-11">
 				<br/><p><?php
-			if(isset($_SESSION["fb_user_details"]))
-	{
-		echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="?log-out=1">log-out</a> ] ';
-		//print '<pre>';
-		//print_r($_SESSION["fb_user_details"]);
-		//print '</pre>';
-		
-	}
-	else
+			
 	{
 		//display login url 
 		$login_url = $helper->getLoginUrl( array( 'scope' => $required_scope ) );
