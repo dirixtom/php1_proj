@@ -97,11 +97,13 @@ else
 
 }*/
 
+/*
 if(!isset($_SESSION["fb_user_details"]))
 	{
 	    header("location:login.php");
 	    exit();
 	}
+/*
 ?><!DOCTYPE html>
 <html>
 <head>
