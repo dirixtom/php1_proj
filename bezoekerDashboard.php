@@ -2,9 +2,13 @@
 session_start(); //Session should always be active
 	
 	include_once("classes/Datum.class.php");
+	include_once("classes/Student.class.php");
 
 	$d = new Datum();
 	$data = $d->ShowDate();
+
+	$s = new Student();
+	$aStudents = $s->GetAllStudents();
 
 //session var is still there
 	$app_id				= '1378145582515326';  //localhost
@@ -97,13 +101,12 @@ else
 
 }*/
 
-/*
-if(!isset($_SESSION["fb_user_details"]))
+/*if(!isset($_SESSION["fb_user_details"]))
 	{
 	    header("location:login.php");
 	    exit();
 	}
-/*
+*/
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -171,12 +174,14 @@ if(!isset($_SESSION["fb_user_details"]))
 				</div>
 				<div class="col-md-8">
 					<ul>
+						<?php foreach ($aStudents as $s): ?>
 						<li class="buddy">
-							<img src="" alt="buddyPhoto"/>
-							<h3>Naam buddy</h3>
-							<h4>Richting (design, development)</h4>
-							<input type="radio">
+							<img src="<?php echo $s['buddieFoto'] ?>" alt="<?php echo "photo" . " " . $s['buddieNaam'];  ?>"/>
+							<h3><?php echo $s['buddieVoornaam'] . " " . $s['buddieNaam']; ?></h3>
+							<h4><?php echo $s['buddieJaar'] . "e jaar " . $s['buddieRichting'];  ?></h4>
+							<input type="radio" value="<?php echo $s['buddieID'] ;?>">
 						</li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 			</div>

@@ -334,5 +334,13 @@
 			$showAcc = $conn->query("SELECT * FROM tblbuddies WHERE buddieEmail ='" . $_SESSION['buddyemail'] . "'");
 			return $showAcc;
 		}
+
+		public function GetAllStudents()
+		{
+			//alle accounts returnen
+			$conn = Db::getInstance();
+			$allStudents = $conn->query("SELECT * FROM tblbuddies");
+			return $allStudents;
+		}
 	}
 ?>
