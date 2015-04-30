@@ -134,7 +134,7 @@ if ($session){ //if we have the FB session
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login</title>
+	<title>Rent a student - Login</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -153,6 +153,34 @@ if ($session){ //if we have the FB session
    	</div>
 
 <div class="container-fluid">
+
+   	<div class="row intro2">
+   		<div class="col-md-6">
+   			
+   			<div class="row">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-11">
+					<legend>Ben je een bezoeker? <br />Dan kun je met Facebook hier inloggen!</legend>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-11">
+					<p>
+						<?php			
+							//display login url 
+							$login_url = $helper->getLoginUrl( array( 'scope' => $required_scope ) );
+							echo '<a href="'.$login_url.'"><button id="facebook" class="btn">Sign in with Facebook</button></a>'
+						?>
+					</p>
+				</div>	
+			</div>
+
+   		</div>
+   	</div>
 
    	<div class="row intro2">
    		<div class="col-md-6">
@@ -272,21 +300,6 @@ if ($session){ //if we have the FB session
 				<div class="col-md-9">
 					<input class="submit" type="submit" value="Login" name="AdminLogin" />
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-11">
-				<br/><p><?php
-			
-	{
-		//display login url 
-		$login_url = $helper->getLoginUrl( array( 'scope' => $required_scope ) );
-		echo '<a href="'.$login_url.'">Login with Facebook</a>'; 
-	}
-			?></p>
-				</div>	
 			</div>
 
 			</form> 
