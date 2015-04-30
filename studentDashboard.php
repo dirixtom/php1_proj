@@ -1,7 +1,7 @@
 <?php
     
     session_start();
-    if(!isset($_SESSION["email"]))
+    if(!isset($_SESSION["buddyemail"]))
     {
         header("location:Studentlogin.php");
         exit();
@@ -38,7 +38,7 @@
             <ul class="nav navbar-right top-nav">
                   
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["email"] ?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["buddyemail"] ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="studentAccount.php"><i class="fa fa-fw fa-user"></i> Profile</a>

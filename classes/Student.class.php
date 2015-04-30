@@ -211,7 +211,7 @@
 			if($row === 1) 
 			{				
 				session_start();
-				$_SESSION["email"] = $this->Email;
+				$_SESSION["buddyemail"] = $this->Email;
 				header("Location: studentDashboard.php");
 			}
 			else
@@ -331,7 +331,7 @@
 			//informatie van account returnen
 			$conn = Db::getInstance();
 			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$showAcc = $conn->query("SELECT * FROM tblbuddies WHERE buddieEmail ='" . $_SESSION['email'] . "'");
+			$showAcc = $conn->query("SELECT * FROM tblbuddies WHERE buddieEmail ='" . $_SESSION['buddyemail'] . "'");
 			return $showAcc;
 		}
 	}
