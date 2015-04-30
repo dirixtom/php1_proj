@@ -1,7 +1,7 @@
 <?php
 session_start(); //Session should always be active
-
-$app_id				= '1378145582515326';  //localhost
+//session var is still there
+	$app_id				= '1378145582515326';  //localhost
 $app_secret 		= '2819b5faff3c55c4808ed979975eb46d';
 $required_scope 	= 'public_profile, publish_actions'; //Permissions required
 $redirect_url 		= 'http://localhost:8888/PHP1/php1_proj/facebookloggedin.php'; //FB redirects to this page with a code
@@ -70,8 +70,8 @@ if ($session){ //if we have the FB session
 	header("location: ". $redirect_url);
 	
 }else{ 
-	
-	//session var is still there
+
+
 	if(isset($_SESSION["fb_user_details"]))
 	{
 		echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="?log-out=1">log-out</a> ] ';
@@ -87,4 +87,36 @@ if ($session){ //if we have the FB session
 		echo '<a href="'.$login_url.'">Login with Facebook</a>'; 
 	}
 }
-?>
+?><!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	
+	<div class="navbar navbar-default">
+   		<div class="navbar-header">
+    		<a class="navbar-nav" href="#"><img class="logo" src="images/logo2.png" alt="The Rent A Student Logo" width="55%"></a>
+       	</div>
+      	<ul class="nav navbar-nav">
+          	<li><a href="homepage.php">Home</a></li>
+          	<li><a href="login.php">Boeken</a></li>
+       	</ul>
+   	</div>
+
+<div class="container-fluid">
+
+   	<div class="row intro2">
+   		<div class="col-md-6">
+   			
+		</div>
+   	</div>
+
+</div>
+
+</body>
+</html>
