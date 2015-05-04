@@ -3,7 +3,7 @@
 	if( !empty( $_POST ) )
 	{
 		$_SESSION['name'] = $_POST['name'];
-		header('location: imessage.php');
+		header('location: chat.php');
 	}
 ?><!DOCTYPE html>
 <html lang="en">

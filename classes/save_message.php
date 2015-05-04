@@ -7,11 +7,10 @@ if(isset( $_SESSION['name'] ))
 }
 else
 {
-    // users needs to login first
-    header("location: login.php");
+    header("location: ../templogin.php");
 }
 
-include_once("Message.class.php");
+include_once("../classes/Message.class.php");
 $m = new Message();
 if( !empty($_POST) )
 {

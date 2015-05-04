@@ -11,7 +11,7 @@ session_start(); //Session should always be active
 	$aStudents = $s->GetAllStudents();
 
 //session var is still there
-	$app_id				= '1378145582515326';  //localhost
+$app_id				= '1378145582515326';  //localhost
 $app_secret 		= '2819b5faff3c55c4808ed979975eb46d';
 $required_scope 	= 'public_profile, publish_actions'; //Permissions required
 $redirect_url 		= 'http://localhost:8888/PHP1/php1_proj/bezoekerDashboard.php'; //FB redirects to this page with a code

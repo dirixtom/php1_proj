@@ -66,7 +66,7 @@
                         <a href="adminreacties.php"><i class="fa fa-fw fa-desktop"></i> Reacties</a>
                     </li>-->
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-table"></i> Messenger</a>
+                        <a href="templogin.php"><i class="fa fa-fw fa-table"></i> Messenger</a>
                     </li> 
                 </ul>
             </div>

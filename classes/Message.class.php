@@ -4,10 +4,16 @@
 	class Message
 	{
 		private $m_sText;
+		private $m_sUser;
 
 		public function setText($p_sValue)
 		{
 			$this->m_sText = $p_sValue;
+		}
+
+		public function setUser($p_sValue)
+		{
+			$this->m_sUser = $p_sValue;
 		}
 
 		public function getText()
@@ -15,20 +21,25 @@
 			return $this->m_sText;
 		}
 
-		public function Create()
+		public function getUser()
+		{
+			return $this->m_sUser;
+		}
+
+		public function Save()
 		{
 			$db = Db::getInstance();
-			$stmt = $db->prepare("INSERT INTO tblmessages (messageText) VALUES (:message");
+			$stmt = $db->prepare("INSERT INTO tblmessages (message, user) VALUES (:message, :user)");
 			$stmt->bindValue(':message', $this->m_sText);
+			$stmt->bindValue(':user', $this->m_sUser);
 			$stmt->execute();
 		}
 
-		public function GetAllMessages()
+		public function showAll()
 		{
 			return Db::getInstance()->query("select * from tblmessages;");
 		}
 
 	}
-
 
 ?>
