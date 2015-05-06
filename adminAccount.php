@@ -10,18 +10,21 @@
 
 	$a = new Admin();
 	$b = new Admin();
-	$allAcc = $b->ShowAccounts();
+	$showAcc = $b->ShowAccount();
 
-	if(!empty($_POST["FormCreate"]))
+	if(!empty($_POST["FormUpdate"]))
 	{
 		try 
 		{	
-
+			
+			$a->Name = $_POST['naam'];
+			$a->Firstname = $_POST['voornaam'];			
 			$a->Email = $_POST['email'];
 			$a->Password = $_POST['password'];
-			$a->CreateAccount();
+			$a->Id = $_POST['adminID'];
+			$a->UpdateAccount();
 
-			$succes = "Account is toegevoegd!";
+			$succes = "Account is gewijzigd!";
 
 		}
 		catch(Exception $e)
@@ -30,7 +33,7 @@
 		}
 	}
 
-	if(!empty($_POST["FormDel"]))
+	if(!empty($_POST["FormDelete"]))
 	{
 		try 
 		{	
@@ -57,11 +60,6 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
-    <script language="JavaScript" type="text/javascript">
-function checkDelete(){
-    return confirm('Are you sure?');
-}
-</script>
 </head>
 <body>
 	
@@ -86,7 +84,7 @@ function checkDelete(){
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION["email"] . " ";?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="adminAccount.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>                       
                         <li class="divider"></li>
                         <li>
@@ -110,7 +108,7 @@ function checkDelete(){
                     <li>
                         <a href="adminreacties.php"><i class="fa fa-fw fa-desktop"></i> Reacties</a>
                     </li>
-                    <li class="selected">
+                    <li>
                         <a href="adminaccounts.php"><i class="fa fa-fw fa-table"></i> Accounts</a>
                     </li>
                 </ul>
@@ -126,7 +124,7 @@ function checkDelete(){
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            <small> Accounts toevoegen</small>
+                            <small>Profiel aanpassen</small>
                         </h1>  
                     </div>
                 </div>
@@ -140,57 +138,69 @@ function checkDelete(){
 							</div>
 						<?php endif; ?>
 
-						<?php if(isset($succes)): ?>
+						<?php if(isset($success)): ?>
 							<div class="feedback alert alert-success">
-						<?php echo $succes;?>
+						<?php echo $success;?>
 							</div>
 						<?php endif; ?>
 
                 		<form method="post" action="" class="form-horizontal">
-                			<div class="form-group">
-						    	<label for="email" class="col-sm-2 control-label">Email</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="text" id="email" name="email" placeholder="Email" class="form-control" />
-						    	</div>
-						  	</div>
-						  	<div class="form-group">
-						    	<label for="password" class="col-sm-2 control-label">Password</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="password" id="password" name="password" placeholder="password" class="form-control" />
-						    	</div>
-						  	</div>
-						  	<div class="form-group">
-						    	<div class="col-sm-offset-2 col-sm-10">
-						      		
-						      		<input class="submit" type="submit" value="Account Toevoegen" name='FormCreate'/>
-						    	</div>
-						 	</div>
-                		</form>
-                	</div>
-                </div>
 
-                <h1 class="page-header">
-                    <small>Overzicht van accounts</small>
-                </h1>  
-                <div class="row">
-                	<div class="col-sm-6">
-                		<?php
-							while($acc = $allAcc->fetch(PDO::FETCH_ASSOC))
-							{
-								echo "<form method='post' class='form-horizontal'>";
-									echo "<div class='form-group'>";
-										echo "<div class='col-sm-5'>";
-											echo "<label for='username' class='col-sm-4 control-label'>" . $acc["adminEmail"] . "</label>";
-										echo "</div>";
-										echo "<div class='col-sm-2'>";
-											echo "<input type='hidden' name='adminID' value='".$acc['adminID']."'><input type='submit' class='submit' name='FormDel' value='Verwijder Account'><br /><br />";
-										echo "</div>";
-									echo "</div>";
-								echo "</form>";
-							}
-						?>
+	                		<?php
+								while($acc = $showAcc->fetch(PDO::FETCH_ASSOC))
+								{
+									echo '<div class="form-group">';
+						    			echo '<label for="naam" class="col-sm-2 control-label">Naam</label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="text" id="naam" name="naam" placeholder="Naam" class="form-control" value="'.$acc['adminNaam'].'" />';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<label for="voornaam" class="col-sm-2 control-label">Voornaam</label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="text" id="voornaam" name="voornaam" placeholder="Voornaam" class="form-control" value="'.$acc['adminVoornaam'].'" />';
+						    			echo '</div>';
+						  			echo '</div>';
+
+									echo '<div class="form-group">';
+						    			echo '<label for="email" class="col-sm-2 control-label">Email</label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="text" id="email" name="email" placeholder="email" class="form-control" value="'.$acc['adminEmail'].'" />';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<label for="password" class="col-sm-2 control-label">Wachtwoord</label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '<input type="password" id="password" name="password" placeholder="Nieuw wachtwoord" class="form-control" />';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<label for="" class="col-sm-2 control-label"></label>';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				echo '	<input type="hidden" name="adminID" value="'.$acc['adminID'].'"/>
+						      						<input type="submit" class="submit" name="FormUpdate" value="Wijzig uw account"><br/><br/><br/><br/>
+						      						';
+						    			echo '</div>';
+						  			echo '</div>';
+
+						  			echo '<div class="form-group">';
+						    			echo '<br/><br/><br/><br/><input type="submit" class="submit col-sm-3" name="FormDelete" value="Verwijder uw account">';
+						    	
+						    			echo '<div class="col-sm-4">';
+						      				
+						    			echo '</div>';
+						  			echo '</div>';
+								}
+							?>
+						</form>
                 	</div>
                 </div>
 

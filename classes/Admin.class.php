@@ -6,6 +6,8 @@
 	{
 		
 		private $m_sUsername;
+		private $m_sName;
+		private $m_sFirstname;
 		private $m_sEmail;
 		private $m_sPassword;
 		private $m_sId;
@@ -49,6 +51,28 @@
 						};
 					break;
 
+				case 'Name':
+					if(empty($p_sValue))
+						{
+							throw new Exception("Naam mag niet leeg zijn");
+						}
+					else 
+						{
+							$this->m_sName = $p_sValue;
+						};
+					break;
+
+				case 'Firstname':
+					if(empty($p_sValue))
+						{
+							throw new Exception("Voornaam mag niet leeg zijn");
+						}
+					else 
+						{
+							$this->m_sFirstname = $p_sValue;
+						};
+					break;
+
 				case 'Id':
 					$this->m_sId = $p_sValue;
 					break;
@@ -61,6 +85,14 @@
 			{
 				case 'Username':
 					return $this->m_sUsername;
+					break;
+
+				case 'Firstname':
+					return $this->m_sFirstname;
+					break;
+
+				case 'Name':
+					return $this->m_sName;
 					break;
 
 				case 'Password':
@@ -95,15 +127,43 @@
 
 		public function DeleteAccount()
 		{
-
 			$conn = Db::getInstance();
 			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$statement = $conn->prepare("DELETE FROM tbladmin WHERE adminID = :id");
 			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
 
-			header('Location:adminaccounts.php');
+			header('Location:login.php');
+		}
 
+		public function UpdateAccount()
+		{
+
+			$conn = Db::getInstance();
+			$statement = $conn->prepare("UPDATE tbladmin SET adminVoornaam = :voornaam,
+																adminNaam = :naam,
+																adminEmail = :email,
+																adminPassword = :password
+															    WHERE adminID = :id
+										");
+			$statement->bindValue(':voornaam', $this->Firstname);
+			$statement->bindValue(':naam', $this->Name);
+			$statement->bindValue(':email', $this->Email);
+			$statement->bindValue(':password', $this->Password);
+			$statement->bindValue(':id', $this->Id );
+			$statement->execute();
+
+			//header('Location:studentAccount.php');
+
+		}
+
+		public function ShowAccount()
+		{
+			//informatie van account returnen
+			$conn = Db::getInstance();
+			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$showAcc = $conn->query("SELECT * FROM tbladmin WHERE adminEmail ='" . $_SESSION['email'] . "'");
+			return $showAcc;
 		}
 
 		public function Login()
@@ -134,7 +194,7 @@
 		{
 			//alle accounts returnen
 			$conn = Db::getInstance();
-			$allAcc = $conn->query("SELECT * FROM tbladmin");
+			$allAcc = $conn->query("SELECT adminID, adminEmail FROM tbladmin");
 			return $allAcc;
 
 			header('Location:adminaccounts.php');
