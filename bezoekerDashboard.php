@@ -10,6 +10,9 @@ session_start(); //Session should always be active
 	$s = new Student();
 	$aStudents = $s->GetAllStudents();
 
+	//$f = new Student();
+	//$fStudents = $f->VrijeStudents();
+
 //session var is still there
 $app_id				= '1378145582515326';  //localhost
 $app_secret 		= '2819b5faff3c55c4808ed979975eb46d';
@@ -80,7 +83,7 @@ if ($session){ //if we have the FB session
 	header("location: ". $redirect_url);
 	
 }
-/*
+
 else
 { 	
 	if(isset($_SESSION["fb_user_details"]))
@@ -99,7 +102,7 @@ else
 	}
 
 
-}*/
+}
 
 /*if(!isset($_SESSION["fb_user_details"]))
 	{
@@ -154,12 +157,15 @@ else
 					<label for="datum">Gelieve de gewenste datum door te geven</label>
 				</div>
 				<div class="col-md-8">
-					<select required name="datum" id="datum">
-						<option value="0"> Kies je datum </option>
+					<form action="" method="post">
+					<select required name="datum" id="datum" onchange="getData(this.value)">
+						<option value=""> Kies je datum </option>
 						<?php foreach ($data as $d): ?>
 						<option value="<?php echo $d['Id'] ;?>"><?php echo $d['datumDag'] . " " . $d['datumMaand'] . " " . $d['datumJaar'] ;?></option>
 						<?php endforeach;?>
 					</select>
+					<input type="submit">
+					</form>
 				</div>
 			</div>
 

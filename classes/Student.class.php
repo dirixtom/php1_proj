@@ -342,5 +342,7 @@
 			$allStudents = $conn->query("SELECT * FROM tblbuddies");
 			return $allStudents;
 		}
+
+		
 	}
 ?>
