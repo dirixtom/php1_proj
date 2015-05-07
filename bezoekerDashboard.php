@@ -72,11 +72,11 @@ if ($session){ //if we have the FB session
 	}
 	
 	//check user exist in table (using Facebook ID)
-	$results = $mysqli->query("SELECT COUNT(*) FROM usertable WHERE fbid=".$user_id);
+	$results = $mysqli->query("SELECT COUNT(*) FROM tblstudenten WHERE fbid=".$user_id);
 	$get_total_rows = $results->fetch_row();
 	
 	if(!$get_total_rows[0]){ //no user exist in table, create new user
-		$insert_row = $mysqli->query("INSERT INTO usertable (fbid, fullname, email) VALUES(".$user_id.", '".$user_name."', '".$user_email."')");
+		$insert_row = $mysqli->query("INSERT INTO tblstudenten (fbid, fullname, email) VALUES(".$user_id.", '".$user_name."', '".$user_email."')");
 	}
 	
 	//session ver is set, redirect user 
@@ -88,7 +88,7 @@ else
 { 	
 	if(isset($_SESSION["fb_user_details"]))
 	{
-		echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="?log-out=1">log-out</a> ] ';
+		//echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="?log-out=1">log-out</a> ] ';
 		//print '<pre>';
 		//print_r($_SESSION["fb_user_details"]);
 		//print '</pre>';
@@ -127,7 +127,7 @@ else
        	</div>
       	<ul class="nav navbar-nav">
           	<li><a href="homepage.php">Home</a></li>
-          	<li><a href="login.php">Boeken</a></li>
+          	<li><a href="#">Mijn boekingen</a></li>
        	</ul>
    	</div>
 
