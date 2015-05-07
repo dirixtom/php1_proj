@@ -28,6 +28,10 @@ button.facebook:hover {
 	padding-top: 0px;
 }
 
+.buddy_list ul li {
+	float: left;
+}
+
 .buddies {
 	background-color:#EAEAEA;
 	padding-bottom: 50px;

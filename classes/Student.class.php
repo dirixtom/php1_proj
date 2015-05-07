@@ -343,6 +343,14 @@
 			return $allStudents;
 		}
 
+		public function GetAllFB()
+		{
+			//alle accounts returnen
+			$conn = Db::getInstance();
+			$allStudents = $conn->query("SELECT * FROM tblstudenten");
+			return $allStudents;
+		}
+
 		
 	}
 ?>

@@ -4,6 +4,48 @@
 	class Boeking
 	{
 		
+		private $m_sdatum;
+		private $m_sbuddy;
+		private $m_sstudent;
+
+		public function __set($p_sProperty, $p_sValue)
+		{
+			switch ($p_sProperty) 
+			{
+				
+				case 'Datum':
+					$this->m_sdatum = $p_sValue;
+					break;
+
+				case 'Buddy':
+					$this->m_sbuddy = $p_sValue;
+					break;
+
+				case 'Student':
+					$this->m_sstudent = $p_sValue;
+					break;
+			}
+		}
+
+		public function __get($p_sProperty)
+		{
+			switch ($p_sProperty) 
+			{
+				case 'Datum':
+					return $this->m_sdatum;
+					break;
+
+				case 'Buddy':
+					return $this->m_sbuddy;
+					break;
+
+				case 'Student':
+					return $this->m_sstudent;
+					break;
+
+			}
+		}
+
 		public function getAllBoekingen()
 			{
 				//alle boekingen returnen
@@ -20,34 +62,22 @@
 				return $allBoekings;
 			}
 
-		public function annuleerBoeking() {
+		/*public function annuleerBoeking() {
 			$conn = Db::getInstance();
 			$statement = $conn->prepare("UPDATE tblboekingen SET active = 'false' WHERE buddieID = :id");
 			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
-		}
+		}*/
 
-		public function nieuweBoeking() {
-			$conn = Db::getInstance();
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("INSERT INTO tblboekingen ( datumID, 
-																		studentID, 
-																		buddieID,
-																		
-										 VALUES (:datumID,
-												 :studentID,
-												 :buddieID,
-												 )");
-			$statement->bindValue(':datumID', $this->datumID);
-			$statement->bindValue(':studentID', $this->studentID);
-			$statement->bindValue(':student_radio_id', $this->buddieID);
-			$statement->execute();
-
-		}	
-		// als code wordt geschreven om te boeken zet dan het veld 'active' op true 
-		// -> kijk hier onder hoe en vervang false door true.
-
+		public function nieuweBoeking() 
+			{
+				$conn = Db::getInstance();
+				$statement = $conn->prepare("INSERT INTO tblboekingen (datumID, buddieID, studentID) VALUES (:datumID, :buddieID, :studentID)");
+				$statement->bindValue(':datumID', $this->Datum);
+				$statement->bindValue(':buddieID', $this->Buddy);
+				$statement->bindValue(':studentID', $this->Student);
+				$statement->execute();
+			}	
 		
 	}
 ?>
-	

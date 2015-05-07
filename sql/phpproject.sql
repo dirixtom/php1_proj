@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2015 at 02:19 PM
+-- Generation Time: May 07, 2015 at 06:17 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -38,7 +38,8 @@ CREATE TABLE `tbladmin` (
 -- Dumping data for table `tbladmin`
 --
 
-INSERT INTO `tbladmin` (`adminID`, `adminNaam`, `adminVoornaam`, `adminEmail`, `adminPassword`) VALUES(23, '', '', 'noe.baeten@gmail.com', 'abs');
+INSERT INTO `tbladmin` (`adminID`, `adminNaam`, `adminVoornaam`, `adminEmail`, `adminPassword`) VALUES
+(23, '', '', 'noe.baeten@gmail.com', 'abs');
 
 -- --------------------------------------------------------
 
@@ -51,7 +52,14 @@ CREATE TABLE `tblboekingen` (
   `datumID` int(11) NOT NULL,
   `studentID` int(11) NOT NULL,
   `buddieID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblboekingen`
+--
+
+INSERT INTO `tblboekingen` (`boekingID`, `datumID`, `studentID`, `buddieID`) VALUES
+(16, 8, 3, 20);
 
 -- --------------------------------------------------------
 
@@ -71,13 +79,14 @@ CREATE TABLE `tblbuddies` (
   `buddieRating` int(11) NOT NULL,
   `buddieLeeftijd` int(11) NOT NULL,
   `buddieFoto` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblbuddies`
 --
 
-INSERT INTO `tblbuddies` (`buddieID`, `buddieNaam`, `buddieVoornaam`, `buddieTwitter`, `buddieEmail`, `buddiePassword`, `buddieJaar`, `buddieRichting`, `buddieRating`, `buddieLeeftijd`, `buddieFoto`) VALUES(20, 'Baeten', 'Noe', '@NoeBaeten', 'noe.baeten@gmail.com', 'abs', '3', '1', 0, 0, 'images/profpics/noe.baeten@gmail.com/a33GpBQ_700b.jpg');
+INSERT INTO `tblbuddies` (`buddieID`, `buddieNaam`, `buddieVoornaam`, `buddieTwitter`, `buddieEmail`, `buddiePassword`, `buddieJaar`, `buddieRichting`, `buddieRating`, `buddieLeeftijd`, `buddieFoto`) VALUES
+(20, 'Baeten', 'Noe', '@NoeBaeten', 'noe.baeten@gmail.com', 'abs', '3', '1', 0, 0, 'images/profpics/noe.baeten@gmail.com/a33GpBQ_700b.jpg');
 
 -- --------------------------------------------------------
 
@@ -96,8 +105,9 @@ CREATE TABLE `tbldatums` (
 -- Dumping data for table `tbldatums`
 --
 
-INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUES(8, '1', 'Januari', '2015');
-INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUES(9, '1', 'April', '2015');
+INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUES
+(8, '1', 'Januari', '2015'),
+(9, '1', 'April', '2015');
 
 -- --------------------------------------------------------
 
@@ -129,7 +139,8 @@ CREATE TABLE `tblreacties` (
 -- Dumping data for table `tblreacties`
 --
 
-INSERT INTO `tblreacties` (`reactiesID`, `reactiesNaam`, `reactiesComment`, `reactiesMail`) VALUES(7, 'Shane', 'Dag verliep goed. Buddie werkte goed mee.', 'tom.dirix@gmail.com');
+INSERT INTO `tblreacties` (`reactiesID`, `reactiesNaam`, `reactiesComment`, `reactiesMail`) VALUES
+(7, 'Shane', 'Dag verliep goed. Buddie werkte goed mee.', 'tom.dirix@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -142,13 +153,15 @@ CREATE TABLE `tblstudenten` (
   `fbid` bigint(20) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblstudenten`
 --
 
-INSERT INTO `tblstudenten` (`studentID`, `fbid`, `fullname`, `email`) VALUES(3, 10205395106350448, 'NoÃ« Baeten', 'baeten_link@hotmail.com');
+INSERT INTO `tblstudenten` (`studentID`, `fbid`, `fullname`, `email`) VALUES
+(3, 10205395106350448, 'NoÃ« Baeten', 'baeten_link@hotmail.com'),
+(4, 10205395106350449, 'Tom', 'baeten_link@hotmail.com');
 
 --
 -- Indexes for dumped tables
@@ -164,7 +177,7 @@ ALTER TABLE `tbladmin`
 -- Indexes for table `tblboekingen`
 --
 ALTER TABLE `tblboekingen`
- ADD PRIMARY KEY (`boekingID`), ADD UNIQUE KEY `datum` (`datumID`), ADD UNIQUE KEY `student` (`studentID`), ADD UNIQUE KEY `buddie` (`buddieID`);
+ ADD PRIMARY KEY (`boekingID`), ADD KEY `datum` (`datumID`), ADD KEY `student` (`studentID`), ADD KEY `buddie` (`buddieID`);
 
 --
 -- Indexes for table `tblbuddies`
@@ -209,12 +222,12 @@ MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 -- AUTO_INCREMENT for table `tblboekingen`
 --
 ALTER TABLE `tblboekingen`
-MODIFY `boekingID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `boekingID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tblbuddies`
 --
 ALTER TABLE `tblbuddies`
-MODIFY `buddieID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+MODIFY `buddieID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `tbldatums`
 --
@@ -234,7 +247,7 @@ MODIFY `reactiesID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `tblstudenten`
 --
 ALTER TABLE `tblstudenten`
-MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
@@ -243,9 +256,9 @@ MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- Constraints for table `tblboekingen`
 --
 ALTER TABLE `tblboekingen`
-ADD CONSTRAINT `tblboekingen_ibfk_3` FOREIGN KEY (`buddieID`) REFERENCES `tblbuddies` (`buddieID`),
-ADD CONSTRAINT `tblboekingen_ibfk_1` FOREIGN KEY (`datumID`) REFERENCES `tbldatums` (`datumID`),
-ADD CONSTRAINT `tblboekingen_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `tblstudenten` (`studentID`);
+ADD CONSTRAINT `tblboekingen_ibfk_1` FOREIGN KEY (`datumID`) REFERENCES `tbldatums` (`datumID`) ON UPDATE CASCADE,
+ADD CONSTRAINT `tblboekingen_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `tblstudenten` (`studentID`) ON UPDATE CASCADE,
+ADD CONSTRAINT `tblboekingen_ibfk_3` FOREIGN KEY (`buddieID`) REFERENCES `tblbuddies` (`buddieID`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tblmessages`
