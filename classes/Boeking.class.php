@@ -7,6 +7,7 @@
 		private $m_sdatum;
 		private $m_sbuddy;
 		private $m_sstudent;
+		private $m_sId;
 
 		public function __set($p_sProperty, $p_sValue)
 		{
@@ -23,6 +24,10 @@
 
 				case 'Student':
 					$this->m_sstudent = $p_sValue;
+					break;
+
+				case 'Id':
+					$this->m_sId = $p_sValue;
 					break;
 			}
 		}
@@ -43,6 +48,9 @@
 					return $this->m_sstudent;
 					break;
 
+				case 'Id':
+					return $this->m_sId;
+					break;
 			}
 		}
 
@@ -62,16 +70,6 @@
 				return $allBoekings;
 			}
 
-		public function getSingleBoeking() {
-			// 1 boeking weergeven op de bezoeker dashboard
-			$conn = Db::getInstance();
-			$singleBoeking = $conn->query("SELECT * FROM tblboekingen 
-										   INNER JOIN tblbuddies ON tblboekingen.buddieID = tblbuddies.buddieID 
-										   INNER JOIN tbldatums ON tblboekingen.datumID = tbldatums.datumID 
-										  ");
-			return $singleBoeking;
-		}
-
 		public function nieuweBoeking() 
 			{
 				$conn = Db::getInstance();
@@ -82,12 +80,15 @@
 				$statement->execute();
 			}	
 		
-		public function deleteBoeking() {
-			$conn = Db::getInstance();
-			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$statement = $conn->prepare("DELETE FROM tblboekings WHERE boekingID = :id");
-			$statement->bindValue(':id', $this->Id );
-			$statement->execute();
-		}
+		public function deleteBoeking() 
+			{
+				$conn = Db::getInstance();
+				//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+				$statement = $conn->prepare("DELETE FROM tblboekingen WHERE boekingID = :id");
+				$statement->bindValue(':id', $this->Id );
+				$statement->execute();
+
+				header("Location: bezoekerBoekingen.php");
+			}
 	}
 ?>

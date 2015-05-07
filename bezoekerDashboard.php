@@ -5,11 +5,14 @@
 	include_once("classes/Datum.class.php");
 	include_once("classes/Student.class.php");
 	include_once("classes/Boeking.class.php");
+	
 	$d = new Datum();
 	$data = $d->ShowDate();
+	
 	$s = new Student();
 	$allStudents = $s->GetAllStudents();
 	$allFB = $s->GetAllFB();
+	
 	$b = new Boeking();
 
 	if($_POST)
@@ -130,7 +133,8 @@
        	</div>
       	<ul class="nav navbar-nav">
           	<li><a href="homepage.php">Home</a></li>
-          	<li><a href="mijnBoekingen.php">Mijn boekingen</a></li>
+          	<li><a href="bezoekerDashboard.php">Een afspraak maken</a></li>
+          	<li><a href="bezoekerBoekingen.php">Mijn boekingen</a></li>
           	<li><a href="logout.php">Uitloggen</a></li>
        	</ul>
    	</div>
