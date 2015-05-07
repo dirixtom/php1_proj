@@ -40,94 +40,40 @@
 		}
 	}
 
-	session_start(); //Session should always be active
-
-$app_id				= '1378145582515326';  //localhost
-$app_secret 		= '2819b5faff3c55c4808ed979975eb46d';
-$required_scope 	= 'public_profile, publish_actions'; //Permissions required
-$redirect_url 		= 'http://localhost:8888/PHP1/php1_proj/bezoekerDashboard.php'; //FB redirects to this page with a code
-
-//MySqli details for saving user details
-$mysql_host			= 'localhost';
-$mysql_username		= 'root';
-$mysql_password		= 'root';
-$mysql_db_name		= 'phpproject';
-
-require_once __DIR__ . "/facebook-php-sdk-v4-4.0-dev/autoload.php"; //include autoload from SDK folder
-
-//import required class to the current scope
-use Facebook\FacebookSession;
-use Facebook\FacebookRequest;
-use Facebook\GraphUser;
-use Facebook\FacebookRedirectLoginHelper;
-
-FacebookSession::setDefaultApplication($app_id , $app_secret);
-$helper = new FacebookRedirectLoginHelper($redirect_url);
-
-try {
-  $session = $helper->getSessionFromRedirect();
-} catch(FacebookRequestException $ex) {
-	die(" Error : " . $ex->getMessage());
-} catch(\Exception $ex) {
-	die(" Error : " . $ex->getMessage());
-}
-
-
-//if user wants to log out
-if(isset($_GET["log-out"]) && $_GET["log-out"]==1){
-	unset($_SESSION["fb_user_details"]);
-	//session ver is set, redirect user 
-	header("location: ". $redirect_url);
-}
-
-//Test normal login / logout with session
-
-if ($session){ //if we have the FB session
-	//get user data
-	$user_profile = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
-	
-	//save session var as array
-	$_SESSION["fb_user_details"] = $user_profile->asArray(); 
-	
-	$user_id = ( isset( $_SESSION["fb_user_details"]["id"] ) )? $_SESSION["fb_user_details"]["id"] : "";
-	$user_name = ( isset( $_SESSION["fb_user_details"]["name"] ) )? $_SESSION["fb_user_details"]["name"] : "";
-	$user_email = ( isset( $_SESSION["fb_user_details"]["email"] ) )? $_SESSION["fb_user_details"]["email"] : "";
-	
-	###### connect to user table ########
-	$mysqli = new mysqli($mysql_host, $mysql_username, $mysql_password, $mysql_db_name);
-	if ($mysqli->connect_error) {
-		die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
-	}
-	
-	//check user exist in table (using Facebook ID)
-	$results = $mysqli->query("SELECT COUNT(*) FROM usertable WHERE fbid=".$user_id);
-	$get_total_rows = $results->fetch_row();
-	
-	if(!$get_total_rows[0]){ //no user exist in table, create new user
-		$insert_row = $mysqli->query("INSERT INTO usertable (fbid, fullname, email) VALUES(".$user_id.", '".$user_name."', '".$user_email."')");
-	}
-	
-	//session ver is set, redirect user 
-	header("location: ". $redirect_url);
-	
-}else{ 
-	
-	//session var is still there
-	/*if(isset($_SESSION["fb_user_details"]))
+	if(!empty($_POST['StudentRegister']))
 	{
-		echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="?log-out=1">log-out</a> ] ';
-		//print '<pre>';
-		//print_r($_SESSION["fb_user_details"]);
-		//print '</pre>';
-		
+		try 
+		{	
+
+			$s->Firstname = $_POST['firstname'];
+			$s->Lastname = $_POST['lastname'];
+			$s->Twitter = $_POST['twitter'];
+			$s->Year = $_POST['year'];
+			$s->Subject = $_POST['subject'];
+			$s->Email = $_POST['email'];
+			$s->Password = $_POST['password'];
+			$s->CPassword = $_POST['cpassword'];
+
+			$map = $_POST['email'];
+        	if(!file_exists("images/profpics/$map"))
+        	{
+            	mkdir("images/profpics/$map", 0777, true);
+        	}
+
+        	include_once("upload.php");
+
+        	$s->Picture = "images/profpics/".$_POST['email']."/".basename( $_FILES["fileToUpload"]["name"]);
+
+			$s->Save();
+
+			$success = "Uw profiel is aangemaakt.";
+
+		}
+		catch(Exception $e)
+		{
+			$error = $e->getMessage();
+		}
 	}
-	/*else
-	{
-		//display login url 
-		$login_url = $helper->getLoginUrl( array( 'scope' => $required_scope ) );
-		echo '<a href="'.$login_url.'">Login with Facebook</a>'; 
-	}*/
-}
  	
 ?>
 <!DOCTYPE html>
@@ -147,41 +93,12 @@ if ($session){ //if we have the FB session
        	</div>
       	<ul class="nav navbar-nav">
           	<li><a href="homepage.php">Home</a></li>
-          	<li><a href="login.php">Inloggen</a></li>
-          	<li><a href="register.php">Registreren</a></li>
        	</ul>
    	</div>
 
 <div class="container-fluid">
 
-   	<div class="row intro2">
-   		<div class="col-md-6">
-   			
-   			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-11">
-					<legend>Ben je een bezoeker? <br />Dan kun je met Facebook hier inloggen!</legend>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-11">
-					<p>
-						<?php			
-							//display login url 
-							$login_url = $helper->getLoginUrl( array( 'scope' => $required_scope ) );
-							echo '<a href="'.$login_url.'"><button id="facebook" class="btn">Sign in with Facebook</button></a>'
-						?>
-					</p>
-				</div>	
-			</div>
-
-   		</div>
-   	</div>
-
+   
    	<div class="row intro2">
    		<div class="col-md-6">
    			
@@ -236,22 +153,9 @@ if ($session){ //if we have the FB session
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-11">
-				<br/><p>Nog geen account? <a href="register.php">Registreer hier</a></p>
-				</div>	
-			</div>
-
 			</form>
-       	</div>
-       	
-       	<!-- 2de formulier begint hier -->
-       	
-       	<div class="col-md-6">
-		    
-		    <form method="post" class="formulier">
+
+			<form method="post" class="formulier">
 			
 			<div class="row">
 				<div class="col-md-1">	
@@ -303,7 +207,126 @@ if ($session){ //if we have the FB session
 			</div>
 
 			</form> 
+       	</div>
+       	
+       	<!-- 2de formulier begint hier -->
+       	
+       	<div class="col-md-6">
+		    <div class="col-md-12">
+   			
+   			<form method="post" action="" enctype="multipart/form-data" class="formulier">
 			
+			<div class="row">
+				
+				<div class="col-md-12">
+					<legend>Studenten registratie</legend>
+					Alle velden met een * zijn verplicht<br/>
+					<?php if(isset($error)): ?>
+						<div class="error">
+					<?php echo $error;?>
+						</div>
+					<?php endif; ?>
+
+					<?php if(isset($success)): ?>
+						<div class="feedback">
+					<?php echo $success;?>
+						</div>
+					<?php endif; ?>
+					<br/>
+				</div>
+			</div>
+
+			<div class="row">
+				
+				<div class="col-md-4">
+					<label for="firstname">Voornaam</label> *<br/>
+				</div>
+				<div class="col-md-8">
+					<input type="text" id="firstname" name="firstname" placeholder="voornaam" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<label for="lastname">Achternaam</label> *<br/>
+				</div>
+				<div class="col-md-8">
+					<input type="text" id="lastname" name="lastname" placeholder="achternaam" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<label for="email">Email</label> *<br/>
+				</div>
+				<div class="col-md-8">
+					<input type="text" id="email" name="email" placeholder="email" />
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<label for="password">Wachtwoord</label> *<br />
+				</div>
+				<div class="col-md-8">	
+					<input type="password" id="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<label for="cpassword">Verifieer Wachtwoord</label> *<br />
+				</div>
+				<div class="col-md-8">	
+					<input type="password" id="cpassword" name="cpassword" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<label for="twitter">Twitter</label> *<br/>
+				</div>
+				<div class="col-md-8">	
+					<input type="text" id="twitter" name="twitter" placeholder="@Twitter" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<label for="year">Klas</label> *<br />
+				</div>
+				<div class="col-md-8">	
+					<select id="year" name="year">
+					 	<option value="1">1</option> 
+					 	<option value="2">2</option>
+					 	<option value="3">3</option>
+					</select>
+					<select name="subject">
+					 	<option value="1">IM Design</option> 
+					 	<option value="2">IM Development</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<label for="fileToUpload">Profielafbeelding</label> * <a title="Gelieve alleen een JPEG-, PNG- of GIF-bestandsformaat te gebruiken. De afbeelding mag niet groter zijn dan 1MB. Gelieve een grootte te behouden van 100x100px, voor een correcte weergave van uw profielfoto."><img src="http://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="13px"/></a>
+				</div>
+				<div class="col-md-8">	
+					<input type="file" name="fileToUpload" id="fileToUpload" class="fileupload" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">	
+				</div>
+				<div class="col-md-8">
+					<input class="submit" type="submit" value="Registreer" name="StudentRegister"/>
+				</div>
+			</div>	
+			</form>
+
 		</div>
    	</div>
 

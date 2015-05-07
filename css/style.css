@@ -10,16 +10,22 @@ body {
 	background-color:#EAEAEA;
 }
 
-button#facebook {
-    border-color: #2d5073;
+button.facebook {
+    border-color: #3b5998;
+    background-color: none;
+    color: #3b5998;
+}
+
+button.facebook:hover {
+    border-color: #3b5998;
     background-color: #3b5998;
-    background-image: url(http://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png);
+    color: #F6F6F6;
 }
 
 .nav{
 	float: right;
-	font-size: 18px;
-	padding-top: 10px;
+	font-size: 16px;
+	padding-top: 0px;
 }
 
 .buddies {
@@ -100,8 +106,8 @@ input {
 	background:none;
 	padding-top: 6px;
 	padding-bottom: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
 	color:#27ae60;
 	border: 2px solid #27ae60;
 	text-align: center;

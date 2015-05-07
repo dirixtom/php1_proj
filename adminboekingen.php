@@ -97,9 +97,10 @@
 
 								while($boeking = $allBoekings->fetch(PDO::FETCH_ASSOC))
 								{
-									echo "<li class='list-group-item'>Voornaam: " . $boeking["boekingVoornaam"] . "<br />";
-									echo "Naam: " . $boeking["boekingNaam"] . "<br />";
-									echo "Datum: " . $boeking["boekingDag"] . " " . $boeking["boekingMaand"] . " " . $boeking['boekingJaar'] . "<br />";
+									echo "<li class='list-group-item'>Voornaam: " . $boeking["buddieVoornaam"] . "<br />";
+									echo "Naam: " . $boeking["buddieNaam"] . "<br />";
+									echo "Datum: " . $boeking["datumDag"] . " " . $boeking["datumMaand"] . " " . $boeking['datumJaar'] . "<br /><br />";
+                                    echo "Geboekt door: " . $boeking["studentVoornaam"] . "<br />";
 									echo "</li>";
 								}
 							?>
