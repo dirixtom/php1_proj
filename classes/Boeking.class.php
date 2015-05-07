@@ -62,12 +62,15 @@
 				return $allBoekings;
 			}
 
-		/*public function annuleerBoeking() {
+		public function getSingleBoeking() {
+			// 1 boeking weergeven op de bezoeker dashboard
 			$conn = Db::getInstance();
-			$statement = $conn->prepare("UPDATE tblboekingen SET active = 'false' WHERE buddieID = :id");
-			$statement->bindValue(':id', $this->Id );
-			$statement->execute();
-		}*/
+			$singleBoeking = $conn->query("SELECT * FROM tblboekingen 
+										   INNER JOIN tblbuddies ON tblboekingen.buddieID = tblbuddies.buddieID 
+										   INNER JOIN tbldatums ON tblboekingen.datumID = tbldatums.datumID 
+										  ");
+			return $singleBoeking;
+		}
 
 		public function nieuweBoeking() 
 			{
@@ -79,5 +82,12 @@
 				$statement->execute();
 			}	
 		
+		public function deleteBoeking() {
+			$conn = Db::getInstance();
+			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$statement = $conn->prepare("DELETE FROM tblboekings WHERE boekingID = :id");
+			$statement->bindValue(':id', $this->Id );
+			$statement->execute();
+		}
 	}
 ?>

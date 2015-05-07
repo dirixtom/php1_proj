@@ -11,11 +11,11 @@
 	$allStudents = $s->GetAllStudents();
 	$allFB = $s->GetAllFB();
 	$b = new Boeking();
+
 	if($_POST)
 	{
 		try 
 		{	
-			
 			$b->Datum = $_POST['datum'];
 			$b->Buddy = $_POST['buddieID'];
 			$b->Student = $_POST['studentID'];
@@ -27,6 +27,7 @@
 			$error = $e->getMessage();
 		}
 	}
+
 	//FACEBOOK LOGIN - NIET AANKOMEN
 	
 	//session var is still there
@@ -129,7 +130,7 @@
        	</div>
       	<ul class="nav navbar-nav">
           	<li><a href="homepage.php">Home</a></li>
-          	<li><a href="#">Mijn boekingen</a></li>
+          	<li><a href="mijnBoekingen.php">Mijn boekingen</a></li>
           	<li><a href="logout.php">Uitloggen</a></li>
        	</ul>
    	</div>
@@ -226,7 +227,6 @@
 			</div>
 			
 			</form>
-
 		</div>
    	</div>
 
