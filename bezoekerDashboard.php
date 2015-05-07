@@ -157,14 +157,14 @@ else
 					<label for="datum">Gelieve de gewenste datum door te geven</label>
 				</div>
 				<div class="col-md-8">
-					<form action="" method="post">
-					<select required name="datum" id="datum" onchange="getData(this.value)">
+					
+					<select required name="datum" id="datum">
 						<option value=""> Kies je datum </option>
 						<?php foreach ($data as $d): ?>
 						<option value="<?php echo $d['Id'] ;?>"><?php echo $d['datumDag'] . " " . $d['datumMaand'] . " " . $d['datumJaar'] ;?></option>
 						<?php endforeach;?>
 					</select>
-					<input type="submit">
+
 					</form>
 				</div>
 			</div>
@@ -178,13 +178,14 @@ else
 					<ul>
 						<?php foreach ($aStudents as $s): ?>
 						<li class="buddy_list">
-							<div class="center-cropped" style="background-image: url('<?php echo $s['buddieFoto'] ?>');">
-								<img src="<?php echo $s['buddieFoto'] ?>" alt="<?php echo "photo" . " " . $s['buddieNaam'];  ?>"/>
-							</div>
+							
+								<img src="<?php echo $s['buddieFoto'] ?>" alt="<?php echo "photo" . " " . $s['buddieNaam'];  ?>" class="center-cropped"/>
+						
 							<h3><?php echo $s['buddieVoornaam'] . " " . $s['buddieNaam']; ?></h3>
 							<h4><?php echo $s['buddieJaar'] . "e jaar " . $s['buddieRichting'];  ?></h4>
-							<input type="radio" value="<?php echo $s['buddieID'] ;?>">
+							<input type="radio" value="<?php echo $s['buddieID'] ;?>" name="student_radio_id">
 						</li>
+						<br/>
 						<?php endforeach; ?>
 					</ul>
 				</div>
