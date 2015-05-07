@@ -177,8 +177,10 @@ else
 				<div class="col-md-8">
 					<ul>
 						<?php foreach ($aStudents as $s): ?>
-						<li class="buddy">
-							<img src="<?php echo $s['buddieFoto'] ?>" alt="<?php echo "photo" . " " . $s['buddieNaam'];  ?>"/>
+						<li class="buddy_list">
+							<div class="center-cropped" style="background-image: url('<?php echo $s['buddieFoto'] ?>');">
+								<img src="<?php echo $s['buddieFoto'] ?>" alt="<?php echo "photo" . " " . $s['buddieNaam'];  ?>"/>
+							</div>
 							<h3><?php echo $s['buddieVoornaam'] . " " . $s['buddieNaam']; ?></h3>
 							<h4><?php echo $s['buddieJaar'] . "e jaar " . $s['buddieRichting'];  ?></h4>
 							<input type="radio" value="<?php echo $s['buddieID'] ;?>">
