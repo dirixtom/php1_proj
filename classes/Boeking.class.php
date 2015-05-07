@@ -19,8 +19,6 @@
 				$allBoekings = $conn->query("SELECT * FROM tblboekingen LIMIT 3");
 				return $allBoekings;
 			}
-		// als code wordt geschreven om te boeken zet dan het veld 'active' op true 
-		// -> kijk hier onder hoe en vervang false door true.
 
 		public function annuleerBoeking() {
 			$conn = Db::getInstance();
@@ -28,6 +26,28 @@
 			$statement->bindValue(':id', $this->Id );
 			$statement->execute();
 		}
+
+		public function nieuweBoeking() {
+			$conn = Db::getInstance();
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$statement = $conn->prepare("INSERT INTO tblboekingen ( datumID, 
+																		studentID, 
+																		buddieID,
+																		
+										 VALUES (:datumID,
+												 :studentID,
+												 :buddieID,
+												 )");
+			$statement->bindValue(':datumID', $this->datumID);
+			$statement->bindValue(':studentID', $this->studentID);
+			$statement->bindValue(':student_radio_id', $this->buddieID);
+			$statement->execute();
+
+		}	
+		// als code wordt geschreven om te boeken zet dan het veld 'active' op true 
+		// -> kijk hier onder hoe en vervang false door true.
+
+		
 	}
 ?>
 	
