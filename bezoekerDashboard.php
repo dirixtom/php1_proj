@@ -10,7 +10,7 @@
 	$data = $d->ShowDate();
 
 	$s = new Student();
-<<<<<<< HEAD
+
 	$allStudents = $s->GetAllStudents();
 
 	$allFB = $s->GetAllFB();
@@ -35,7 +35,7 @@
 		{
 			$error = $e->getMessage();
 		}
-=======
+
 	$aStudents = $s->GetAllStudents();
 
 	$b = new Boeking();
@@ -147,15 +147,13 @@ if ($session){ //if we have the FB session
 	} catch(\Exception $ex) {
 		die(" Error : " . $ex->getMessage());
 	}
-<<<<<<< HEAD
-=======
 	
 	//session ver is set, redirect user 
 	header("location: ". $redirect_url);
 	$active_user_id = $mysqli->query("SELECT id FROM usertable WHERE fbid=".$user_id);
 	return $active_user_id;
 }
->>>>>>> origin/master
+
 
 
 	//if user wants to log out
@@ -268,7 +266,6 @@ if ($session){ //if we have the FB session
 			</div>
 
 			<form action="" method="post">
-<<<<<<< HEAD
 			
 			<div class="row">
 				<div class="col-md-1">
@@ -337,7 +334,6 @@ if ($session){ //if we have the FB session
 				</div>
 			</div>
 			
-=======
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-3">
@@ -384,7 +380,6 @@ if ($session){ //if we have the FB session
 							<br/><button type="submit">Boeken</button>
 						</div>
 					</div>
->>>>>>> origin/master
 			</form>
 
 		</div>
