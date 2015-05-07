@@ -19,6 +19,15 @@
 				$allBoekings = $conn->query("SELECT * FROM tblboekingen LIMIT 3");
 				return $allBoekings;
 			}
+		// als code wordt geschreven om te boeken zet dan het veld 'active' op true 
+		// -> kijk hier onder hoe en vervang false door true.
+
+		public function annuleerBoeking() {
+			$conn = Db::getInstance();
+			$statement = $conn->prepare("UPDATE tblboekingen SET active = 'false' WHERE buddieID = :id");
+			$statement->bindValue(':id', $this->Id );
+			$statement->execute();
+		}
 	}
 ?>
 	

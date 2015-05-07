@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 30, 2015 at 04:42 PM
--- Server version: 5.5.38
--- PHP Version: 5.6.2
+-- Machine: 127.0.0.1
+-- Genereertijd: 07 mei 2015 om 09:59
+-- Serverversie: 5.6.11
+-- PHP-versie: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,25 +17,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `phpproject`
+-- Databank: `phpproject`
 --
+CREATE DATABASE IF NOT EXISTS `phpproject` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `phpproject`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbladmin`
+-- Tabelstructuur voor tabel `tbladmin`
 --
 
-CREATE TABLE `tbladmin` (
-`adminID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbladmin` (
+  `adminID` int(11) NOT NULL AUTO_INCREMENT,
   `adminNaam` varchar(250) NOT NULL,
   `adminVoornaam` varchar(250) NOT NULL,
   `adminEmail` varchar(250) NOT NULL,
-  `adminPassword` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `adminPassword` varchar(250) NOT NULL,
+  PRIMARY KEY (`adminID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `tbladmin`
+-- Gegevens worden uitgevoerd voor tabel `tbladmin`
 --
 
 INSERT INTO `tbladmin` (`adminID`, `adminNaam`, `adminVoornaam`, `adminEmail`, `adminPassword`) VALUES
@@ -44,24 +47,29 @@ INSERT INTO `tbladmin` (`adminID`, `adminNaam`, `adminVoornaam`, `adminEmail`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblboekingen`
+-- Tabelstructuur voor tabel `tblboekingen`
 --
 
-CREATE TABLE `tblboekingen` (
-`boekingID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tblboekingen` (
+  `boekingID` int(11) NOT NULL AUTO_INCREMENT,
   `datumID` int(11) NOT NULL,
   `studentID` int(11) NOT NULL,
-  `buddieID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `buddieID` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`boekingID`),
+  UNIQUE KEY `datum` (`datumID`),
+  UNIQUE KEY `student` (`studentID`),
+  UNIQUE KEY `buddie` (`buddieID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblbuddies`
+-- Tabelstructuur voor tabel `tblbuddies`
 --
 
-CREATE TABLE `tblbuddies` (
-`buddieID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tblbuddies` (
+  `buddieID` int(11) NOT NULL AUTO_INCREMENT,
   `buddieNaam` varchar(250) NOT NULL,
   `buddieVoornaam` varchar(250) NOT NULL,
   `buddieTwitter` varchar(255) NOT NULL,
@@ -71,24 +79,33 @@ CREATE TABLE `tblbuddies` (
   `buddieRichting` varchar(250) NOT NULL,
   `buddieRating` int(11) NOT NULL,
   `buddieLeeftijd` int(11) NOT NULL,
-  `buddieFoto` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+  `buddieFoto` varchar(255) NOT NULL,
+  PRIMARY KEY (`buddieID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `tblbuddies`
+--
+
+INSERT INTO `tblbuddies` (`buddieID`, `buddieNaam`, `buddieVoornaam`, `buddieTwitter`, `buddieEmail`, `buddiePassword`, `buddieJaar`, `buddieRichting`, `buddieRating`, `buddieLeeftijd`, `buddieFoto`) VALUES
+(20, 'Rymenams', 'Shane', '@ShaneRymenams', 'shanerymenams@gmail.com', 'Testing123', '3', '1', 0, 0, 'images/profpics/shanerymenams@gmail.com/Shane.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbldatums`
+-- Tabelstructuur voor tabel `tbldatums`
 --
 
-CREATE TABLE `tbldatums` (
-`datumID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbldatums` (
+  `datumID` int(11) NOT NULL AUTO_INCREMENT,
   `datumDag` varchar(250) NOT NULL,
   `datumMaand` varchar(250) NOT NULL,
-  `datumJaar` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `datumJaar` varchar(250) NOT NULL,
+  PRIMARY KEY (`datumID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `tbldatums`
+-- Gegevens worden uitgevoerd voor tabel `tbldatums`
 --
 
 INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUES
@@ -97,31 +114,35 @@ INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblmessages`
+-- Tabelstructuur voor tabel `tblmessages`
 --
 
-CREATE TABLE `tblmessages` (
-`messageID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tblmessages` (
+  `messageID` int(11) NOT NULL AUTO_INCREMENT,
   `messageText` varchar(200) NOT NULL,
   `studentID` int(11) NOT NULL,
-  `buddieID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `buddieID` int(11) NOT NULL,
+  PRIMARY KEY (`messageID`),
+  UNIQUE KEY `sec` (`buddieID`),
+  UNIQUE KEY `studentID` (`studentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblreacties`
+-- Tabelstructuur voor tabel `tblreacties`
 --
 
-CREATE TABLE `tblreacties` (
-`reactiesID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tblreacties` (
+  `reactiesID` int(11) NOT NULL AUTO_INCREMENT,
   `reactiesNaam` varchar(250) NOT NULL,
   `reactiesComment` text NOT NULL,
-  `reactiesMail` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `reactiesMail` varchar(255) NOT NULL,
+  PRIMARY KEY (`reactiesID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `tblreacties`
+-- Gegevens worden uitgevoerd voor tabel `tblreacties`
 --
 
 INSERT INTO `tblreacties` (`reactiesID`, `reactiesNaam`, `reactiesComment`, `reactiesMail`) VALUES
@@ -132,152 +153,59 @@ INSERT INTO `tblreacties` (`reactiesID`, `reactiesNaam`, `reactiesComment`, `rea
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblstudenten`
+-- Tabelstructuur voor tabel `tblstudenten`
 --
 
-CREATE TABLE `tblstudenten` (
-`studentID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tblstudenten` (
+  `studentID` int(11) NOT NULL AUTO_INCREMENT,
   `studentNaam` varchar(250) NOT NULL,
   `studentVoornaam` varchar(250) NOT NULL,
   `studentEmail` varchar(250) NOT NULL,
-  `studentPassword` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `studentPassword` varchar(250) NOT NULL,
+  PRIMARY KEY (`studentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usertable`
+-- Tabelstructuur voor tabel `usertable`
 --
 
-CREATE TABLE `usertable` (
-`id` int(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `usertable` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `fbid` bigint(20) NOT NULL,
   `fullname` varchar(60) NOT NULL,
-  `email` varchar(60) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `email` varchar(60) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `usertable`
+-- Gegevens worden uitgevoerd voor tabel `usertable`
 --
 
 INSERT INTO `usertable` (`id`, `fbid`, `fullname`, `email`) VALUES
 (1, 1381149482214525, 'Vincent Van Loock', 'rentastudentthomasmore@gmail.com'),
-(2, 10205395106350448, 'NoÃ« Baeten', 'baeten_link@hotmail.com');
+(2, 10205395106350448, 'NoÃ« Baeten', 'baeten_link@hotmail.com'),
+(3, 10206617544936237, 'Shane Rymenams', '');
 
 --
--- Indexes for dumped tables
+-- Beperkingen voor gedumpte tabellen
 --
 
 --
--- Indexes for table `tbladmin`
---
-ALTER TABLE `tbladmin`
- ADD PRIMARY KEY (`adminID`);
-
---
--- Indexes for table `tblboekingen`
+-- Beperkingen voor tabel `tblboekingen`
 --
 ALTER TABLE `tblboekingen`
- ADD PRIMARY KEY (`boekingID`), ADD UNIQUE KEY `datum` (`datumID`), ADD UNIQUE KEY `student` (`studentID`), ADD UNIQUE KEY `buddie` (`buddieID`);
+  ADD CONSTRAINT `tblboekingen_ibfk_1` FOREIGN KEY (`datumID`) REFERENCES `tbldatums` (`datumID`),
+  ADD CONSTRAINT `tblboekingen_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `tblstudenten` (`studentID`),
+  ADD CONSTRAINT `tblboekingen_ibfk_3` FOREIGN KEY (`buddieID`) REFERENCES `tblbuddies` (`buddieID`);
 
 --
--- Indexes for table `tblbuddies`
---
-ALTER TABLE `tblbuddies`
- ADD PRIMARY KEY (`buddieID`);
-
---
--- Indexes for table `tbldatums`
---
-ALTER TABLE `tbldatums`
- ADD PRIMARY KEY (`datumID`);
-
---
--- Indexes for table `tblmessages`
+-- Beperkingen voor tabel `tblmessages`
 --
 ALTER TABLE `tblmessages`
- ADD PRIMARY KEY (`messageID`), ADD UNIQUE KEY `sec` (`buddieID`), ADD UNIQUE KEY `studentID` (`studentID`);
-
---
--- Indexes for table `tblreacties`
---
-ALTER TABLE `tblreacties`
- ADD PRIMARY KEY (`reactiesID`);
-
---
--- Indexes for table `tblstudenten`
---
-ALTER TABLE `tblstudenten`
- ADD PRIMARY KEY (`studentID`);
-
---
--- Indexes for table `usertable`
---
-ALTER TABLE `usertable`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbladmin`
---
-ALTER TABLE `tbladmin`
-MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tblboekingen`
---
-ALTER TABLE `tblboekingen`
-MODIFY `boekingID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tblbuddies`
---
-ALTER TABLE `tblbuddies`
-MODIFY `buddieID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT for table `tbldatums`
---
-ALTER TABLE `tbldatums`
-MODIFY `datumID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `tblmessages`
---
-ALTER TABLE `tblmessages`
-MODIFY `messageID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tblreacties`
---
-ALTER TABLE `tblreacties`
-MODIFY `reactiesID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `tblstudenten`
---
-ALTER TABLE `tblstudenten`
-MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `usertable`
---
-ALTER TABLE `usertable`
-MODIFY `id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `tblboekingen`
---
-ALTER TABLE `tblboekingen`
-ADD CONSTRAINT `tblboekingen_ibfk_3` FOREIGN KEY (`buddieID`) REFERENCES `tblbuddies` (`buddieID`),
-ADD CONSTRAINT `tblboekingen_ibfk_1` FOREIGN KEY (`datumID`) REFERENCES `tbldatums` (`datumID`),
-ADD CONSTRAINT `tblboekingen_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `tblstudenten` (`studentID`);
-
---
--- Constraints for table `tblmessages`
---
-ALTER TABLE `tblmessages`
-ADD CONSTRAINT `tblmessages_ibfk_2` FOREIGN KEY (`buddieID`) REFERENCES `tblstudenten` (`studentID`),
-ADD CONSTRAINT `tblmessages_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `tblbuddies` (`buddieID`);
+  ADD CONSTRAINT `tblmessages_ibfk_2` FOREIGN KEY (`buddieID`) REFERENCES `tblstudenten` (`studentID`),
+  ADD CONSTRAINT `tblmessages_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `tblbuddies` (`buddieID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

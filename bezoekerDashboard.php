@@ -134,16 +134,14 @@ else
 		<div class="col-md-12">
 
 			<div class="row">
-				<div class="col-md-1">
-				</div>
+				<div class="col-md-1"></div>
 				<div class="col-md-11">
 					<h2><?php echo 'Hi '.$_SESSION["fb_user_details"]["name"].', you are logged in! [ <a href="logout.php">Log-out</a> ] ';?></h2>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
-				</div>
+				<div class="col-md-1"></div>
 				<div class="col-md-11">
 					<h3>Hier kan je je Buddie reserveren!</h3>
 				</div>
@@ -151,8 +149,7 @@ else
 
 			<form action="" method="post">
 			<div class="row">
-				<div class="col-md-1">
-				</div>
+				<div class="col-md-1"></div>
 				<div class="col-md-3">
 					<label for="datum">Gelieve de gewenste datum door te geven</label>
 				</div>
@@ -167,8 +164,7 @@ else
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
-				</div>
+				<div class="col-md-1"></div>
 				<div class="col-md-3">
 					<label for="Buddy">Kies hier je gewenste buddy:</label>
 				</div>
@@ -187,14 +183,21 @@ else
 			</div>
 
 			<div class="row">
-				<div class="col-md-1">
-				</div>
+				<div class="col-md-1"></div>
 				<div class="col-md-11">
 					<br/><button type="submit">Boeken</button>
 				</div>
 			</div>
 			</form>
 
+			<div class="row afspraak">
+				<div class="col-md-1"></div>
+				<div class="col-md-11">
+					<h3>Jouw Afspraak</h3>
+					<p>Je hebt een afspraak met: <?php echo $s['buddieVoornaam'] . " " . $s['buddieNaam']; ?></p>
+					<p>op: <?php echo $d['datumDag'] . " " . $d['datumMaand'] . " " . $d['datumJaar'] ;?></p>
+				</div>
+			</div>
 		</div>
    	</div>
 
