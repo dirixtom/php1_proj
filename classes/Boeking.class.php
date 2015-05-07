@@ -8,7 +8,7 @@
 			{
 				//alle boekingen returnen
 				$conn = Db::getInstance();
-				$allBoekings = $conn->query("SELECT * FROM tblboekingen");
+				$allBoekings = $conn->query("SELECT * FROM tblboekingen INNER JOIN tblbuddies ON tblboekingen.buddieID= tblbuddies.buddieID INNER JOIN tbldatums ON tblboekingen.datumID= tbldatums.datumID INNER JOIN tblstudenten ON tblboekingen.studentID = tblstudenten.studentID");
 				return $allBoekings;
 			}
 
@@ -16,7 +16,7 @@
 			{
 				//recentste boekingen returnen
 				$conn = Db::getInstance();
-				$allBoekings = $conn->query("SELECT * FROM tblboekingen LIMIT 3");
+				$allBoekings = $conn->query("SELECT * FROM tblboekingen INNER JOIN tblbuddies ON tblboekingen.buddieID= tblbuddies.buddieID INNER JOIN tbldatums ON tblboekingen.datumID= tbldatums.datumID INNER JOIN tblstudenten ON tblboekingen.studentID = tblstudenten.studentID");
 				return $allBoekings;
 			}
 		// als code wordt geschreven om te boeken zet dan het veld 'active' op true 
