@@ -77,7 +77,7 @@
 		 	var myData = { content_txt: $("#contentText").val(), content_pswd: $("#contentPSWD").val()}; //build a post data structure
 			jQuery.ajax({
 			type: "POST", // HTTP method POST or GET
-			url: "response.php", //Where to make Ajax calls
+			url: "ajax/AddDelete.php", //Where to make Ajax calls
 			dataType:"text", // Data type, HTML, json etc.
 			data:myData, //Form variables
 			success:function(response){
@@ -108,7 +108,7 @@
 		 
 			jQuery.ajax({
 			type: "POST", // HTTP method POST or GET
-			url: "response.php", //Where to make Ajax calls
+			url: "ajax/AddDelete.php", //Where to make Ajax calls
 			dataType:"text", // Data type, HTML, json etc.
 			data:myData, //Form variables
 			success:function(response){
@@ -304,18 +304,19 @@
 				-->
 
 				<h1 class="page-header">
-                    <small>Overzicht van Admin accounts</small>
+                    <small>Overzicht van andere Admin accounts</small>
                 </h1>  
                 <div class="row">
                 	<div class="col-sm-6">
                 		<ul id="responds">
+						<p>* Om je eigen account aan te passen, ga je naar Profile rechtsboven.</p>
 						<?php
 							//include db configuration file
-							include_once("config.php");
+							include_once("ajax/config.php");
 
 							//MySQL query
-							$results = $mysqli->query("SELECT adminID,adminEmail FROM tbladmin");
-							//get all records from add_delete_record table
+							$results = $mysqli->query("SELECT adminID,adminEmail FROM tbladmin WHERE adminEmail NOT LIKE '" . $_SESSION['email'] . "'");
+							//get all records
 							while($row = $results->fetch_assoc())
 							{
 							  echo '<li id="item_'.$row["adminID"].'">';

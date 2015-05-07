@@ -12,7 +12,7 @@ if(isset($_POST["content_txt"]) && strlen($_POST["content_pswd"])>0)
 	$contentToSave2 = filter_var($_POST["content_pswd"],FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);  
 	
 	// Insert sanitize string in record
-	$insert_row = $mysqli->query("INSERT INTO tbladmin(adminEmail, adminPassword) VALUES('".$contentToSave."', '".$contentToSave2."')");
+	$insert_row = $mysqli->query("INSERT INTO tbladmin(adminEmail, adminPassword) VALUES ('".$contentToSave."', '".$contentToSave2."')");
 	
 	if($insert_row)
 	{
