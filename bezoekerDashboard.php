@@ -3,6 +3,7 @@ session_start(); //Session should always be active
 	
 	include_once("classes/Datum.class.php");
 	include_once("classes/Student.class.php");
+	include_once("classes/Boeking.class.php");
 
 	$d = new Datum();
 	$data = $d->ShowDate();
@@ -10,8 +11,23 @@ session_start(); //Session should always be active
 	$s = new Student();
 	$aStudents = $s->GetAllStudents();
 
-	//$f = new Student();
-	//$fStudents = $f->VrijeStudents();
+	$b = new Boeking();
+	$allBookings = $b->getAllBoekingen();
+
+	if(!empty($_POST)) {
+		try {
+			
+			$b->datumID = $_POST['datum'];
+			$b->studentID = $_POST['studentID'];
+			$b->buddieID = $_POST['student_radio_id'];
+			
+			$b->nieuweBoeking();
+		
+		} catch( Exception $e) {
+			$error = $e->getMessage();
+		}
+		
+	}
 
 //session var is still there
 $app_id				= '1378145582515326';  //localhost
@@ -81,7 +97,8 @@ if ($session){ //if we have the FB session
 	
 	//session ver is set, redirect user 
 	header("location: ". $redirect_url);
-	
+	$active_user_id = $mysqli->query("SELECT id FROM usertable WHERE fbid=".$user_id);
+	return $active_user_id;
 }
 
 else
@@ -120,7 +137,7 @@ else
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	
+	<?php var_dump($active_user_id ) ?>
 	<div class="navbar navbar-default">
    		<div class="navbar-header">
     		<a class="navbar-nav" href="#"><img class="logo" src="images/logo2.png" alt="The Rent A Student Logo" width="55%"></a>
@@ -151,52 +168,52 @@ else
 			</div>
 
 			<form action="" method="post">
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-3">
-					<label for="datum">Gelieve de gewenste datum door te geven</label>
-				</div>
-				<div class="col-md-8">
-					
-					<select required name="datum" id="datum">
-						<option value=""> Kies je datum </option>
-						<?php foreach ($data as $d): ?>
-						<option value="<?php echo $d['Id'] ;?>"><?php echo $d['datumDag'] . " " . $d['datumMaand'] . " " . $d['datumJaar'] ;?></option>
-						<?php endforeach;?>
-					</select>
-
-					</form>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-3">
-					<label for="Buddy">Kies hier je gewenste buddy:</label>
-				</div>
-				<div class="col-md-8">
-					<ul>
-						<?php foreach ($aStudents as $s): ?>
-						<li class="buddy_list">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-3">
+							<label for="datum">Gelieve de gewenste datum door te geven</label>
+						</div>
+						<div class="col-md-8">
 							
-								<img src="<?php echo $s['buddieFoto'] ?>" alt="<?php echo "photo" . " " . $s['buddieNaam'];  ?>" class="center-cropped"/>
-						
-							<h3><?php echo $s['buddieVoornaam'] . " " . $s['buddieNaam']; ?></h3>
-							<h4><?php echo $s['buddieJaar'] . "e jaar " . $s['buddieRichting'];  ?></h4>
-							<input type="radio" value="<?php echo $s['buddieID'] ;?>" name="student_radio_id">
-						</li>
-						<br/>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-			</div>
+							<select required name="datum" id="datum" name="datum">
+								<option value=""> Kies je datum </option>
+								<?php foreach ($data as $d): ?>
+								<option value="<?php echo $d['Id'] ;?>"><?php echo $d['datumDag'] . " " . $d['datumMaand'] . " " . $d['datumJaar'] ;?></option>
+								<?php endforeach;?>
+							</select>
 
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-11">
-					<br/><button type="submit">Boeken</button>
-				</div>
-			</div>
+							
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-3">
+							<label for="Buddy">Kies hier je gewenste buddy:</label>
+						</div>
+						<div class="col-md-8">
+							<ul>
+								<?php foreach ($aStudents as $s): ?>
+								<li class="buddy_list">
+									
+										<img src="<?php echo $s['buddieFoto'] ?>" alt="<?php echo "photo" . " " . $s['buddieNaam'];  ?>" class="center-cropped"/>
+								
+									<h3><?php echo $s['buddieVoornaam'] . " " . $s['buddieNaam']; ?></h3>
+									<h4><?php echo $s['buddieJaar'] . "e jaar " . $s['buddieRichting'];  ?></h4>
+									<input type="radio" value="<?php echo $s['buddieID'] ;?>" name="student_radio_id">
+								</li>
+								<br/>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-11">
+							<br/><button type="submit">Boeken</button>
+						</div>
+					</div>
 			</form>
 
 			<div class="row afspraak">
