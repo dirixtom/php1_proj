@@ -109,15 +109,8 @@
 						}
 					else 
 						{
-							if (preg_match('/^[a-zA-Z0-9]/', $p_vValue))
-							{
-								$this->m_sPassword = htmlspecialchars($p_vValue);
-							}
-							else
-							{
-								throw new Exception("Wachtwoord mag enkel uit letters en nummers bestaan");
-								
-							}
+							$options = array('cost' => 11);
+                    		$this->m_sPassword = password_hash($p_vValue, PASSWORD_BCRYPT, $options);
 						};
 					break;
 
@@ -128,7 +121,8 @@
 						}
 					else 
 						{
-							$this->m_sCPassword = htmlspecialchars($p_vValue);
+							$options = array('cost' => 11);
+                    		$this->m_sCPassword = password_hash($p_vValue, PASSWORD_BCRYPT, $options);
 						};
 					break;
 
@@ -197,9 +191,9 @@
 			}
 		}
 
-		public function Login()
+		/*public function Login()
 		{
-		
+
         	$conn = Db::getInstance();
 			$statement = $conn->prepare("SELECT * FROM tblbuddies WHERE buddieEmail = :email AND buddiePassword = :password");
 			$statement->bindValue(':email', $this->Email);
@@ -219,26 +213,18 @@
 				throw new Exception("Het wachtwoord hoort niet bij deze email");
 			}
 
-		}
+		}*/
 
-		public function checkPassword()
-		{
-			if($this->m_sPassword != $this->m_sCPassword)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
+		public function checkPassword($value1, $value2)
+	    {
+	        if ($value1 != $value2)
+	        {
+	            throw new Exception("De wachtwoorden komen niet overeen.");
+	        }
+	    }
 
 		public function Save()
 		{
-			if(!$this->checkPassword())
-			{
-				throw new Exception("De wachtwoorden komen niet overeen.");
-			}
 
 			$conn = Db::getInstance();
 			//$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -262,11 +248,6 @@
 
 		public function UpdateAccount()
 		{
-
-			if(!$this->checkPassword())
-			{
-				throw new Exception("De wachtwoorden komen niet overeen.");
-			}
 
 			$conn = Db::getInstance();
 			$statement = $conn->prepare("UPDATE tblbuddies SET buddieTwitter = :twitter,

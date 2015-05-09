@@ -128,7 +128,7 @@ if ($session){ //if we have the FB session
               $login_url = $helper->getLoginUrl( array( 'scope' => $required_scope ) );
               echo '<a href="'.$login_url.'"><button class="btn btn-default btn-lg ghost-button-transition facebook">Registreer met Facebook hier<br/>en bekijk welke data er vrij zijn!</button></a>'
           ?>
-          <p>Ben je reeds IMD-student?<br/>Dan kan je <a href="login.php">hier inloggen</a> of <a href="login.php">registreren als buddy!</a></p>
+          <p>Ben je reeds IMD-student?<br/>Dan kan je <a href="login.php">hier inloggen</a> of <a href="registreer.php">registreren als buddy!</a></p>
 			</p>
 		</div>
    	</div>

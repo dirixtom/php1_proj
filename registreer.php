@@ -1,46 +1,10 @@
 <?php 
 	
-	include_once("classes/Admin.class.php");
 	include_once("classes/Student.class.php");
 	
-	$a = new Admin();
 	$s = new Student();
 
-	if(!empty($_POST['AdminLogin']))
-	{
-		try 
-		{	
-			
-			$a->Email = $_POST['email'];
-			$a->Password = $_POST['password'];
-
-			$a->Login();
-
-		}
-		catch(Exception $e)
-		{
-			$erroradmin = $e->getMessage();
-		}
-	}
-
-	if(!empty($_POST['StudentLogin']))
-	{
-		try 
-		{	
-			
-			$s->Email = $_POST['email'];
-			$s->Password = $_POST['password'];
-
-			$s->login();
-
-		}
-		catch(Exception $e)
-		{
-			$errorstudent = $e->getMessage();
-		}
-	}
-
-	if(!empty($_POST['StudentRegister']))
+	if(isset($_POST['StudentRegister']))
 	{
 		try 
 		{	
@@ -51,6 +15,9 @@
 			$s->Year = $_POST['year'];
 			$s->Subject = $_POST['subject'];
 			$s->Email = $_POST['email'];
+
+			$s->checkPassword($_POST['password'],$_POST['cpassword']);
+
 			$s->Password = $_POST['password'];
 			$s->CPassword = $_POST['cpassword'];
 
@@ -74,9 +41,8 @@
 			$error = $e->getMessage();
 		}
 	}
- 	
-?>
-<!DOCTYPE html>
+
+?><!DOCTYPE html>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -97,120 +63,9 @@
    	</div>
 
 <div class="container-fluid">
-
-   
+ 
    	<div class="row intro2">
-   		<div class="col-md-6">
-   			
-   			<form method="post" class="formulier">
-			
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-11">
-					<legend>Student login</legend>
-					<?php if(isset($errorstudent)): ?>
-						<div class="error">
-					<?php echo $errorstudent;?>
-						</div>
-					<?php endif; ?>
-					<?php if(isset($succes)): ?>
-						<div class="feedback">
-					<?php echo $succes;?>
-						</div>
-					<?php endif; ?>
-					<br />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-2">
-					<label for="email">Email:</label>	
-				</div>
-				<div class="col-md-9">
-					<input type="text" id="email" name="email" placeholder="email" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-2">
-					<label for="password">Password:</label>
-				</div>
-				<div class="col-md-9">
-					<input type="password" id="password" name="password" placeholder="password" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-3">	
-				</div>
-				<div class="col-md-9">
-					<input class="submit" type="submit" value="Login" name="StudentLogin" />
-				</div>
-			</div>
-
-			</form>
-
-			<form method="post" class="formulier">
-			
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-11">
-					<legend>Admin login</legend>
-					<?php if(isset($erroradmin)): ?>
-						<div class="error"><br/>
-					<?php echo $erroradmin;?>
-						</div>
-					<?php endif; ?>
-					<?php if(isset($succes)): ?>
-						<div class="feedback">
-					<?php echo $succes;?>
-						</div>
-					<?php endif; ?>
-					<br/>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-2">
-					<label for="email">Email:</label>
-				</div>
-				<div class="col-md-9">
-					<input type="text" id="email" name="email" placeholder="email" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-2">
-					<label for="password">Password:</label>
-				</div>
-				<div class="col-md-9">
-					<input type="password" id="password" name="password" placeholder="password" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-3">	
-				</div>
-				<div class="col-md-9">
-					<input class="submit" type="submit" value="Login" name="AdminLogin" />
-				</div>
-			</div>
-
-			</form> 
-       	</div>
-       	
-       	<!-- 2de formulier begint hier -->
-       	
+       	        	
        	<div class="col-md-6">
 		    <div class="col-md-12">
    			

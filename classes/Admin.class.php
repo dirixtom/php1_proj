@@ -35,7 +35,8 @@
 						}
 					else 
 						{
-							$this->m_sPassword = $p_sValue;
+							$options = array('cost' => 11);
+                    		$this->m_sPassword = password_hash($p_vValue, PASSWORD_BCRYPT, $options);
 						};
 					//$this->m_sPassword = $p_sValue;
 					break;
@@ -166,7 +167,7 @@
 			return $showAcc;
 		}
 
-		public function Login()
+		/*public function Login()
 		{
 		
         	$conn = Db::getInstance();
@@ -188,7 +189,7 @@
 				throw new Exception("Verkeerde email of wachtwoord!");
 			}
 
-		}
+		}*/
 
 		public function ShowAccounts()
 		{
