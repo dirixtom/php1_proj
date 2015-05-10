@@ -1,4 +1,4 @@
-<?php 
+<?php
 	
 	include_once("classes/Student.class.php");
 	
@@ -35,6 +35,11 @@
 
 			$success = "Uw profiel is aangemaakt.";
 
+			$output = '';
+  foreach($errors as $val) {
+    $output .= "<p class='output'>$val</p>";
+  }
+
 		}
 		catch(Exception $e)
 		{
@@ -50,6 +55,58 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<script src="js/additional-methods.js"></script>
+	<script src="js/jquery.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/jq_errors.js"></script>
+
+	<script>
+		$(document).ready(function() {
+    
+		    $('#registreerform').validate({
+
+		        errorElement: 'div',
+		        rules: {
+		            firstname: {
+		                required: true
+		            },
+		            lastname: {
+		                required: true
+		            },
+		            email: {
+		                required: true,
+		                email: true
+		            },
+		            password: {
+		                required: true,
+		                minlength: 6
+
+		            },
+		            cpassword: {
+		                required: true
+		            },
+		            twitter: {
+		                required: true
+		            },
+		            fileToUpload: {
+		                required: true
+		            }
+		        },
+
+			    submitHandler: function(form) {
+		            form.submit();
+		        }
+		    });
+		});
+	</script>
+
+	<style>
+		input{
+			width: 300px;
+		}
+	</style>
+
 </head>
 <body>
 	
@@ -68,8 +125,7 @@
        	        	
        	<div class="col-md-6">
 		    <div class="col-md-12">
-   			
-   			<form method="post" action="" enctype="multipart/form-data" class="formulier">
+   			<form method="post" action="" enctype="multipart/form-data" class="formulier" id="registreerform">
 			
 			<div class="row">
 				
@@ -97,7 +153,7 @@
 					<label for="firstname">Voornaam</label> *<br/>
 				</div>
 				<div class="col-md-8">
-					<input type="text" id="firstname" name="firstname" placeholder="voornaam" />
+					<input type="text" id="firstname" name="firstname" placeholder="voornaam"/>
 				</div>
 			</div>
 

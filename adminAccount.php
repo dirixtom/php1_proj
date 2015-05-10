@@ -60,6 +60,43 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
+	<script src="js/additional-methods.js"></script>
+	<script src="js/jquery.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/jq_errors.js"></script>
+
+	<script>
+		$(document).ready(function() {
+    
+		    $('#FormUpdate').validate({
+
+		        errorElement: 'div',
+		        rules: {
+		            naam: {
+		                required: true
+		            },
+		            voornaam: {
+		                required: true
+		            },
+		            email: {
+		                required: true,
+		                email: true
+		            },
+		            password: {
+		                required: true,
+		                minlength: 6
+
+		            },
+		            
+		        },
+
+			    submitHandler: function(form) {
+		            form.submit();
+		        }
+		    });
+		});
+	</script>
+
 </head>
 <body>
 	
@@ -186,7 +223,7 @@
 						    	
 						    			echo '<div class="col-sm-4">';
 						      				echo '	<input type="hidden" name="adminID" value="'.$acc['adminID'].'"/>
-						      						<input type="submit" class="submit" name="FormUpdate" value="Wijzig uw account"><br/><br/><br/><br/>
+						      						<input type="submit" id="FormUpdate" class="submit" name="FormUpdate" value="Wijzig uw account"><br/><br/><br/><br/>
 						      						';
 						    			echo '</div>';
 						  			echo '</div>';

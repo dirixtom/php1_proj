@@ -66,7 +66,7 @@
 
 		<section>
 			<form action="" method="post">
-			<input type="text" placeholder="type hier uw bericht" name="text">
+			<input type="text" class="imessage" placeholder="type hier uw bericht" name="text">
 			<button type="submit" value="Send" id="btnSubmit">Send</button>
 			</form>
 		</section>

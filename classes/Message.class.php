@@ -39,7 +39,6 @@
 		{
 			return Db::getInstance()->query("select * from tblmessages;");
 		}
-
 	}
 
 ?>

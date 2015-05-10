@@ -120,11 +120,39 @@
 				alert(thrownError);
 			}
 			});
-	});
+		});
 
-});
+	});
 	
 	</script>
+
+	<script src="js/additional-methods.js"></script>
+	<script src="js/jquery.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/jq_errors.js"></script>
+
+	<script>
+		$(document).ready(function() {
+    
+		    $('#FormSubmit').validate({
+
+		        errorElement: 'div',
+		        rules: {
+		            content_txt: {
+		                required: true
+		            },
+		            content_pswd: {
+		                required: true
+		            }
+		        },
+
+			    submitHandler: function(form) {
+		            form.submit();
+		        }
+		    });
+		});
+	</script>
+
 
 </head>
 <body>
@@ -253,14 +281,14 @@
 
                 		<form method="post" action="" class="form-horizontal">
                 			<div class="form-group">
-						    	<label for="email" class="col-sm-2 control-label">Email</label>
+						    	<label for="content_txt" class="col-sm-2 control-label">Email</label>
 						    	
 						    	<div class="col-sm-10">
 						      		<input type="text" class="form-control" name="content_txt" id="contentText" cols="45" rows="5" placeholder="email"></input>
 						    	</div>
 						  	</div>
 						  	<div class="form-group">
-						    	<label for="password" class="col-sm-2 control-label">Password</label>
+						    	<label for="content_pswd" class="col-sm-2 control-label">Password</label>
 						    	
 						    	<div class="col-sm-10">
 						      		<input type="password" class="form-control" name="content_pswd" id="contentPSWD" cols="45" rows="5" placeholder="password"></input>
