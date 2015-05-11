@@ -19,7 +19,7 @@
         	{
 				session_start();
 				$_SESSION["email"] = $_POST['email'];
-				header("Location: studentDashboard.php");
+				header("Location: adminDashboard.php");
 			}
 			elseif (!isset($row['adminPassword']))
 	        {

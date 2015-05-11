@@ -1,10 +1,10 @@
 <?php
-	session_start();
+	/*session_start();
 	if(!isset($_SESSION["email"]))
 	{
 	    header("location:login.php");
 	    exit();
-	}
+	}*/
 	
 	include_once("classes/Admin.class.php");
 
