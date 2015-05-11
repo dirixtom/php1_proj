@@ -106,7 +106,7 @@
                                     echo "<li class='list-group-item'>Voornaam: " . $boeking["buddieVoornaam"] . "<br />";
                                     echo "Naam: " . $boeking["buddieNaam"] . "<br />";
                                     echo "Datum: " . $boeking["datumDag"] . " " . $boeking["datumMaand"] . " " . $boeking['datumJaar'] . "<br /><br />";
-                                    echo "Geboekt door: " . $boeking["studentVoornaam"] . "<br />";
+                                    echo "Geboekt door: " . $boeking["fullname"] . "<br />";
                                     echo "</li>";
                                 }
                             ?>
