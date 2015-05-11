@@ -186,56 +186,56 @@
 	                		<?php
 								while($acc = $showAcc->fetch(PDO::FETCH_ASSOC))
 								{
-									echo '<div class="form-group">';
-						    			echo '<label for="naam" class="col-sm-2 control-label">Naam</label>';
+									?><div class="form-group">
+						    			<label for="naam" class="col-sm-2 control-label">Naam</label>
 						    	
-						    			echo '<div class="col-sm-4">';
-						      				echo '<input type="text" id="naam" name="naam" placeholder="Naam" class="form-control" value="'.$acc['adminNaam'].'" />';
-						    			echo '</div>';
-						  			echo '</div>';
+						    			<div class="col-sm-4">
+						      				<input type="text" id="naam" name="naam" placeholder="Naam" class="form-control" value= <?php $acc['adminNaam'] ?> />
+						    			</div>
+						  			</div>
 
-						  			echo '<div class="form-group">';
-						    			echo '<label for="voornaam" class="col-sm-2 control-label">Voornaam</label>';
+						  			<div class="form-group">
+						    			<label for="voornaam" class="col-sm-2 control-label">Voornaam</label>
 						    	
-						    			echo '<div class="col-sm-4">';
-						      				echo '<input type="text" id="voornaam" name="voornaam" placeholder="Voornaam" class="form-control" value="'.$acc['adminVoornaam'].'" />';
-						    			echo '</div>';
-						  			echo '</div>';
+						    			<div class="col-sm-4">
+						      				<input type="text" id="voornaam" name="voornaam" placeholder="Voornaam" class="form-control" value= <?php $acc['adminVoornaam'] ?> />
+						    			</div>
+						  			</div>
 
-									echo '<div class="form-group">';
-						    			echo '<label for="email" class="col-sm-2 control-label">Email</label>';
+									<div class="form-group">
+						    			<label for="email" class="col-sm-2 control-label">Email</label>
 						    	
-						    			echo '<div class="col-sm-4">';
-						      				echo '<input type="text" id="email" name="email" placeholder="email" class="form-control" value="'.$acc['adminEmail'].'" />';
-						    			echo '</div>';
-						  			echo '</div>';
+						    			<div class="col-sm-4">
+						      				<input type="text" id="email" name="email" placeholder="email" class="form-control" value= <?php$acc['adminEmail'] ?>/>
+						    			</div>
+						  			</div>
 
-						  			echo '<div class="form-group">';
-						    			echo '<label for="password" class="col-sm-2 control-label">Wachtwoord</label>';
+						  			<div class="form-group">
+						    			<label for="password" class="col-sm-2 control-label">Wachtwoord</label>
 						    	
-						    			echo '<div class="col-sm-4">';
-						      				echo '<input type="password" id="password" name="password" placeholder="Nieuw wachtwoord" class="form-control" />';
-						    			echo '</div>';
-						  			echo '</div>';
+						    			<div class="col-sm-4">
+						      				<input type="password" id="password" name="password" placeholder="Nieuw wachtwoord" class="form-control" />
+						    			</div>
+						  			</div>
 
-						  			echo '<div class="form-group">';
-						    			echo '<label for="" class="col-sm-2 control-label"></label>';
+						  			<div class="form-group">
+						    			<label for="" class="col-sm-2 control-label"></label>
 						    	
-						    			echo '<div class="col-sm-4">';
-						      				echo '	<input type="hidden" name="adminID" value="'.$acc['adminID'].'"/>
+						    			<div class="col-sm-4">
+						      					<input type="hidden" name="adminID" value="'.$acc['adminID'].'"/>
 						      						<input type="submit" id="FormUpdate" class="submit" name="FormUpdate" value="Wijzig uw account"><br/><br/><br/><br/>
-						      						';
-						    			echo '</div>';
-						  			echo '</div>';
+						      						
+						    			</div>
+						  			</div>
 
-						  			echo '<div class="form-group">';
-						    			echo '<br/><br/><br/><br/><input type="submit" class="submit col-sm-3" name="FormDelete" value="Verwijder uw account">';
+						  			<div class="form-group">
+						    			<br/><br/><br/><br/><input type="submit" class="submit col-sm-3" name="FormDelete" value="Verwijder uw account">
 						    	
-						    			echo '<div class="col-sm-4">';
+						    			<div class="col-sm-4">
 						      				
-						    			echo '</div>';
-						  			echo '</div>';
-								}
+						    			</div>
+						  			</div>
+								<?php }
 							?>
 						</form>
                 	</div>

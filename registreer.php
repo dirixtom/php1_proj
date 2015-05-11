@@ -35,16 +35,11 @@
 
 			$success = "Uw profiel is aangemaakt.";
 
-			$output = '';
-  foreach($errors as $val) {
-    $output .= "<p class='output'>$val</p>";
-  }
-
 		}
-		catch(Exception $e)
-		{
-			$error = $e->getMessage();
-		}
+			catch(Exception $e)
+			{
+				$error = $e->getMessage();
+			}
 	}
 
 ?><!DOCTYPE html>

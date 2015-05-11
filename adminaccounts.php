@@ -134,14 +134,14 @@
 	<script>
 		$(document).ready(function() {
     
-		    $('#FormSubmit').validate({
+		    $('#registreeradmin').validate({
 
 		        errorElement: 'div',
 		        rules: {
-		            content_txt: {
+		            contentText: {
 		                required: true
 		            },
-		            content_pswd: {
+		            contentPSWD: {
 		                required: true
 		            }
 		        },
@@ -222,48 +222,6 @@
                         </h1>  
                     </div>
                 </div>
-                <!-- /.row -->
-
-                <!-- Account toevoegen met enkel PHP
-                <div class="row">
-                	<div class="col-sm-10">
-                		<?php if(isset($error)): ?>
-							<div class="error alert alert-danger">
-						<?php echo $error;?>
-							</div>
-						<?php endif; ?>
-
-						<?php if(isset($succes)): ?>
-							<div class="feedback alert alert-success">
-						<?php echo $succes;?>
-							</div>
-						<?php endif; ?>
-
-                		<form method="post" action="" class="form-horizontal">
-                			<div class="form-group">
-						    	<label for="email" class="col-sm-2 control-label">Email</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="text" id="email" name="email" placeholder="Email" class="form-control" />
-						    	</div>
-						  	</div>
-						  	<div class="form-group">
-						    	<label for="password" class="col-sm-2 control-label">Password</label>
-						    	
-						    	<div class="col-sm-10">
-						      		<input type="password" id="password" name="password" placeholder="password" class="form-control" />
-						    	</div>
-						  	</div>
-						  	<div class="form-group">
-						    	<div class="col-sm-offset-2 col-sm-10">
-						      		
-						      		<input class="submit" type="submit" value="Account Toevoegen" name='FormCreate'/>
-						    	</div>
-						 	</div>
-                		</form>
-                	</div>
-                </div>
-				-->
 
 				<div class="row">
                 	<div class="col-sm-10">
@@ -279,7 +237,8 @@
 							</div>
 						<?php endif; ?>
 
-                		<form method="post" action="" class="form-horizontal">
+                		<form method="post" action="" class="form-horizontal" id="registreeradmin">
+
                 			<div class="form-group">
 						    	<label for="content_txt" class="col-sm-2 control-label">Email</label>
 						    	
@@ -297,39 +256,13 @@
 						  	<div class="form-group">
 						    	<div class="col-sm-offset-2 col-sm-10">
 						      		
-						      		
-						      		<button id="FormSubmit">Voeg Account Toe</button>
+						      		<input class="submit" type="submit" value="Voeg Account Toe" id="FormSubmit" name="Voeg Account Toe"/>
 					    			<img src="images/loading.gif" id="LoadingImage" style="display:none" />
 						    	</div>
 						 	</div>
                 		</form>
                 	</div>
                 </div>
-
-                <!--
-                <h1 class="page-header">
-                    <small>Overzicht van accounts</small>
-                </h1>  
-                <div class="row">
-                	<div class="col-sm-6">
-                		<?php
-							while($acc = $allAcc->fetch(PDO::FETCH_ASSOC))
-							{
-								echo "<form method='post' class='form-horizontal'>";
-									echo "<div class='form-group'>";
-										echo "<div class='col-sm-5'>";
-											echo "<label for='username' class='col-sm-4 control-label'>" . $acc["adminEmail"] . "</label>";
-										echo "</div>";
-										echo "<div class='col-sm-2'>";
-											echo "<input type='hidden' name='adminID' value='".$acc['adminID']."'><input type='submit' class='submit' name='FormDel' value='Verwijder Account'><br /><br />";
-										echo "</div>";
-									echo "</div>";
-								echo "</form>";
-							}
-						?>
-                	</div>
-                </div>
-				-->
 
 				<h1 class="page-header">
                     <small>Overzicht van andere Admin accounts</small>
