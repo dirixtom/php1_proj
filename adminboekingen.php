@@ -101,7 +101,27 @@
 									echo "Naam: " . $boeking["buddieNaam"] . "<br />";
 									echo "Datum: " . $boeking["datumDag"] . " " . $boeking["datumMaand"] . " " . $boeking['datumJaar'] . "<br /><br />";
                                     echo "Geboekt door: " . $boeking["fullname"] . "<br />";
-									echo "</li>";
+									
+                                    $datumvandaag = date('d-m-Y');
+                                    $datumafspraak = $boeking["datumDag"] . "-" . $boeking["datumMaand"] . "-" . $boeking['datumJaar'];
+                                    if($datumafspraak > $datumvandaag) {
+                                        $contactemail = "rentastudentthomasmore@gmail.com";
+                                        $email = $boeking["email"];
+                                       
+                                        $to = $email; 
+                                        $bcc = $contactemail; 
+
+                                        $subject = "Rate your buddy and leave some feedback."; 
+                                        $message = "Lorem ipsumtekstje"; 
+
+
+                                        $headers = 'From: rentastudentthomasmore@gmail.com' . "\r\n" .
+                                                   'Reply-to: rentastudentthomasmore@gmail.com' ; 
+
+                                        mail($to, $subject, $message, $headers); 
+                                        mail($bcc, $subject, $message, $headers); 
+                                    } 
+                                    echo "</li>";
 								}
 							?>
                         </ul>
