@@ -36,7 +36,7 @@
 					else 
 						{
 							$options = array('cost' => 11);
-                    		$this->m_sPassword = password_hash($p_vValue, PASSWORD_BCRYPT, $options);
+                    		$this->m_sPassword = password_hash($p_sValue, PASSWORD_BCRYPT, $options);
 						};
 					//$this->m_sPassword = $p_sValue;
 					break;
