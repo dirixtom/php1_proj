@@ -10,7 +10,8 @@ if(isset($_POST["content_txt"]) && strlen($_POST["content_pswd"])>0)
 	//sanitize post value, PHP filter FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH Strip tags, encode special characters.
 	$contentToSave = filter_var($_POST["content_txt"],FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
 	$contentToSave2 = filter_var($_POST["content_pswd"],FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-	$hash = password_hash($contentToSave2, PASSWORD_DEFAULT);
+	$options = array('cost' => 11);
+	$hash = password_hash($contentToSave2, PASSWORD_BCRYPT, $options);
 	
 	// Insert sanitize string in record
 	$insert_row = $mysqli->query("INSERT INTO tbladmin(adminEmail, adminPassword) VALUES ('".$contentToSave."', '".$hash."')");

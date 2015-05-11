@@ -193,6 +193,7 @@
 						      				echo '<input type="text" id="naam" name="naam" placeholder="Naam" class="form-control" value="'.$acc['adminNaam'].'" />';
 						    			echo '</div>';
 						  			echo '</div>';
+
 						  			echo '<div class="form-group">';
 						    			echo '<label for="voornaam" class="col-sm-2 control-label">Voornaam</label>';
 						    	
@@ -200,6 +201,7 @@
 						      				echo '<input type="text" id="voornaam" name="voornaam" placeholder="Voornaam" class="form-control" value="'.$acc['adminVoornaam'].'" />';
 						    			echo '</div>';
 						  			echo '</div>';
+
 									echo '<div class="form-group">';
 						    			echo '<label for="email" class="col-sm-2 control-label">Email</label>';
 						    	
@@ -207,6 +209,7 @@
 						      				echo '<input type="text" id="email" name="email" placeholder="email" class="form-control" value="'.$acc['adminEmail'].'" />';
 						    			echo '</div>';
 						  			echo '</div>';
+
 						  			echo '<div class="form-group">';
 						    			echo '<label for="password" class="col-sm-2 control-label">Wachtwoord</label>';
 						    	
@@ -214,6 +217,7 @@
 						      				echo '<input type="password" id="password" name="password" placeholder="Nieuw wachtwoord" class="form-control" />';
 						    			echo '</div>';
 						  			echo '</div>';
+
 						  			echo '<div class="form-group">';
 						    			echo '<label for="" class="col-sm-2 control-label"></label>';
 						    	
@@ -223,6 +227,7 @@
 						      						';
 						    			echo '</div>';
 						  			echo '</div>';
+
 						  			echo '<div class="form-group">';
 						    			echo '<br/><br/><br/><br/><input type="submit" class="submit col-sm-3" name="FormDelete" value="Verwijder uw account">';
 						    	
