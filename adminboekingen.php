@@ -103,8 +103,13 @@
                                     echo "Geboekt door: " . $boeking["fullname"] . "<br />";
 									
                                     $datumvandaag = date('d-m-Y');
+
+                                    echo 'Datum vandaag: ' . $datumvandaag;
+
                                     $datumafspraak = $boeking["datumDag"] . "-" . $boeking["datumMaand"] . "-" . $boeking['datumJaar'];
-                                    if($datumafspraak > $datumvandaag) {
+                                    if($datumafspraak < $datumvandaag) {
+                                        echo "gelukt";
+
                                         $contactemail = "rentastudentthomasmore@gmail.com";
                                         $email = $boeking["email"];
                                        
@@ -118,9 +123,12 @@
                                         $headers = 'From: rentastudentthomasmore@gmail.com' . "\r\n" .
                                                    'Reply-to: rentastudentthomasmore@gmail.com' ; 
 
-                                        mail($to, $subject, $message, $headers); 
+                                        mail('noe.baeten@gmail.com', $subject, $message, $headers); 
                                         mail($bcc, $subject, $message, $headers); 
                                     } 
+                                    else {
+                                        echo "niet gelukt";
+                                    }
                                     echo "</li>";
 								}
 							?>
