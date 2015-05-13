@@ -57,6 +57,41 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+
+	//##### Send delete Ajax request to DeleteDates.php #########
+	$("body").on("click", "#responds .del_button", function(e) {
+		 e.preventDefault();
+		 var clickedID = this.id.split('-'); //Split ID string (Split works as PHP explode)
+		 var DbNumberID = clickedID[1]; //and get number from array
+		 var myData = 'recordToDelete='+ DbNumberID; //build a post data structure
+		 
+		$('#item_'+DbNumberID).addClass( "sel" ); //change background of this element by adding class
+		$(this).hide(); //hide currently clicked delete button
+		 
+			jQuery.ajax({
+			type: "POST", // HTTP method POST or GET
+			url: "ajax/DeleteDates.php", //Where to make Ajax calls
+			dataType:"text", // Data type, HTML, json etc.
+			data:myData, //Form variables
+			success:function(response){
+				//on success, hide  element user wants to delete.
+				$('#item_'+DbNumberID).fadeOut();
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				//On error, we alert user
+				alert(thrownError);
+			}
+			});
+		});
+
+	});
+	
+	</script>
 </head>
 <body>
 	
@@ -228,21 +263,27 @@
                 <div class="row">
                 	<div class="col-sm-6">
                 		
+						<ul id="responds">
 						<?php
-							while($date = $allDate->fetch(PDO::FETCH_ASSOC))
+							//include db configuration file
+							include_once("ajax/config.php");
+
+							//MySQL query
+							$results = $mysqli->query("SELECT * FROM tbldatums");
+							//get all records
+							while($row = $results->fetch_assoc())
 							{
-								echo "<form method='post' class='form-horizontal'>";
-									echo "<div class='form-group'>";
-										echo "<div class='col-sm-3'>";
-											echo "<label for='username' class='col-sm-2 control-label'>". $date["datumDag"] . " " . $date["datumMaand"] . " " . $date["datumJaar"] . "</label>";
-										echo "</div>";
-										echo "<div class='col-sm-6'>";
-											echo "<input type='hidden' name='dateID' value='".$date['datumID']."'><input type='submit' class='submit' name='FormDel' value='Verwijder datum'><br /><br />";
-										echo "</div>";
-									echo "</div>";
-								echo "</form>";
+							  echo '<li id="item_'.$row["datumID"].'">';
+							  echo '<div class="del_wrapper"><a href="#" class="del_button" id="del-'.$row["datumID"].'">';
+							  echo '<img src="images/icon_del.gif" border="0" />';
+							  echo '</a></div>';
+							  echo $row["datumDag"]. ' ' . $row["datumMaand"] . ' ' . $row["datumJaar"] .'</li>';
 							}
+
+							//close db connection
+							$mysqli->close();
 						?>
+						</ul>
                 	</div>
                 </div>
 
