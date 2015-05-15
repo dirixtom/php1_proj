@@ -12,6 +12,8 @@
 
     $b = new Buddy();
     $allStudents = $b->getAllStudents();
+
+    $r = new Reactie();
 	
 
 ?>
@@ -50,5 +52,13 @@
                             ?>
                         </ul>
                     </div>
+    <div class="col-lg-6">
+    	<h2>Heb je een leuke quote die je graag wil delen?</h2>
+    	
+    	<form action="" method="post">
+    		<input type="text" placeholder="Laat het ons weten!">
+
+    	</form>
+    </div>
 </body>
 </html>
