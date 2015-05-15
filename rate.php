@@ -56,7 +56,7 @@
     	<h2>Heb je een leuke quote die je graag wil delen?</h2>
     	
     	<form action="" method="post">
-    		<input type="text" placeholder="Laat het ons weten!">
+    		<input type="text" placeholder="Laat het ons weten!" name="new_quote">
 
     	</form>
     </div>
