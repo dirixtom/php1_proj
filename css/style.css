@@ -218,7 +218,7 @@ select {
   padding: 20px;
   display: block;
 }
-*,
+/*,
 ::after,
 ::before {
   height: 100%;
@@ -238,4 +238,4 @@ body::before {
   background: red;
   vertical-align: middle;
   display: inline-block;
-}
+} 
