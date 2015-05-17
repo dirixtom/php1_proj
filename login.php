@@ -70,6 +70,13 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<script type="text/javascript">
+		function ShowDiv() 
+		{
+    		document.getElementById("myDiv").style.display = "";
+		}
+	</script>
 </head>
 <body>
 	
@@ -139,8 +146,17 @@
 				</div>
 			</div>
 
+			<div class="row">
+				<div class="col-md-1">	
+				</div>
+				<div class="col-md-9">
+					<br/><a href="#" name="answer" onclick="ShowDiv()">Als je een admin bent, kan je hier inloggen</a>
+				</div>
+			</div>
+
 			</form>
 
+			<div id="myDiv" style="display:none;" class="answer_list" >
 			<form method="post" class="formulier">
 			
 			<div class="row">
@@ -193,6 +209,9 @@
 			</div>
 
 			</form> 
+
+			</div>
+
        	</div>
 	</div>
 </body>
