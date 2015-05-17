@@ -106,11 +106,13 @@
                                     
                                     $datumvandaag = date('d-m-Y');
 
-                                    echo 'Datum vandaag: ' . $datumvandaag;
+                                    echo 'Datum vandaag: ' . $datumvandaag . '<br />';
+                                    $email = $boeking["email"];
+
 
                                     $datumafspraak = $boeking["datumDag"] . "-" . $boeking["datumMaand"] . "-" . $boeking['datumJaar'];
                                     if($datumafspraak < $datumvandaag) {
-                                        echo "gelukt";
+                                        // echo "gelukt";
 
                                         /*$contactemail = "rentastudentthomasmore@gmail.com";
                                         $email = $boeking["email"];
@@ -147,7 +149,7 @@
                                         
                                         $mail->From = 'rentastudentthomasmore@gmail.com';
                                         $mail->FromName = 'Rent A Student';
-                                        $mail->addAddress($boeking['email'], $boeking['fullname']);     // Add a recipient
+                                        $mail->addAddress($boeking['email']);     // Add a recipient
                                         $mail->addReplyTo('rentastudentthomasmore@gmail.com');
                                         $mail->addBCC('rentastudentthomasmore@gmail.com');
                                         
@@ -161,12 +163,12 @@
                                             echo 'Message could not be sent.';
                                             echo 'Mailer Error: ' . $mail->ErrorInfo;
                                         } else {
-                                            echo 'Message has been sent';
+                                            echo 'Message has been sent to: ' . $email;
                                         }
                                         
                                     } 
                                     else {
-                                        echo "niet gelukt";
+                                        // echo "niet gelukt";
                                     }
                                     echo "</li>";
                                 }
