@@ -7,9 +7,11 @@
 	}
 
 	include_once("classes/Boeking.class.php");
+    include_once("classes/PHPMailerAutoload.php");
 
 	$b = new Boeking();
 	$allBoekings = $b->getAllBoekingen();
+    $mail = new PHPMailer();
 ?>
 <html>
 <head>
@@ -95,22 +97,22 @@
                        	<ul class="list-group"> 
 							<?php
 
-								while($boeking = $allBoekings->fetch(PDO::FETCH_ASSOC))
-								{
-									echo "<li class='list-group-item'>Voornaam: " . $boeking["buddieVoornaam"] . "<br />";
-									echo "Naam: " . $boeking["buddieNaam"] . "<br />";
-									echo "Datum: " . $boeking["datumDag"] . " " . $boeking["datumMaand"] . " " . $boeking['datumJaar'] . "<br /><br />";
+                                while($boeking = $allBoekings->fetch(PDO::FETCH_ASSOC))
+                                {
+                                    echo "<li class='list-group-item'>Voornaam: " . $boeking["buddieVoornaam"] . "<br />";
+                                    echo "Naam: " . $boeking["buddieNaam"] . "<br />";
+                                    echo "Datum: " . $boeking["datumDag"] . " " . $boeking["datumMaand"] . " " . $boeking['datumJaar'] . "<br /><br />";
                                     echo "Geboekt door: " . $boeking["fullname"] . "<br />";
-									
+                                    
                                     $datumvandaag = date('d-m-Y');
 
                                     echo 'Datum vandaag: ' . $datumvandaag;
 
                                     $datumafspraak = $boeking["datumDag"] . "-" . $boeking["datumMaand"] . "-" . $boeking['datumJaar'];
                                     if($datumafspraak < $datumvandaag) {
-                                        
+                                        echo "gelukt";
 
-                                        $contactemail = "rentastudentthomasmore@gmail.com";
+                                        /*$contactemail = "rentastudentthomasmore@gmail.com";
                                         $email = $boeking["email"];
                                        
                                         $to = $email; 
@@ -124,14 +126,51 @@
                                                    'Reply-to: rentastudentthomasmore@gmail.com' ; 
 
                                         mail('noe.baeten@gmail.com', $subject, $message, $headers); 
-                                        mail($bcc, $subject, $message, $headers); 
+                                        mail($bcc, $subject, $message, $headers);*/
+                                        
+                                        // Let PHPMailer do the heavy lifting.
+                                        
+                                        $mail->isSMTP();                                        // Set mailer to use SMTP
+                                        $mail->Host = 'smtp.mandrillapp.com';                   // Specify main and backup SMTP servers
+                                        $mail->SMTPAuth = true;                                 // Enable SMTP authentication
+                                        $mail->Username = 'rentastudentthomasmore@gmail.com';   // SMTP username
+                                        $mail->Password = 'ICLEPbfeVA_qkuzANquSTg';             // SMTP password
+                                        $mail->SMTPSecure = 'tls';                              // Enable TLS encryption, `ssl` also accepted
+                                        $mail->Port = 587;                                      // TCP port to connect to
+                                        $mail->SMTPOptions = array(
+                                                                    'ssl' => array(
+                                                                    'verify_peer' => false,
+                                                                    'verify_peer_name' => false,
+                                                                    'allow_self_signed' => true
+                                                                    )
+                                                                );
+                                        
+                                        $mail->From = 'rentastudentthomasmore@gmail.com';
+                                        $mail->FromName = 'Rent A Student';
+                                        $mail->addAddress($boeking['email'], $boeking['fullname']);     // Add a recipient
+                                        $mail->addReplyTo('rentastudentthomasmore@gmail.com');
+                                        $mail->addBCC('rentastudentthomasmore@gmail.com');
+                                        
+                                        $subject = "Rate your buddy and leave some feedback."; 
+                                        $message = "Lorem ipsumtekstje";
+
+                                        $mail->Subject = $subject;
+                                        $mail->Body    = $message;
+                                        
+                                        if(!$mail->send()) {
+                                            echo 'Message could not be sent.';
+                                            echo 'Mailer Error: ' . $mail->ErrorInfo;
+                                        } else {
+                                            echo 'Message has been sent';
+                                        }
+                                        
                                     } 
                                     else {
                                         echo "niet gelukt";
                                     }
                                     echo "</li>";
-								}
-							?>
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
