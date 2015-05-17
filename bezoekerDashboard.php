@@ -20,7 +20,7 @@
 		try 
 		{	
 			$b->Datum = $_POST['datum'];
-			$b->Buddy = $_POST['buddieID'];
+			$b->Buddy = $_POST['radio'];
 			$b->Student = $_POST['studentID'];
 			$b->nieuweBoeking();
 			$success = "Uw boeking is gelukt!";
@@ -204,21 +204,20 @@
 							}
 						?>
 
-					
-
 						<?php
 							while($buddy = $allStudents->fetch(PDO::FETCH_ASSOC))
 							{
 								echo '<li class="buddy_list">';
 									echo '<img src="' . $buddy['buddieFoto'] . '" class="center-cropped"/>';
 									echo '<h3>' . $buddy["buddieVoornaam"] . " " . $buddy["buddieNaam"] . '</h3>';
-									echo '<h4>' . $buddy['buddieJaar'] . 'e jaar ' . $buddy['buddieRichting'] . '</h4>';
-									//echo '<input type="radio" value="' . $buddy['buddieID'] . '" name="' . $buddy['buddieID'] . '">';
-									echo '<input type="hidden" name="buddieID" value="' . $buddy['buddieID'] . '">';
-									echo '<button type="submit">Boek ' . $buddy["buddieVoornaam"] .'!</button>';
+									echo '<h4>' . $buddy['buddieJaar'] . 'e jaar </h4>';
+									//echo '<input type="hidden" name="buddieID" value="' . $buddy['buddieID'] . '">';
+									echo '<input type="radio" name="radio" value="'. $buddy['buddieID'] . '"/>';
+									echo '<br/><br/>';
 								echo '</li>';
 							}
 						?>
+
 					</ul>
 				</div>
 			</div>
@@ -226,7 +225,7 @@
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-8">
-					
+					<button type="submit">Boek nu!</button>
 				</div>
 			</div>
 			

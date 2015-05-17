@@ -6,7 +6,7 @@
 	
 	$b = new Boeking();
 	
-	if($_POST) {
+	if(isset($_POST['FormDel'])) {
 		try {	
 			
 			$b->Id = $_POST['boekingID'];
@@ -116,7 +116,6 @@
 			<div class="col-md-12">
 				<h3>Je geboekte afspraken</h3>
 				<br/>
-				<form action="" method="post">
 				<?php
 					//include db configuration file
 					include_once("ajax/config.php");
@@ -132,15 +131,18 @@
 						echo "<p>Je hebt een afspraak met: " . $row['buddieVoornaam'] . " " . $row['buddieNaam'] . "</p>";
 						echo "<p>op: " . $row['datumDag'] . " " . $row['datumMaand'] . " " . $row['datumJaar'] . "</p>";
 						
-						echo '<input type="hidden" name="boekingID" value="' . $row['boekingID'] . '" />';
-						echo '<button type="submit" name="FormDel">Boeking verwijderen</button>';
-						echo '</form>';
+						//echo '<input type="text" name="boekingID" value="' . $row['boekingID'] . '" />';
+						//echo '<button type="submit" name="FormDel">Boeking verwijderen</button>';
+						//echo '</form>';
+
+						echo "<form method='post'>";
+                          	echo "<input type='hidden' name='boekingID' value='".$row['boekingID']."'><input type='submit' class='submit' name='FormDel' value='Verwijder boeking'><br /><br />";
+                       	echo "</form>";
 						
 						echo '<br/>';
 						echo '<br/>';
 					}
 				?>
-
 			</div>
 		</div>
 	</div>

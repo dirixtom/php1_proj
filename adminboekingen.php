@@ -108,7 +108,7 @@
 
                                     $datumafspraak = $boeking["datumDag"] . "-" . $boeking["datumMaand"] . "-" . $boeking['datumJaar'];
                                     if($datumafspraak < $datumvandaag) {
-                                        echo "gelukt";
+                                        
 
                                         $contactemail = "rentastudentthomasmore@gmail.com";
                                         $email = $boeking["email"];
