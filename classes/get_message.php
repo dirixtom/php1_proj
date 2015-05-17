@@ -2,7 +2,7 @@
 
     include_once("../classes/Message.class.php");
     $m = new Message();
-    $m->GetAllMessages();
+    $m->showAll();
 
     $arr_response =[
         'status' => 'success',

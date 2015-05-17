@@ -50,23 +50,23 @@
 			<?php
 				while($message = $all_messages->fetch(PDO::FETCH_OBJ))
 				{
-					echo "<article>";
+					echo "<section>";
 					if( $message->user === $currentUser )
 					{
-						echo "<article class='ik'>" . $message->message . "</article>";
+						echo "<section class='ik'>" . $message->message . "</section>";
 					}
 					else
 					{
-						echo "<article class='nietik'>" . $message->message . "</article>";
+						echo "<section class='nietik'>" . $message->message . "</section>";
 					}
-					echo "</article>";
+					echo "</section>";
 				}
 			?>
 		</section>
 
 		<section>
 			<form action="" method="post">
-			<input type="text" class="imessage" placeholder="type hier uw bericht" name="text">
+			<input type="text" class="messageInput" placeholder="type hier uw bericht" name="text">
 			<button type="submit" value="Send" id="btnSubmit">Send</button>
 			</form>
 		</section>
@@ -76,7 +76,7 @@
 
         $(document).ready(function(){
             $("#btnSubmit").on("click", function(e){
-                var text = $(".imessage").val();
+                var text = $(".messageInput").val();
 
                 $.ajax({
 
@@ -89,7 +89,7 @@
                         if(resp.status === "success")
                         {
 
-                            var li = $("<article class='me'></article>").html(resp.text).css("display","none");
+                            var li = $("<section class='ik'></section>").html(resp.text).css("display","none");
                             $(".messages").append(li);
                             li.slideDown("fast");
 

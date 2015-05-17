@@ -10,7 +10,7 @@ else
     header("location: ../templogin.php");
 }
 
-include_once("../classes/Message.class.php");
+include_once("classes/Message.class.php");
 $m = new Message();
 if( !empty($_POST) )
 {
@@ -18,7 +18,7 @@ if( !empty($_POST) )
         $m = new Message();
         $m->setText($_POST['text']);
         $m->setUser($currentUser);
-        $m->Create();
+        $m->Save();
         $arr_response =[
             'status' => 'success',
             'text' => $_POST['text']
