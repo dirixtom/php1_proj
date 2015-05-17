@@ -148,7 +148,7 @@
 					<label for="firstname">Voornaam</label> *<br/>
 				</div>
 				<div class="col-md-8">
-					<input type="text" id="firstname" name="firstname" placeholder="voornaam"/>
+					<input type="text" id="firstname" name="firstname" placeholder="Voornaam"/>
 				</div>
 			</div>
 
@@ -157,7 +157,7 @@
 					<label for="lastname">Achternaam</label> *<br/>
 				</div>
 				<div class="col-md-8">
-					<input type="text" id="lastname" name="lastname" placeholder="achternaam" />
+					<input type="text" id="lastname" name="lastname" placeholder="Achternaam" />
 				</div>
 			</div>
 
