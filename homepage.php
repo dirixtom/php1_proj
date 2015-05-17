@@ -1,5 +1,9 @@
 <?php 
 
+include_once("classes/Student.class.php");
+$s = new Student();
+$allStudents = $s->GetStudentsIndex();
+
 session_start(); //Session should always be active
 
 $app_id       = '1378145582515326';  //localhost
@@ -98,6 +102,31 @@ if ($session){ //if we have the FB session
 	<link href="css/reset.css" rel="stylesheet" />
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" />
+  <script type="text/javascript" src="js/instafeed.min.js"></script>
+
+  <script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'tagged',
+        tagName: 'WeAreIMD',
+        clientId: '21eeb5b147ac46159f720b95a59f6ca6',
+        filter: function(image) {
+            var blockedUsernames = [
+            'imtoofabluv'
+            ];
+
+            // check for blocked users
+            for (var i=0; i<blockedUsernames.length; i++) {
+               if (image.user.username === blockedUsernames[i]) {
+                 return false;
+               }
+            }
+            return true;
+        },
+        limit: '20'
+    });
+    feed.run();
+
+</script>
 </head>
 <body id="homepage">
 	
@@ -148,24 +177,17 @@ if ($session){ //if we have the FB session
 
   	<div class="row text-center buddies">
 			<h2>Meet the most popular Buddies</h2>
-			<div class="student col-md-4">
-                <img src="images/student1.jpg" alt="foto student 1" />
-                <h3>Shane Rymenams</h3>
-                <p>3de jaarstudent</p>
-                <p>Design</p>
-            </div>
-            <div class="student col-md-4">
-                <img src="images/student2.jpg" alt="foto student 2" />
-                <h3>Rutger Berghmans</h3>
-                <p>3de jaarstudent</p>
-                <p>Design</p>
-            </div>
-            <div class="student col-md-4">
-                <img src="images/student3.jpg" alt="foto student 3" />
-                <h3>Vincent Van Loock</h3>
-                <p>3de jaarstudent</p>
-                <p>Design</p>
-            </div>
+		
+      <?php
+                while($student = $allStudents->fetch(PDO::FETCH_ASSOC))
+                {
+                  echo '<div class="student col-md-4">';
+                    echo '<img src="'. $student["buddieFoto"] .'" alt="Foto ' . $student["buddieVoornaam"] . '" class="center-cropped" />';
+                    echo '<h3>' . $student["buddieVoornaam"] . '</h3>';
+                    echo '<p>'. $student["buddieJaar"] . 'e jaarstudent</p>';
+                  echo '</div>';                  
+                }
+              ?>
    	</div>
 
     <div class="row text-center instagram">
@@ -177,8 +199,7 @@ if ($session){ //if we have the FB session
 
    	<div class="row text-center pictures">
 		
-		  <div class="student col-md-12">
-        <iframe src="http://www.intagme.com/in/?h=d2VhcmVpbWR8aW58MjAwfDZ8Mnx8bm98NXx1bmRlZmluZWR8bm8=" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:1230px; height: 410px" ></iframe>
+		  <div class="student col-md-12" id="instafeed">
       </div>
 		
    	</div>

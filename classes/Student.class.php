@@ -324,6 +324,14 @@
 			return $allStudents;
 		}
 
+		public function GetStudentsIndex()
+		{
+			//alle accounts returnen
+			$conn = Db::getInstance();
+			$allStudents = $conn->query("SELECT * FROM tblbuddies LIMIT 3");
+			return $allStudents;
+		}
+
 		public function GetAllFB()
 		{
 			//alle accounts returnen
