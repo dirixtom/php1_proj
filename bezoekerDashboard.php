@@ -135,6 +135,7 @@
           	<li><a href="homepage.php">Home</a></li>
           	<li><a href="bezoekerDashboard.php">Een afspraak maken</a></li>
           	<li><a href="bezoekerBoekingen.php">Mijn boekingen</a></li>
+          	<li><a href="templogin.php">Messenger</a></li>
           	<li><a href="logout.php">Uitloggen</a></li>
        	</ul>
    	</div>
