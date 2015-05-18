@@ -29,9 +29,9 @@
 		public function Save()
 		{
 			$db = Db::getInstance();
-			$stmt = $db->prepare("INSERT INTO tblmessages (message, user) VALUES (:message, :user)");
-			$stmt->bindValue(':message', $this->m_sText);
+			$stmt = $db->prepare("INSERT INTO tblmessages (user, message) VALUES (:user, :message)");
 			$stmt->bindValue(':user', $this->m_sUser);
+			$stmt->bindValue(':message', $this->m_sText);
 			$stmt->execute();
 		}
 
@@ -39,6 +39,8 @@
 		{
 			return Db::getInstance()->query("select * from tblmessages;");
 		}
+
 	}
+
 
 ?>

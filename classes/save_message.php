@@ -7,10 +7,10 @@ if(isset( $_SESSION['name'] ))
 }
 else
 {
-    header("location: ../templogin.php");
+    header("location: templogin.php");
 }
 
-include_once("classes/Message.class.php");
+include_once("Message.class.php");
 $m = new Message();
 if( !empty($_POST) )
 {

@@ -14,8 +14,9 @@
 <body>
 	
 	<form action="" method="post">
-		<label for="name">Je naam?</label>		
+		<label for="name">Je naam</label>		
 		<input type="text" name="name" id="name">
+		<button type="submit" value="Send" id="btnSubmit">Send</button>
 	</form>
 
 </body>

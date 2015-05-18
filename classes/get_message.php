@@ -1,6 +1,6 @@
 <?php
 
-    include_once("../classes/Message.class.php");
+    include_once("Message.class.php");
     $m = new Message();
     $m->showAll();
 
