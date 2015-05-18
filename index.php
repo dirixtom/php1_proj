@@ -12,10 +12,8 @@ $required_scope   = 'public_profile, publish_actions'; //Permissions required
 $redirect_url     = 'http://localhost:8888/PHP1/php1_proj/bezoekerDashboard.php'; //FB redirects to this page with a code
 
 //MySqli details for saving user details
-$mysql_host     = 'localhost';
-$mysql_username   = 'root';
-$mysql_password   = 'root';
-$mysql_db_name    = 'phpproject';
+
+include_once("ajax/config.php");
 
 require_once __DIR__ . "/facebook-php-sdk-v4-4.0-dev/autoload.php"; //include autoload from SDK folder
 
@@ -58,7 +56,7 @@ if ($session){ //if we have the FB session
   $user_email = ( isset( $_SESSION["fb_user_details"]["email"] ) )? $_SESSION["fb_user_details"]["email"] : "";
   
   ###### connect to user table ########
-  $mysqli = new mysqli($mysql_host, $mysql_username, $mysql_password, $mysql_db_name);
+  $mysqli = new mysqli($hostname, $username, $password, $databasename);
   if ($mysqli->connect_error) {
     die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
   }
@@ -132,10 +130,9 @@ if ($session){ //if we have the FB session
 	
 	<div class="navbar navbar-default">
    		<div class="navbar-header">
-    		<a class="navbar-nav" href="#"><img class="logo" src="images/logo2.png" alt="The Rent A Student Logo" width="55%"></a>
+    		<a class="navbar-nav" href="index.php"><img class="logo" src="images/logo2.png" alt="The Rent A Student Logo" width="55%"></a>
        	</div>
       	<ul class="nav navbar-nav">
-          	<!-- <li><a href="login.php">Inloggen / Registreren</a></li> -->
        	</ul>
    	</div>
 

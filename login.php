@@ -82,10 +82,10 @@
 	
 	<div class="navbar navbar-default">
    		<div class="navbar-header">
-    		<a class="navbar-nav" href="#"><img class="logo" src="images/logo2.png" alt="The Rent A Student Logo" width="55%"></a>
+    		<a class="navbar-nav" href="index.php"><img class="logo" src="images/logo2.png" alt="The Rent A Student Logo" width="55%"></a>
        	</div>
       	<ul class="nav navbar-nav">
-          	<li><a href="homepage.php">Home</a></li>
+          	<li><a href="index.php">Home</a></li>
        	</ul>
    	</div>
 

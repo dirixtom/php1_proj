@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2015 at 06:17 PM
+-- Generation Time: May 18, 2015 at 07:16 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `phpproject`
@@ -32,14 +26,15 @@ CREATE TABLE `tbladmin` (
   `adminVoornaam` varchar(250) NOT NULL,
   `adminEmail` varchar(250) NOT NULL,
   `adminPassword` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbladmin`
 --
 
 INSERT INTO `tbladmin` (`adminID`, `adminNaam`, `adminVoornaam`, `adminEmail`, `adminPassword`) VALUES
-(23, '', '', 'noe.baeten@gmail.com', 'abs');
+(36, 'Noe', 'baeten', 'noe.baeten@gmail.com', '$2y$11$YPsejjM5n3Pho2sGYN8Py./WJBSiFq.oodki1VFHIrLYVucU2NijS'),
+(38, 'Joris', 'Hens', 'joris.hens@gmail.com', '$2y$11$3ktmsfa.I4wR094ZsS9FV.JLbPZ1qJkMuX9NnzQlQOdiY.E9V5Au.');
 
 -- --------------------------------------------------------
 
@@ -52,14 +47,15 @@ CREATE TABLE `tblboekingen` (
   `datumID` int(11) NOT NULL,
   `studentID` int(11) NOT NULL,
   `buddieID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblboekingen`
 --
 
 INSERT INTO `tblboekingen` (`boekingID`, `datumID`, `studentID`, `buddieID`) VALUES
-(16, 8, 3, 20);
+(71, 13, 5, 22),
+(72, 16, 5, 27);
 
 -- --------------------------------------------------------
 
@@ -79,14 +75,16 @@ CREATE TABLE `tblbuddies` (
   `buddieRating` int(11) NOT NULL,
   `buddieLeeftijd` int(11) NOT NULL,
   `buddieFoto` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblbuddies`
 --
 
 INSERT INTO `tblbuddies` (`buddieID`, `buddieNaam`, `buddieVoornaam`, `buddieTwitter`, `buddieEmail`, `buddiePassword`, `buddieJaar`, `buddieRichting`, `buddieRating`, `buddieLeeftijd`, `buddieFoto`) VALUES
-(20, 'Baeten', 'Noe', '@NoeBaeten', 'noe.baeten@gmail.com', 'abs', '3', '1', 0, 0, 'images/profpics/noe.baeten@gmail.com/a33GpBQ_700b.jpg');
+(22, 'Rymenams', 'Shane', '@ShaneRymenams', 'shane.rymenams@gmail.com', '$2y$11$THTPR7ABFTMF1n7py31x7ObiPKF5XHfKsqrm8/np3FBMfY8HMcOzy', '3', '1', 0, 0, 'images/profpics/shane.rymenams@gmail.com/student1.jpg'),
+(26, 'Van Loock', 'Vincent', '@VincentVanLoock', 'vincent.vanloock@gmail.com', '$2y$11$LekBWEsq6AnuvTYYK3ofAOixF/JjzHW.n3hZ3yvorH27UcS3PW62a', '3', '1', 0, 0, 'images/profpics/vincent.vanloock@gmail.com/student3.jpg'),
+(27, 'Berghmans', 'Rutger', '@RutgerBerghmans', 'rutger@gmail.com', '$2y$11$S2w9GjZ88lCCnR.mA7oSWuqm/9bbE8IbBt97ScG7Ohbau/.HChary', '2', '1', 0, 0, 'images/profpics/rutger@gmail.com/student2.jpg');
 
 -- --------------------------------------------------------
 
@@ -99,15 +97,16 @@ CREATE TABLE `tbldatums` (
   `datumDag` varchar(250) NOT NULL,
   `datumMaand` varchar(250) NOT NULL,
   `datumJaar` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbldatums`
 --
 
 INSERT INTO `tbldatums` (`datumID`, `datumDag`, `datumMaand`, `datumJaar`) VALUES
-(8, '1', 'Januari', '2015'),
-(9, '1', 'April', '2015');
+(13, '20', 'Mei', '2015'),
+(14, '25', 'Mei', '2015'),
+(16, '26', 'Juni', '2015');
 
 -- --------------------------------------------------------
 
@@ -133,14 +132,15 @@ CREATE TABLE `tblreacties` (
   `reactiesNaam` varchar(250) NOT NULL,
   `reactiesComment` text NOT NULL,
   `reactiesMail` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblreacties`
 --
 
 INSERT INTO `tblreacties` (`reactiesID`, `reactiesNaam`, `reactiesComment`, `reactiesMail`) VALUES
-(7, 'Shane', 'Dag verliep goed. Buddie werkte goed mee.', 'tom.dirix@gmail.com');
+(10, 'Tom Dirix', 'Dag verliep goed. Buddy werkte goed mee en was vriendelijk', 'tom.dirix@gmail.com'),
+(11, 'Shane Rymenams', 'Dag verliep slecht. Buddy werkte niet mee', 'shane.rymenams@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,7 @@ CREATE TABLE `tblstudenten` (
   `fbid` bigint(20) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblstudenten`
@@ -161,7 +161,7 @@ CREATE TABLE `tblstudenten` (
 
 INSERT INTO `tblstudenten` (`studentID`, `fbid`, `fullname`, `email`) VALUES
 (3, 10205395106350448, 'NoÃ« Baeten', 'baeten_link@hotmail.com'),
-(4, 10205395106350449, 'Tom', 'baeten_link@hotmail.com');
+(5, 1381149482214525, 'Vincent Van Loock', 'rentastudentthomasmore@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -217,22 +217,22 @@ ALTER TABLE `tblstudenten`
 -- AUTO_INCREMENT for table `tbladmin`
 --
 ALTER TABLE `tbladmin`
-MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `tblboekingen`
 --
 ALTER TABLE `tblboekingen`
-MODIFY `boekingID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+MODIFY `boekingID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `tblbuddies`
 --
 ALTER TABLE `tblbuddies`
-MODIFY `buddieID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `buddieID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `tbldatums`
 --
 ALTER TABLE `tbldatums`
-MODIFY `datumID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `datumID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tblmessages`
 --
@@ -242,12 +242,12 @@ MODIFY `messageID` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `tblreacties`
 --
 ALTER TABLE `tblreacties`
-MODIFY `reactiesID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `reactiesID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tblstudenten`
 --
 ALTER TABLE `tblstudenten`
-MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --
@@ -264,9 +264,5 @@ ADD CONSTRAINT `tblboekingen_ibfk_3` FOREIGN KEY (`buddieID`) REFERENCES `tblbud
 -- Constraints for table `tblmessages`
 --
 ALTER TABLE `tblmessages`
-ADD CONSTRAINT `tblmessages_ibfk_2` FOREIGN KEY (`buddieID`) REFERENCES `tblstudenten` (`studentID`),
-ADD CONSTRAINT `tblmessages_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `tblbuddies` (`buddieID`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ADD CONSTRAINT `tblmessages_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `tblbuddies` (`buddieID`),
+ADD CONSTRAINT `tblmessages_ibfk_2` FOREIGN KEY (`buddieID`) REFERENCES `tblstudenten` (`studentID`);

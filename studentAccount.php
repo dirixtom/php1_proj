@@ -167,17 +167,8 @@
                     <li>
                         <a href="studentDashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <!-- <li>
-                        <a href="adminboekingen.php"><i class="fa fa-fw fa-bar-chart-o"></i> Boekingen</a>
-                    </li>
                     <li>
-                        <a href="admindatums.php"><i class="fa fa-fw fa-edit"></i> Datums</a>
-                    </li>
-                    <li>
-                        <a href="adminreacties.php"><i class="fa fa-fw fa-desktop"></i> Reacties</a>
-                    </li>-->
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-table"></i> Messenger</a>
+                        <a href="templogin.php"><i class="fa fa-fw fa-table"></i> Messenger</a>
                     </li> 
                 </ul>
             </div>
@@ -299,10 +290,6 @@
 		
 	</div>
 	</div>
-
-
-
-       
 
 </body>
 </html>
